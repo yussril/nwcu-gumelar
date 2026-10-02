@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-error-container":"#93000a","surface-tint":"#2b6954","on-primary-container":"#80bea6","error":"#ba1a1a","surface-container-lowest":"#ffffff","on-secondary-fixed":"#131b2e","on-primary":"#ffffff","inverse-on-surface":"#eff1f3","secondary-fixed-dim":"#bec6e0","tertiary-container":"#004f34","outline":"#707974","primary-fixed":"#b0f0d6","on-secondary-fixed-variant":"#3f465c","secondary-container":"#dae2fd","background":"#f8fafc","surface-variant":"#e0e3e5","inverse-surface":"#2d3133","secondary":"#64748b","surface-container-low":"#f1f5f9","on-surface-variant":"#475569","on-secondary-container":"#5c647a","error-container":"#ffdad6","surface-container-high":"#e2e8f0","on-background":"#0f172a","outline-variant":"#e2e8f0","tertiary-fixed-dim":"#4edea3","primary-container":"#064e3b","on-tertiary-fixed":"#002113","on-tertiary-fixed-variant":"#005236","surface-container-highest":"#e0e3e5","surface-dim":"#d8dadc","on-secondary":"#ffffff","primary":"#064e3b","primary-fixed-dim":"#95d3ba","on-surface":"#0f172a","on-tertiary":"#ffffff","surface-bright":"#f8fafc","tertiary":"#003623","on-primary-fixed":"#002117","secondary-fixed":"#dae2fd","inverse-primary":"#95d3ba","on-primary-fixed-variant":"#0b513d","surface-container":"#f8fafc","surface":"#f8fafc","on-error":"#ffffff","tertiary-fixed":"#6ffbbe","on-tertiary-container":"#31c98f"},fontFamily:{"body-md":["Inter","sans-serif"],"label-sm":["Inter","sans-serif"],"label-md":["Inter","sans-serif"],"label-caps":["Inter","sans-serif"],"headline-sm":["Plus Jakarta Sans","sans-serif"],"headline-md":["Plus Jakarta Sans","sans-serif"],"headline-lg":["Plus Jakarta Sans","sans-serif"],"headline-xl":["Plus Jakarta Sans","sans-serif"],"display-hero":["Plus Jakarta Sans","sans-serif"]}}}}</script></head><body class="bg-[#f8fafc] font-['Inter'] text-slate-800 antialiased"><aside class="fixed left-0 top-0 h-full w-[280px] bg-white border-r border-slate-200/80 z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-5 flex items-center gap-3 border-b border-slate-100"><img alt="Brand logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1V13KcRGtfmVVPLWPkuhzkqGLb9Ru1IopZaEj4KbFPNU2iY8tnOMR686IkQsBwgK8CYdbg00DG0v-oPm86W4jQT3QXtpYkhds39qy6S_GDNn_y5nMzSEYqTIlwaZFt7g6hPzqxM4SmLWHYVHGohzqXn0GiW6caRFdanjj-yVl_BRYDosCpB4cuQhfFoJ45skST1PFFeMNnOVac1v3y30hI6XF50aN1VGUm4QQF7ox-ycVxmsMQVvp6nO8o"><div class="flex flex-col"><span class="font-['Plus_Jakarta_Sans'] text-base font-bold tracking-tight text-[#064e3b] leading-none">MWCNU ADMIN</span><span class="text-[11px] font-semibold text-slate-500 uppercase mt-1 tracking-wider">Kec. Gumelar</span></div></div><div class="px-5 pt-4"><span class="text-[11px] text-slate-400 uppercase font-semibold tracking-wider">Menu Utama</span></div><nav class="flex flex-col gap-1 px-3 pt-2"><a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 transition-all bg-emerald-50 text-[#064e3b] font-semibold rounded-lg" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px] text-[#064e3b]">dashboard</span><span class="text-sm">Dashboard</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all font-medium text-sm" data-path="warta-nahdliyin" href="#"><span class="material-symbols-outlined text-[20px] text-slate-400">article</span><span>Warta Nahdliyin</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all font-medium text-sm" data-path="manajemen-banom" href="#"><span class="material-symbols-outlined text-[20px] text-slate-400">account_tree</span><span>Manajemen Banom</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all font-medium text-sm" data-path="data-kartanu" href="#"><span class="material-symbols-outlined text-[20px] text-slate-400">badge</span><span>Data KartaNU</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all font-medium text-sm" data-path="pesan-layanan" href="#"><span class="material-symbols-outlined text-[20px] text-slate-400">mail</span><span>Pesan &amp; Layanan</span></a><a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all font-medium text-sm" data-path="pengaturan" href="#"><span class="material-symbols-outlined text-[20px] text-slate-400">settings</span><span>Pengaturan</span></a></nav></div><div class="p-3 border-t border-slate-100"><div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100"><div class="flex items-center gap-2.5 min-w-0"><div class="w-9 h-9 rounded-full bg-[#064e3b] flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-white text-[18px]">shield_person</span></div><div class="flex flex-col truncate"><span class="text-xs font-semibold text-slate-800 truncate">Sekretariat MWCNU</span><span class="text-[11px] text-slate-500 truncate">Admin Utama</span></div></div><a class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-slate-100 transition-colors shrink-0" data-path="login" href="#" title="Logout"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="pl-[280px]"><header class="fixed top-0 left-[280px] right-0 h-16 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 z-40 px-8 flex items-center justify-between"><div class="flex items-center gap-3"></div><div class="flex items-center gap-4"><div class="relative hidden sm:block"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span><input class="w-64 pl-9 pr-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-[#064e3b] transition-all" placeholder="Cari arsip, banom, warga..." type="text"></div><div class="hidden md:flex items-center gap-1.5 text-slate-600 text-xs px-3 py-1.5 rounded-full bg-slate-100"><span class="material-symbols-outlined text-[16px] text-slate-400">calendar_today</span><span>Jumat, 24 Mei 2025</span></div><div class="w-8 h-8 rounded-full bg-[#064e3b] flex items-center justify-center"><span class="material-symbols-outlined text-white text-[18px]">person</span></div></div></header><main class="relative pt-16 bg-[#f8fafc] min-h-screen px-8 py-8"><div class="flex flex-col w-full max-w-[1400px] mx-auto">
+<!-- Top Greeting -->
+<section class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6">
+<div class="flex flex-col gap-1.5 max-w-3xl">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
+<span class="text-xs font-medium text-slate-500">Kecamatan Gumelar, Banyumas</span>
+</div>
+<h1 class="font-['Plus_Jakarta_Sans'] text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
+        Selamat Datang di Pusat Informasi MWCNU.
+      </h1>
+<p class="text-sm text-slate-500 leading-relaxed">
+        Pantau aktivitas administrasi, publikasi warta, dan layanan umat hari ini secara terpadu dan presisi.
+      </p>
+</div>
+</section>
+<!-- Metric Statistics Grid: 4 Cards with Uniform Height and Anti-Wrap Numbering -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+<!-- Stat 1: KartaNU -->
+<div class="h-full min-h-[160px] bg-white rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total KartaNU</span>
+<div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-[#064e3b] shrink-0">
+<span class="material-symbols-outlined text-[22px]">badge</span>
+</div>
+</div>
+<div class="my-auto py-1">
+<div class="font-['Plus_Jakarta_Sans'] text-2xl font-bold tracking-tight text-slate-900 whitespace-nowrap truncate">3,420 <span class="text-sm font-normal text-slate-500">Jiwa</span></div>
+</div>
+<div class="flex items-center gap-1.5 text-xs">
+<span class="material-symbols-outlined text-emerald-700 text-[15px]">trending_up</span>
+<span class="font-semibold text-emerald-700">+148 bulan ini</span>
+<span class="text-slate-400">• verifikasi aktif</span>
+</div>
+</div>
+<!-- Stat 2: Koin NU -->
+<div class="h-full min-h-[160px] bg-white rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Koin NU Bulan Ini</span>
+<div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-[#064e3b] shrink-0">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+</div>
+<div class="my-auto py-1">
+<div class="font-['Plus_Jakarta_Sans'] text-2xl font-bold tracking-tight text-emerald-800 whitespace-nowrap truncate">Rp 34.200.000</div>
+</div>
+<div class="flex items-center gap-1.5 text-xs">
+<span class="font-semibold text-emerald-700">↑ 12.4%</span>
+<span class="text-slate-400">dibandingkan bulan lalu</span>
+</div>
+</div>
+<!-- Stat 3: Warta Diterbitkan -->
+<div class="h-full min-h-[160px] bg-white rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Warta Diterbitkan</span>
+<div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+<span class="material-symbols-outlined text-[22px]">newspaper</span>
+</div>
+</div>
+<div class="my-auto py-1">
+<div class="font-['Plus_Jakarta_Sans'] text-2xl font-bold tracking-tight text-slate-900 whitespace-nowrap truncate">128 <span class="text-sm font-normal text-slate-500">Artikel</span></div>
+</div>
+<div class="flex items-center gap-1.5 text-xs text-slate-500">
+<span class="material-symbols-outlined text-slate-400 text-[15px]">schedule</span>
+<span>6 terbit minggu ini</span>
+</div>
+</div>
+<!-- Stat 4: Banom & Ranting -->
+<div class="h-full min-h-[160px] bg-white rounded-2xl p-5 border border-slate-200/80 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Banom &amp; Ranting Aktif</span>
+<div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+<span class="material-symbols-outlined text-[22px]">diversity_3</span>
+</div>
+</div>
+<div class="my-auto py-1">
+<div class="font-['Plus_Jakarta_Sans'] text-2xl font-bold tracking-tight text-slate-900 whitespace-nowrap truncate">17 <span class="text-sm font-normal text-slate-500">Entitas</span></div>
+</div>
+<div class="flex items-center gap-1.5 text-xs text-slate-500">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+<span>10 Ranting Desa + 7 Banom</span>
+</div>
+</div>
+</section>
+<!-- Middle Row: 3-Column Grid (2 Cols Left for Chart, 1 Col Right for Quick Access) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 items-start">
+<!-- Left Column: 6-Month Infaq Bar Chart (2/3 col-span-2) -->
+<div class="lg:col-span-2 bg-white rounded-2xl p-6 border border-slate-200/80 flex flex-col justify-between">
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+<div>
+<span class="text-[11px] font-bold text-[#064e3b] uppercase tracking-widest">Laporan Filantropi Terpadu</span>
+<h2 class="font-['Plus_Jakarta_Sans'] text-xl font-bold text-slate-900 tracking-tight mt-0.5">
+          Statistik Infaq &amp; Koin NU (6 Bulan)
+        </h2>
+<p class="text-xs text-slate-500 mt-1">
+          Rekapitulasi perolehan LAZISNU se-Kecamatan Gumelar (Des 2024 - Mei 2025)
+        </p>
+</div>
+<!-- Year Switcher Capsule -->
+<div class="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full shrink-0">
+<span class="material-symbols-outlined text-[16px] text-slate-500">calendar_month</span>
+<span class="text-xs font-semibold text-slate-700">Tahun 2025</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400">arrow_drop_down</span>
+</div>
+</div>
+<!-- Refined Chart Area: Thinner Bars (w-6), Generous Gap, Mint/Emerald Dual Tones -->
+<div class="w-full pt-4">
+<div class="relative w-full h-64 flex flex-col justify-between">
+<!-- Background Grid Hairlines with Axis Labels -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full flex items-center justify-between">
+<div class="w-full h-[1px] bg-slate-100"></div>
+<span class="text-[11px] pl-4 text-slate-400 font-medium">40 Jt</span>
+</div>
+<div class="w-full flex items-center justify-between">
+<div class="w-full h-[1px] bg-slate-100"></div>
+<span class="text-[11px] pl-4 text-slate-400 font-medium">30 Jt</span>
+</div>
+<div class="w-full flex items-center justify-between">
+<div class="w-full h-[1px] bg-slate-100"></div>
+<span class="text-[11px] pl-4 text-slate-400 font-medium">20 Jt</span>
+</div>
+<div class="w-full flex items-center justify-between">
+<div class="w-full h-[1px] bg-slate-100"></div>
+<span class="text-[11px] pl-4 text-slate-400 font-medium">10 Jt</span>
+</div>
+<div class="w-full flex items-center justify-between">
+<div class="w-full h-[1px] bg-slate-200"></div>
+<span class="text-[11px] pl-4 text-slate-400 font-medium">0</span>
+</div>
+</div>
+<!-- Bar Data Points Container (Using justify-around for spacious distribution and w-6 bars) -->
+<div class="relative h-full flex items-end justify-around px-2 sm:px-6 pt-6 z-10 mr-12">
+<!-- Des 2024 -->
+<div class="group flex flex-col items-center gap-2 h-full justify-end cursor-pointer">
+<div class="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white px-2 py-0.5 rounded text-[11px] font-medium whitespace-nowrap shadow-sm mb-1">
+            Rp 26.5 Jt
+          </div>
+<div class="w-6 flex flex-col justify-end gap-0.5 h-[66%]">
+<div class="w-full bg-[#064e3b] rounded-t transition-all duration-200 group-hover:brightness-110" style="height: 75%;"></div>
+<div class="w-full bg-emerald-200/90 rounded-b" style="height: 25%;"></div>
+</div>
+<span class="text-xs text-slate-500 font-medium mt-1">Des</span>
+</div>
+<!-- Jan 2025 -->
+<div class="group flex flex-col items-center gap-2 h-full justify-end cursor-pointer">
+<div class="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white px-2 py-0.5 rounded text-[11px] font-medium whitespace-nowrap shadow-sm mb-1">
+            Rp 28.2 Jt
+          </div>
+<div class="w-6 flex flex-col justify-end gap-0.5 h-[70%]">
+<div class="w-full bg-[#064e3b] rounded-t transition-all duration-200 group-hover:brightness-110" style="height: 78%;"></div>
+<div class="w-full bg-emerald-200/90 rounded-b" style="height: 22%;"></div>
+</div>
+<span class="text-xs text-slate-500 font-medium mt-1">Jan</span>
+</div>
+<!-- Feb 2025 -->
+<div class="group flex flex-col items-center gap-2 h-full justify-end cursor-pointer">
+<div class="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white px-2 py-0.5 rounded text-[11px] font-medium whitespace-nowrap shadow-sm mb-1">
+            Rp 29.8 Jt
+          </div>
+<div class="w-6 flex flex-col justify-end gap-0.5 h-[74%]">
+<div class="w-full bg-[#064e3b] rounded-t transition-all duration-200 group-hover:brightness-110" style="height: 80%;"></div>
+<div class="w-full bg-emerald-200/90 rounded-b" style="height: 20%;"></div>
+</div>
+<span class="text-xs text-slate-500 font-medium mt-1">Feb</span>
+</div>
+<!-- Mar 2025 -->
+<div class="group flex flex-col items-center gap-2 h-full justify-end cursor-pointer">
+<div class="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white px-2 py-0.5 rounded text-[11px] font-medium whitespace-nowrap shadow-sm mb-1">
+            Rp 31.5 Jt
+          </div>
+<div class="w-6 flex flex-col justify-end gap-0.5 h-[78%]">
+<div class="w-full bg-[#064e3b] rounded-t transition-all duration-200 group-hover:brightness-110" style="height: 76%;"></div>
+<div class="w-full bg-emerald-200/90 rounded-b" style="height: 24%;"></div>
+</div>
+<span class="text-xs text-slate-500 font-medium mt-1">Mar</span>
+</div>
+<!-- Apr 2025 (Peak Ramadhan) -->
+<div class="group flex flex-col items-center gap-2 h-full justify-end cursor-pointer relative">
+<span class="absolute -top-4 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-[#064e3b] text-white rounded text-[9px] uppercase font-bold tracking-wider whitespace-nowrap">Ramadhan</span>
+<div class="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white px-2 py-0.5 rounded text-[11px] font-medium whitespace-nowrap shadow-sm mb-1">
+            Rp 35.0 Jt (Puncak)
+          </div>
+<div class="w-6 flex flex-col justify-end gap-0.5 h-[88%]">
+<div class="w-full bg-[#064e3b] rounded-t transition-all duration-200 group-hover:brightness-110" style="height: 65%;"></div>
+<div class="w-full bg-emerald-300 rounded-b" style="height: 35%;"></div>
+</div>
+<span class="text-xs text-[#064e3b] font-bold mt-1">Apr</span>
+</div>
+<!-- Mei 2025 (Current) -->
+<div class="group flex flex-col items-center gap-2 h-full justify-end cursor-pointer">
+<div class="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white px-2 py-0.5 rounded text-[11px] font-medium whitespace-nowrap shadow-sm mb-1">
+            Rp 34.2 Jt (Berjalan)
+          </div>
+<div class="w-6 flex flex-col justify-end gap-0.5 h-[85%]">
+<div class="w-full bg-[#064e3b] rounded-t transition-all duration-200 group-hover:brightness-110" style="height: 82%;"></div>
+<div class="w-full bg-emerald-200/90 rounded-b" style="height: 18%;"></div>
+</div>
+<span class="text-xs text-slate-800 font-semibold mt-1">Mei</span>
+</div>
+</div>
+</div>
+<!-- Legend and Aggregation Summary -->
+<div class="flex flex-wrap items-center justify-between gap-4 mt-6 pt-4 border-t border-slate-100">
+<div class="flex items-center gap-5">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-[#064e3b]"></span>
+<span class="text-xs text-slate-600">Koin NU Rutin (Kaleng Warga)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-emerald-200"></span>
+<span class="text-xs text-slate-600">Infaq Khusus &amp; Bencana</span>
+</div>
+</div>
+<div class="text-xs text-slate-600">
+          Rata-rata 6 Bulan: <strong class="text-emerald-800 font-bold">Rp 31.650.000/bln</strong>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Quick Access (1/3 col-span-1) -->
+<div class="lg:col-span-1 bg-white rounded-2xl p-6 border border-slate-200/80 flex flex-col justify-between">
+<div>
+<span class="text-[11px] font-bold text-[#064e3b] uppercase tracking-widest">Tindakan Cepat</span>
+<h2 class="font-['Plus_Jakarta_Sans'] text-xl font-bold text-slate-900 tracking-tight mt-0.5">
+        Akses Cepat
+      </h2>
+<p class="text-xs text-slate-500 mb-5 mt-1">
+        Operasional harian sekretariat dan koordinasi banom.
+      </p>
+<!-- 3 Sleek Quick Action Buttons -->
+<div class="flex flex-col gap-3">
+<!-- Button 1 -->
+<a class="border border-slate-200 bg-white hover:bg-slate-50 transition p-4 rounded-xl flex items-center justify-between group" href="#">
+<div class="flex items-center min-w-0">
+<div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0 mr-3 group-hover:bg-emerald-100 transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</div>
+<div class="flex flex-col truncate">
+<span class="text-sm font-semibold text-slate-800 truncate group-hover:text-emerald-800 transition-colors">Tulis Warta Baru</span>
+<span class="text-xs text-slate-500 truncate">Publikasikan warta &amp; rilis media</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-emerald-800 text-[20px] transition-colors shrink-0 ml-2">chevron_right</span>
+</a>
+<!-- Button 2 -->
+<a class="border border-slate-200 bg-white hover:bg-slate-50 transition p-4 rounded-xl flex items-center justify-between group" href="#">
+<div class="flex items-center min-w-0">
+<div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0 mr-3 group-hover:bg-emerald-100 transition-colors">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</div>
+<div class="flex flex-col truncate">
+<span class="text-sm font-semibold text-slate-800 truncate group-hover:text-emerald-800 transition-colors">Tambah Data Pengurus</span>
+<span class="text-xs text-slate-500 truncate">Mutasi atau input pengurus banom</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-emerald-800 text-[20px] transition-colors shrink-0 ml-2">chevron_right</span>
+</a>
+<!-- Button 3 -->
+<a class="border border-slate-200 bg-white hover:bg-slate-50 transition p-4 rounded-xl flex items-center justify-between group" href="#">
+<div class="flex items-center min-w-0">
+<div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center shrink-0 mr-3 group-hover:bg-emerald-100 transition-colors">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+</div>
+<div class="flex flex-col truncate">
+<span class="text-sm font-semibold text-slate-800 truncate group-hover:text-emerald-800 transition-colors">Unggah Naskah Khutbah</span>
+<span class="text-xs text-slate-500 truncate">Arsip panduan khutbah Jumat</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-emerald-800 text-[20px] transition-colors shrink-0 ml-2">chevron_right</span>
+</a>
+</div>
+</div>
+<!-- Helpdesk Assistance Badge -->
+<div class="mt-5 p-3.5 rounded-xl bg-slate-50 border border-slate-200/70 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-100/60 text-[#064e3b] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">contact_support</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-xs font-semibold text-slate-800 truncate">Pusat Bantuan SIK &amp; KartaNU</span>
+<span class="text-[11px] text-slate-500 truncate">Hubungi Helpdesk Lembaga LTNNU</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Row: Realtime Activity Ledger -->
+<section class="bg-white rounded-2xl p-6 border border-slate-200/80">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-100">
+<div>
+<span class="text-[11px] font-bold text-[#064e3b] uppercase tracking-widest">Audit Trail Realtime</span>
+<h2 class="font-['Plus_Jakarta_Sans'] text-xl font-bold text-slate-900 tracking-tight mt-0.5">
+        Aktivitas Terbaru
+      </h2>
+<p class="text-xs text-slate-500">
+        Log transaksi data, pergerakan berkas, dan pembaruan sistem secara langsung.
+      </p>
+</div>
+<a class="inline-flex items-center gap-1.5 text-xs font-bold text-[#064e3b] hover:text-emerald-700 transition-colors group" href="#">
+<span>Lihat Semua Log</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Activity Stream Entries -->
+<div class="flex flex-col divide-y divide-slate-100">
+<!-- Activity 1 -->
+<div class="py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/70 px-2 rounded-xl transition-colors">
+<div class="flex items-start md:items-center gap-3.5">
+<div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
+          AF
+        </div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-800">
+            Artikel “Giat Banser Cihonje Buka Akses Jalan Longsor” berhasil diterbitkan
+          </span>
+<span class="text-xs text-slate-500">
+            Oleh Tim Media Ansor Gumelar • 15 menit yang lalu
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start md:self-auto pl-13 md:pl-0">
+<span class="px-3 py-1 rounded-full text-[11px] uppercase font-bold bg-slate-100 text-slate-600">
+          Warta Nahdliyin
+        </span>
+<button class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Activity 2 -->
+<div class="py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/70 px-2 rounded-xl transition-colors">
+<div class="flex items-start md:items-center gap-3.5">
+<div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center font-bold text-xs shrink-0">
+          LZ
+        </div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-800">
+            Laporan Keuangan UPZIS LAZISNU Periode April diperbarui dan diaudit
+          </span>
+<span class="text-xs text-slate-500">
+            Oleh Bendahara UPZIS • 2 jam yang lalu
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start md:self-auto pl-13 md:pl-0">
+<span class="px-3 py-1 rounded-full text-[11px] uppercase font-bold bg-emerald-50 text-emerald-800">
+          Filantropi &amp; ZIS
+        </span>
+<button class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Activity 3 -->
+<div class="py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/70 px-2 rounded-xl transition-colors">
+<div class="flex items-start md:items-center gap-3.5">
+<div class="w-10 h-10 rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center font-bold text-xs shrink-0">
+          PR
+        </div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-800">
+            12 Pendaftar KartaNU baru dari Ranting Samudra disetujui
+          </span>
+<span class="text-xs text-slate-500">
+            Oleh Operator SIK PRNU Samudra • 4 jam yang lalu
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start md:self-auto pl-13 md:pl-0">
+<span class="px-3 py-1 rounded-full text-[11px] uppercase font-bold bg-emerald-50 text-emerald-800">
+          Sensus KartaNU
+        </span>
+<button class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Activity 4 -->
+<div class="py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50/70 px-2 rounded-xl transition-colors">
+<div class="flex items-start md:items-center gap-3.5">
+<div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
+          SK
+        </div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-800">
+            SK Kepengurusan PAC Fatayat NU Gumelar Masa Khidmat 2024-2028 diarsipkan
+          </span>
+<span class="text-xs text-slate-500">
+            Oleh Sekretariat MWCNU • Kemarin, 16:30 WIB
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start md:self-auto pl-13 md:pl-0">
+<span class="px-3 py-1 rounded-full text-[11px] uppercase font-bold bg-slate-100 text-slate-600">
+          Administrasi Banom
+        </span>
+<button class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Institutional Footer Detail -->
+<footer class="mt-8 mb-4 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-xs gap-3">
+
+<div class="flex items-center gap-4">
+<span class="hover:text-slate-800 transition-colors cursor-pointer">Panduan Admin</span>
+<span class="">•</span>
+<span class="hover:text-slate-800 transition-colors cursor-pointer">Arsip Surat Keputusan</span>
+<span class="">•</span>
+<span class="hover:text-slate-800 transition-colors cursor-pointer">Pusat Regulasi AD/ART</span>
+</div>
+</footer>
+</div></main></div>
+
+</body></html>
