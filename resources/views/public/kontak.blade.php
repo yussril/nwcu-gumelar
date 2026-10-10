@@ -154,20 +154,31 @@
                                 Sampaikan pertanyaan, masukan perkhidmatan, atau permohonan informasi kepada pengurus harian MWCNU Gumelar.
                             </p>
                         </header>
-                        <form class="space-y-6" id="contact-form" onsubmit="handleFormSubmit(event)">
+                        <form class="space-y-6" id="contact-form" action="{{ route('kontak.store') }}" method="POST">
+                            @csrf
+                            @if ($errors->any())
+                                <div class="rounded-xl border border-error/30 bg-error-container/50 px-5 py-4 text-sm text-on-error-container" role="alert">
+                                    <p class="mb-1 font-bold">Periksa kembali isian pesan Anda:</p>
+                                    <ul class="list-disc space-y-0.5 pl-5">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <!-- Nama Lengkap -->
                             <div class="space-y-2">
                                 <label class="block font-label-md text-label-md font-medium text-on-surface" for="full_name">
                                     Nama Lengkap <span class="text-error">*</span>
                                 </label>
-                                <input class="w-full rounded-xl bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface transition-all placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" id="full_name" name="full_name" placeholder="Contoh: Ahmad Fauzan Wahid" required type="text">
+                                <input class="w-full rounded-xl bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface transition-all placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" id="full_name" name="full_name" placeholder="Contoh: Ahmad Fauzan Wahid" required type="text" value="{{ old('full_name') }}">
                             </div>
                             <!-- WhatsApp / Email -->
                             <div class="space-y-2">
                                 <label class="block font-label-md text-label-md font-medium text-on-surface" for="contact_point">
                                     Nomor WhatsApp / Email <span class="text-error">*</span>
                                 </label>
-                                <input class="w-full rounded-xl bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface transition-all placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" id="contact_point" name="contact_point" placeholder="Contoh: 08123456789 atau nama@email.com" required type="text">
+                                <input class="w-full rounded-xl bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface transition-all placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" id="contact_point" name="contact_point" placeholder="Contoh: 08123456789 atau nama@email.com" required type="text" value="{{ old('contact_point') }}">
                             </div>
                             <!-- Kategori Pesan / Topik -->
                             <div class="space-y-2">
@@ -176,10 +187,10 @@
                                 </label>
                                 <div class="relative">
                                     <select class="w-full cursor-pointer appearance-none rounded-xl bg-surface-container-low px-4 py-3 pr-10 font-body-md text-body-md text-on-surface transition-all focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" id="category" name="category">
-                                        <option value="kartanu">Layanan KartaNU</option>
-                                        <option value="jamiyyah">Informasi Jam'iyyah / Banom</option>
-                                        <option value="lazisnu">UPZIS LAZISNU</option>
-                                        <option value="lainnya">Lainnya</option>
+                                        <option value="kartanu" {{ old('category', 'kartanu') === 'kartanu' ? 'selected' : '' }}>Layanan KartaNU</option>
+                                        <option value="jamiyyah" {{ old('category') === 'jamiyyah' ? 'selected' : '' }}>Informasi Jam'iyyah / Banom</option>
+                                        <option value="lazisnu" {{ old('category') === 'lazisnu' ? 'selected' : '' }}>UPZIS LAZISNU</option>
+                                        <option value="lainnya" {{ old('category') === 'lainnya' ? 'selected' : '' }}>Lainnya</option>
                                     </select>
                                     <span class="material-symbols-outlined pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[20px] text-on-surface-variant">
                                         expand_more
@@ -191,7 +202,7 @@
                                 <label class="block font-label-md text-label-md font-medium text-on-surface" for="message">
                                     Isi Pesan <span class="text-error">*</span>
                                 </label>
-                                <textarea class="w-full resize-y rounded-xl bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface transition-all placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" id="message" name="message" placeholder="Tuliskan pesan, permohonan informasi, atau saran Anda secara rinci di sini..." required rows="5"></textarea>
+                                <textarea class="w-full resize-y rounded-xl bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface transition-all placeholder:text-on-surface-variant/50 focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary" id="message" name="message" placeholder="Tuliskan pesan, permohonan informasi, atau saran Anda secara rinci di sini..." required rows="5">{{ old('message') }}</textarea>
                             </div>
                             <!-- Catatan Privasi Singkat -->
                             <div class="flex items-start gap-2.5 rounded-xl bg-surface-container-low p-3 text-on-surface-variant">
@@ -200,12 +211,12 @@
                                     Data kontak Anda hanya digunakan oleh sekretariat MWCNU Gumelar untuk keperluan konfirmasi balasan pesan resmi.
                                 </p>
                             </div>
-                            <!-- Pesan Konfirmasi Kirim (Hidden secara dinamis) -->
-                            <div class="hidden items-center gap-3 rounded-xl bg-primary-fixed p-4 font-body-md text-body-md text-primary" id="form-success">
+                            <!-- Pesan Konfirmasi Kirim (tampil setelah pesan tersimpan) -->
+                            <div class="{{ session('success') ? 'flex' : 'hidden' }} items-center gap-3 rounded-xl bg-primary-fixed p-4 font-body-md text-body-md text-primary" id="form-success" role="status">
                                 <span class="material-symbols-outlined text-[24px]">check_circle</span>
                                 <div>
                                     <p class="font-bold">Pesan Berhasil Terkirim!</p>
-                                    <p class="text-body-sm font-normal">Sekretariat MWCNU Gumelar akan menghubungi Anda dalam waktu 1x24 jam.</p>
+                                    <p class="text-body-sm font-normal">{{ session('success', 'Sekretariat MWCNU Gumelar akan menghubungi Anda dalam waktu 1x24 jam.') }}</p>
                                 </div>
                             </div>
                             <!-- Tombol Aksi Solid Hijau Gelap -->
@@ -236,24 +247,18 @@
         });
     }
 
-    function handleFormSubmit(e) {
-        e.preventDefault();
-        const btn = document.getElementById('submit-btn');
-        const successMsg = document.getElementById('form-success');
+    // Tampilkan status "mengirim" selama formulir diproses server, lalu sembunyikan notifikasi sukses.
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
 
-        btn.disabled = true;
-        btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>Mengirimkan Pesan...</span>`;
+    contactForm.addEventListener('submit', () => {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span><span>Mengirimkan Pesan...</span>`;
+    });
 
-        setTimeout(() => {
-            btn.disabled = false;
-            btn.innerHTML = `<span>Kirim Pesan</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>`;
-            successMsg.classList.remove('hidden');
-            document.getElementById('contact-form').reset();
-
-            setTimeout(() => {
-                successMsg.classList.add('hidden');
-            }, 6000);
-        }, 1000);
+    if (!successMsg.classList.contains('hidden')) {
+        setTimeout(() => successMsg.classList.add('hidden'), 8000);
     }
 </script>
 @endsection

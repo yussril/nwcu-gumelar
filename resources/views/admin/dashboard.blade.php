@@ -169,6 +169,18 @@
                     </div>
                     <span class="material-symbols-outlined text-outline group-hover:text-primary-container transition-colors shrink-0 pl-2">chevron_right</span>
                 </a>
+                <a class="group p-4 rounded-xl bg-surface-container-low hover:bg-primary-fixed/20 transition-all flex items-center justify-between border border-transparent hover:border-primary-fixed" href="{{ route('admin.pesan.index') }}">
+                    <div class="flex items-center gap-4 min-w-0">
+                        <div class="w-12 h-12 rounded-xl bg-surface-container text-primary-container flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                            <span class="material-symbols-outlined text-[22px]">mail</span>
+                        </div>
+                        <div class="flex flex-col truncate">
+                            <span class="font-label-md text-label-md font-bold text-on-surface group-hover:text-primary-container truncate transition-colors">Buka Kotak Pesan</span>
+                            <span class="font-body-sm text-body-sm text-secondary truncate mt-0.5">Tinjau pesan dari halaman kontak</span>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline group-hover:text-primary-container transition-colors shrink-0 pl-2">chevron_right</span>
+                </a>
             </div>
         </div>
         <div class="mt-8 p-4 rounded-xl bg-surface-container flex items-center gap-4 border border-surface-container-highest">
@@ -178,6 +190,44 @@
                 <span class="font-body-sm text-[12px] text-secondary mt-0.5">Hubungi Helpdesk Lembaga LTNNU</span>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- Inbox: Messages from the Public Contact Page -->
+<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm border border-surface-container/50 mb-10">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-surface-container">
+        <div>
+            <span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest">Kotak Masuk</span>
+            <h2 class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight mt-1">Pesan dari Halaman Kontak</h2>
+            <p class="font-body-sm text-body-sm text-secondary">Pertanyaan, masukan, dan permohonan informasi yang dikirim warga melalui situs.</p>
+        </div>
+        <a href="{{ route('admin.pesan.index') }}" class="inline-flex items-center gap-2 self-start rounded-full bg-surface-container px-4 py-2 font-label-sm text-label-sm font-semibold text-on-surface transition-colors hover:bg-primary-fixed hover:text-primary">
+            <span class="material-symbols-outlined text-[16px]">inbox</span>
+            <span>Lihat Semua Pesan</span>
+            @if(($unreadMessageCount ?? 0) > 0)
+                <span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-label-sm text-[11px] font-bold">{{ $unreadMessageCount }} baru</span>
+            @endif
+        </a>
+    </div>
+    <div class="flex flex-col divide-y divide-surface-container">
+        @forelse ($recentMessages ?? [] as $message)
+            <div class="py-5 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-surface-container-low/50 px-4 rounded-xl transition-colors -mx-4">
+                <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-full {{ $message->is_read ? 'bg-surface-container text-on-surface-variant' : 'bg-primary-fixed text-primary-container' }} flex items-center justify-center font-bold font-label-md shrink-0">{{ $message->initials() }}</div>
+                    <div class="flex flex-col min-w-0">
+                        <span class="font-label-md text-label-md font-semibold text-on-surface">{{ $message->full_name }} <span class="font-normal text-secondary">• {{ $message->contact_point }}</span></span>
+                        <span class="font-body-sm text-body-sm text-secondary mt-1">{{ \Illuminate\Support\Str::limit($message->message, 160) }}</span>
+                        <span class="font-label-sm text-label-sm text-secondary mt-1">{{ $message->created_at->diffForHumans() }}</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 self-start md:self-auto">
+                    <span class="px-4 py-1.5 rounded-full font-label-caps text-label-caps uppercase font-bold bg-surface-container text-secondary">{{ $message->categoryLabel() }}</span>
+                    <span class="px-4 py-1.5 rounded-full font-label-caps text-label-caps uppercase font-bold {{ $message->is_read ? 'bg-surface-container text-secondary' : 'bg-primary-container/40 text-primary-container' }}">{{ $message->is_read ? 'Dibaca' : 'Baru' }}</span>
+                </div>
+            </div>
+        @empty
+            <p class="py-10 text-center font-body-sm text-body-sm text-secondary">Belum ada pesan masuk dari halaman kontak.</p>
+        @endforelse
     </div>
 </section>
 

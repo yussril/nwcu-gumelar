@@ -62,6 +62,15 @@
                 <span class="material-symbols-outlined text-[20px]">photo_library</span>
                 <span>Galeri</span>
             </a>
+            <a href="{{ route('admin.pesan.index') }}" class="flex items-center justify-between px-3 py-2.5 rounded-xl font-label-md text-label-md transition-all {{ request()->routeIs('admin.pesan.*') ? 'bg-primary-fixed text-primary font-semibold' : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface' }}">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[20px]">mail</span>
+                    <span>Pesan Masuk</span>
+                </div>
+                @if(($unreadMessageCount ?? 0) > 0)
+                    <span class="px-2 py-0.5 rounded-full bg-primary-container/10 text-primary-container font-label-sm text-[11px] font-bold">{{ $unreadMessageCount }}</span>
+                @endif
+            </a>
         </nav>
         <div class="px-3 py-4 border-t border-outline-variant/20">
             <div class="flex items-center justify-between">

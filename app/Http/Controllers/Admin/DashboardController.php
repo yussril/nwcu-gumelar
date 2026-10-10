@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Banom;
+use App\Models\ContactMessage;
 use App\Models\GalleryItem;
 use App\Models\KartaNu;
 use Illuminate\View\View;
@@ -25,6 +26,7 @@ class DashboardController extends Controller
             'kartaNuCount' => KartaNu::count(),
             'koinNuTotal' => 34200000,
             'recentArticles' => Article::latest('updated_at')->limit(4)->get(),
+            'recentMessages' => ContactMessage::latest()->limit(5)->get(),
             'recentActivities' => [
                 [
                     'initials' => 'AF',

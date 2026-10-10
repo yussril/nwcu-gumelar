@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\Admin\BanomController as AdminBanomController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\KegiatanController;
 use App\Http\Controllers\Admin\KartaNuController as AdminKartaNuController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CetakKartanuController;
+use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\KartaNuController;
 use App\Http\Controllers\PendaftarKartanuController;
 use App\Models\Article;
@@ -102,6 +104,10 @@ Route::get('/kontak', fn () => view('public.kontak', [
     'title' => 'Hubungi Kami - MWCNU Gumelar',
 ]))->name('kontak');
 
+Route::post('/kontak', [ContactMessageController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('kontak.store');
+
 Route::get('/pendaftaran/kartanu', [PendaftarKartanuController::class, 'index'])->name('pendaftaran.kartanu');
 Route::post('/pendaftaran/kartanu', [PendaftarKartanuController::class, 'store'])->name('pendaftaran.kartanu.store');
 Route::get('/pendaftaran/kartanu/sukses', [PendaftarKartanuController::class, 'success'])->name('pendaftaran.kartanu.sukses');
@@ -124,6 +130,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('gallery', GalleryController::class)
         ->only(['index', 'edit', 'destroy'])
         ->names('admin.gallery');
+
+    Route::get('pesan', [AdminContactMessageController::class, 'index'])->name('admin.pesan.index');
+    Route::get('pesan/{message}', [AdminContactMessageController::class, 'show'])->name('admin.pesan.show');
+    Route::delete('pesan/{message}', [AdminContactMessageController::class, 'destroy'])->name('admin.pesan.destroy');
 
     Route::post('gallery/{gallery}/photos', [GalleryController::class, 'addPhoto'])->name('admin.gallery.addPhoto');
     Route::delete('gallery/{gallery}/photos/{photo}', [GalleryController::class, 'deletePhoto'])->name('admin.gallery.deletePhoto');
