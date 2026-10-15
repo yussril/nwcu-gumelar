@@ -25,8 +25,13 @@ class ArticleController extends Controller
     public function create(): View
     {
         return view('admin.articles.form', [
-            'title' => 'Tulis Warta - Admin NWCU',
-            'article' => new Article(['is_published' => true]),
+            'title' => 'Tulis Warta Nahdliyin - Admin NWCU',
+            'article' => new Article([
+                'is_published' => true,
+                'visibility' => 'public',
+                'publish_mode' => 'now',
+                'tags' => [],
+            ]),
             'action' => route('admin.articles.store'),
             'method' => 'POST',
         ]);
@@ -39,8 +44,12 @@ class ArticleController extends Controller
         unset($data['image']);
         $data['slug'] = $this->uniqueSlug($data['title']);
         $data['sort_order'] = (Article::max('sort_order') ?? 0) + 1;
-        $data['is_featured'] = $request->boolean('is_featured');
-        $data['is_published'] = $request->boolean('is_published');
+        $data['is_published'] = true;
+
+        // Handle tags - convert from comma-separated string to array
+        if (isset($data['tags']) && is_string($data['tags'])) {
+            $data['tags'] = array_map('trim', explode(',', $data['tags']));
+        }
 
         if ($image) {
             $data['image_path'] = $image->store('articles', 'public');
@@ -48,13 +57,13 @@ class ArticleController extends Controller
 
         Article::create($data);
 
-        return redirect()->route('admin.articles.index')->with('status', 'Warta berhasil disimpan.');
+        return redirect()->route('admin.articles.index')->with('status', 'Warta Nahdliyin berhasil disimpan.');
     }
 
     public function edit(Article $article): View
     {
         return view('admin.articles.form', [
-            'title' => 'Ubah Warta - Admin NWCU',
+            'title' => 'Ubah Warta Nahdliyin - Admin NWCU',
             'article' => $article,
             'action' => route('admin.articles.update', $article),
             'method' => 'PUT',
@@ -66,8 +75,13 @@ class ArticleController extends Controller
         $data = $this->validatedData($request);
         $image = $data['image'] ?? null;
         unset($data['image']);
-        $data['is_featured'] = $request->boolean('is_featured');
-        $data['is_published'] = $request->boolean('is_published');
+        $data['is_featured'] = false;
+        $data['is_published'] = true;
+
+        // Handle tags - convert from comma-separated string to array
+        if (isset($data['tags']) && is_string($data['tags'])) {
+            $data['tags'] = array_map('trim', explode(',', $data['tags']));
+        }
 
         if ($article->title !== $data['title']) {
             $data['slug'] = $this->uniqueSlug($data['title'], $article->id);
@@ -86,7 +100,7 @@ class ArticleController extends Controller
 
         $article->update($data);
 
-        return redirect()->route('admin.articles.index')->with('status', 'Perubahan warta berhasil disimpan.');
+        return redirect()->route('admin.articles.index')->with('status', 'Perubahan Warta Nahdliyin berhasil disimpan.');
     }
 
     public function destroy(Article $article): RedirectResponse
@@ -97,7 +111,7 @@ class ArticleController extends Controller
 
         $article->delete();
 
-        return redirect()->route('admin.articles.index')->with('status', 'Warta berhasil dihapus.');
+        return redirect()->route('admin.articles.index')->with('status', 'Warta Nahdliyin berhasil dihapus.');
     }
 
     private function validatedData(Request $request): array
@@ -113,6 +127,19 @@ class ArticleController extends Controller
             'published_at' => ['nullable', 'date'],
             'is_featured' => ['nullable', 'boolean'],
             'is_published' => ['nullable', 'boolean'],
+            // Social Media Official MWCNU Gumelar
+            'social_facebook' => ['nullable', 'url', 'max:2048'],
+            'social_twitter' => ['nullable', 'url', 'max:2048'],
+            'social_instagram' => ['nullable', 'url', 'max:2048'],
+            'social_youtube' => ['nullable', 'url', 'max:2048'],
+            'social_whatsapp' => ['nullable', 'url', 'max:2048'],
+            'social_website' => ['nullable', 'url', 'max:2048'],
+            // Tags
+            'tags' => ['nullable', 'string'],
+            // Visibility / Access
+            'visibility' => ['nullable', 'string', 'in:public,karta_nu,internal'],
+            // Publish mode
+            'publish_mode' => ['nullable', 'string', 'in:now,scheduled'],
         ]);
     }
 

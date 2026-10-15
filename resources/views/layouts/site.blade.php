@@ -46,14 +46,14 @@
             </div>
         </div>
     </header>
-    <main class="w-full pt-20 bg-surface min-h-[calc(100vh-20rem)]">
+    <main class="w-full pt-20 bg-surface">
         <div class="flex flex-col w-full bg-surface-container-lowest overflow-hidden selection:bg-primary selection:text-on-primary">
             @yield('content')
         </div>
     </main>
     <footer class="w-full bg-surface-container-lowest border-t border-slate-200/60">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-8 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div class="flex flex-col">
                     <div class="flex items-center gap-3.5 mb-5">
                         <img src="{{ asset('images/logo-nu-40178.png') }}" alt="Logo MWCNU" class="h-8 w-auto object-contain">

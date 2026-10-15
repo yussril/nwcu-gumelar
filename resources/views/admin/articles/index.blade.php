@@ -4,13 +4,13 @@
 <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-space-lg border-b border-outline-variant/30">
     <div class="flex flex-col">
         <span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest">Publikasi</span>
-        <h1 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl text-on-surface font-bold tracking-tight mt-1">Daftar Publikasi Warta</h1>
+        <h1 class="font-headline-xl text-headline-xl-mobile lg:text-headline-xl text-on-surface font-bold tracking-tight mt-1">Daftar Publikasi Warta Nahdliyin</h1>
         <p class="font-body-md text-body-md text-secondary mt-1">Kelola berita, kajian, dan pengumuman resmi MWCNU.</p>
     </div>
     <div class="flex items-center gap-3 shrink-0">
         <a href="{{ route('admin.articles.create') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold transition-all hover:bg-tertiary-container shadow-sm">
             <span class="material-symbols-outlined text-[18px]">add</span>
-            <span>Tulis Warta Baru</span>
+            <span>Tulis Warta Nahdliyin Baru</span>
         </a>
     </div>
 </header>
@@ -22,7 +22,7 @@
 <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest overflow-hidden shadow-sm mt-6">
     <div class="px-6 pt-4 pb-0 border-b border-outline-variant/30 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <nav aria-label="Status filter" class="flex items-center gap-6 overflow-x-auto font-label-md text-label-md">
-            <span class="pb-3 text-primary-container font-semibold border-b-2 border-primary-container flex items-center gap-1.5 whitespace-nowrap">Semua ({{ $articleCount }})</span>
+            <span class="pb-3 text-primary-container font-semibold border-b-2 border-primary-container flex items-center gap-1.5 whitespace-nowrap">Semua Warta Nahdliyin ({{ $articleCount }})</span>
             <span class="pb-3 text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1.5 whitespace-nowrap">Diterbitkan ({{ $publishedArticleCount }})</span>
             <span class="pb-3 text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1.5 whitespace-nowrap">Draft ({{ $articleCount - $publishedArticleCount }})</span>
         </nav>
@@ -79,7 +79,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="6" class="py-12 text-center text-secondary font-body-md text-body-md">Belum ada warta tersimpan.</td></tr>
+                    <tr><td colspan="6" class="py-12 text-center text-secondary font-body-md text-body-md">Belum ada Warta Nahdliyin tersimpan.</td></tr>
                 @endforelse
             </tbody>
         </table>

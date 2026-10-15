@@ -51,10 +51,10 @@
             </div>
         </div>
     </div>
-    <!-- Stat 3: Warta Diterbitkan -->
+    <!-- Stat 3: Warta Nahdliyin Diterbitkan -->
     <div class="bg-surface-container-lowest rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
         <div class="flex items-center justify-between mb-4">
-            <span class="font-label-md text-label-md text-secondary font-medium">Warta Diterbitkan</span>
+            <span class="font-label-md text-label-md text-secondary font-medium">Warta Nahdliyin Diterbitkan</span>
             <div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant">
                 <span class="material-symbols-outlined text-[22px]">newspaper</span>
             </div>
@@ -103,7 +103,7 @@
         <div class="flex flex-col gap-6 pt-2">
             @php
                 $progressData = [
-                    ['Warta terbit', $publishedArticleCount ?? 11, $articleCount ?? 11, 'article'], 
+                    ['Warta Nahdliyin terbit', $publishedArticleCount ?? 11, $articleCount ?? 11, 'article'], 
                     ['Dokumentasi publik', $publishedGalleryCount ?? 12, $galleryCount ?? 12, 'photo_library'], 
                     ['Banom aktif', $activeBanomCount ?? 6, $banomCount ?? 6, 'account_tree']
                 ];

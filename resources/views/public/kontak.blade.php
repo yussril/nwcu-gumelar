@@ -6,11 +6,11 @@
         <div class="mx-auto max-w-7xl">
             <!-- Header Halaman -->
             <header class="mb-10 lg:mb-12">
-                <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed px-3 py-1 text-primary">
+                <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed/40 px-3 py-1 text-primary">
                     <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-primary"></span>
-                    <span class="font-label-caps text-label-caps uppercase tracking-wider">Pusat Informasi &amp; Layanan Warga • Kecamatan Gumelar</span>
+                    <span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider">Pusat Informasi &amp; Layanan Warga • Kecamatan Gumelar</span>
                 </div>
-                <h1 class="mb-3 font-headline-xl text-headline-xl-mobile font-extrabold tracking-tight text-on-surface lg:text-headline-xl">
+                <h1 class="mb-3 font-headline-xl text-headline-xl-mobile font-extrabold leading-tight text-on-surface lg:text-headline-xl">
                     Hubungi Kami
                 </h1>
                 <p class="max-w-3xl font-body-lg text-body-lg leading-relaxed text-on-surface-variant">
@@ -26,9 +26,9 @@
                     <article class="rounded-2xl bg-surface-container-lowest p-6 lg:p-7">
                         <div class="mb-3 flex items-center gap-2">
                             <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
-                            <span class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Sekretariat Utama</span>
+                            <span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary">Sekretariat Utama</span>
                         </div>
-                        <h2 class="mb-2 font-headline-md text-headline-md text-on-surface">
+                        <h2 class="mb-2 font-headline-md text-headline-md font-bold leading-snug text-on-surface">
                             Sekretariat MWCNU Gumelar
                         </h2>
                         <p class="mb-5 font-body-md text-body-md leading-relaxed text-on-surface-variant">
@@ -47,8 +47,8 @@
                     <!-- Kotak Kontak Cepat -->
                     <article class="space-y-5 rounded-2xl bg-surface-container-lowest p-6 lg:p-7">
                         <div class="flex items-center justify-between pb-3">
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface">Saluran Komunikasi Langsung</h3>
-                            <span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Respons Cepat</span>
+                            <h3 class="font-headline-sm text-headline-sm font-bold leading-snug text-on-surface">Saluran Komunikasi Langsung</h3>
+                            <span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-on-surface-variant">Respons Cepat</span>
                         </div>
                         <!-- Email -->
                         <div class="flex items-center justify-between gap-3 rounded-xl bg-surface-container-low p-3 transition-colors hover:bg-surface-container">
@@ -57,7 +57,7 @@
                                     <span class="material-symbols-outlined text-[20px] text-primary">mail</span>
                                 </div>
                                 <div class="min-w-0">
-                                    <span class="block font-label-caps text-label-caps uppercase text-on-surface-variant">Email Resmi</span>
+                                    <span class="block font-label-caps text-label-caps font-semibold uppercase tracking-wide text-on-surface-variant">Email Resmi</span>
                                     <span class="block truncate font-body-md text-body-md font-medium text-on-surface" id="email-text">admin@mwcnu-gumelar.or.id</span>
                                 </div>
                             </div>
@@ -73,11 +73,11 @@
                                     <span class="material-symbols-outlined text-[20px]">call</span>
                                 </div>
                                 <div class="min-w-0">
-                                    <span class="block font-label-caps text-label-caps uppercase text-on-surface-variant">Hotline &amp; Layanan Warga</span>
+                                    <span class="block font-label-caps text-label-caps font-semibold uppercase tracking-wide text-on-surface-variant">Hotline &amp; Layanan Warga</span>
                                     <span class="block truncate font-body-md text-body-md font-semibold text-on-surface">0812-2890-1926</span>
                                 </div>
                             </div>
-                            <span class="flex shrink-0 items-center gap-1 rounded-full bg-primary-fixed px-2.5 py-1 font-label-caps text-label-caps uppercase text-primary">
+                            <span class="flex shrink-0 items-center gap-1 rounded-full bg-primary-fixed/40 px-2.5 py-1 font-label-caps text-label-caps font-semibold uppercase text-primary">
                                 <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
                                 WhatsApp Aktif
                             </span>
@@ -93,7 +93,7 @@
 
                     <!-- Tombol Saluran WhatsApp -->
                     <a class="group block rounded-2xl bg-surface-container-lowest p-5 transition-colors hover:bg-primary-fixed/20" href="https://whatsapp.com/channel" rel="noopener noreferrer" target="_blank">
-                        <div class="mb-1 flex items-center justify-center gap-2.5 font-headline-sm text-headline-sm text-primary">
+                        <div class="mb-1 flex items-center justify-center gap-2.5 font-headline-sm text-headline-sm font-bold text-primary">
                             <svg aria-hidden="true" class="h-5 w-5 shrink-0 fill-current" viewBox="0 0 24 24">
                                 <path d="M12.031 2C6.495 2 2 6.493 2 12.028c0 1.97.57 3.807 1.558 5.36L2 22l4.767-1.53a9.972 9.972 0 0 0 5.264 1.558h.005c5.534 0 10.027-4.492 10.027-10.028 0-2.678-1.043-5.197-2.937-7.091A10.007 10.007 0 0 0 12.031 2zm0 18.23a8.212 8.212 0 0 1-4.22-1.162l-.303-.18-2.82.905.918-2.75-.198-.316a8.225 8.225 0 0 1-1.258-4.4c0-4.542 3.696-8.238 8.24-8.238 2.2 0 4.269.858 5.823 2.413a8.217 8.217 0 0 1 2.41 5.826c0 4.542-3.696 8.24-8.24 8.24zm4.516-6.177c-.247-.124-1.464-.723-1.691-.806-.227-.082-.393-.124-.558.124-.165.247-.64.806-.784.97-.144.165-.289.186-.536.062-.247-.124-1.044-.385-1.989-1.228-.735-.656-1.232-1.467-1.376-1.714-.144-.247-.015-.38.109-.503.111-.112.247-.29.371-.434.124-.144.165-.247.247-.412.082-.165.041-.31-.021-.433-.062-.124-.558-1.343-.764-1.84-.2-.484-.403-.418-.558-.426l-.475-.008c-.165 0-.433.062-.66.31-.227.247-.866.847-.866 2.066 0 1.219.887 2.396 1.011 2.561.124.165 1.745 2.665 4.228 3.738.591.256 1.052.409 1.411.523.593.188 1.133.161 1.56.098.476-.071 1.464-.599 1.67-1.176.206-.577.206-1.072.144-1.175-.062-.103-.227-.165-.474-.288z"></path>
                             </svg>
@@ -124,7 +124,7 @@
                                 </div>
                                 <span class="mb-1 font-headline-sm text-headline-sm font-bold text-on-surface">Gedung Bersama MWCNU Gumelar</span>
                                 <p class="font-body-sm text-body-sm text-on-surface-variant">Peta Interaktif (Google Maps) • Gumelar, Banyumas</p>
-                                <div class="mt-2 rounded-full bg-surface-container-lowest px-3 py-1 font-label-caps text-label-caps uppercase text-primary">
+                                <div class="mt-2 rounded-full bg-surface-container-lowest px-3 py-1 font-label-caps text-label-caps font-semibold uppercase text-primary">
                                     Lat: -7.3684, Long: 108.9881
                                 </div>
                             </div>
@@ -143,11 +143,11 @@
                 <div class="lg:col-span-6">
                     <article class="rounded-2xl bg-surface-container-lowest p-6 sm:p-8 lg:p-10">
                         <header class="mb-8">
-                            <div class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary-fixed px-2.5 py-1 font-label-caps text-label-caps uppercase tracking-wider text-primary">
+                            <div class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary-fixed/40 px-2.5 py-1 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary">
                                 <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
                                 Respons Cepat
                             </div>
-                            <h2 class="mb-2 font-headline-lg text-headline-lg tracking-tight text-on-surface">
+                            <h2 class="mb-2 font-headline-lg text-headline-lg font-extrabold leading-tight text-on-surface">
                                 Kirim Pesan
                             </h2>
                             <p class="font-body-md text-body-md leading-relaxed text-on-surface-variant">
@@ -157,7 +157,7 @@
                         <form class="space-y-6" id="contact-form" action="{{ route('kontak.store') }}" method="POST">
                             @csrf
                             @if ($errors->any())
-                                <div class="rounded-xl border border-error/30 bg-error-container/50 px-5 py-4 text-sm text-on-error-container" role="alert">
+                                <div class="rounded-xl border border-error/30 bg-error-container/50 px-5 py-4 font-body-sm text-body-sm text-on-error-container" role="alert">
                                     <p class="mb-1 font-bold">Periksa kembali isian pesan Anda:</p>
                                     <ul class="list-disc space-y-0.5 pl-5">
                                         @foreach ($errors->all() as $error)
@@ -216,11 +216,11 @@
                                 <span class="material-symbols-outlined text-[24px]">check_circle</span>
                                 <div>
                                     <p class="font-bold">Pesan Berhasil Terkirim!</p>
-                                    <p class="text-body-sm font-normal">{{ session('success', 'Sekretariat MWCNU Gumelar akan menghubungi Anda dalam waktu 1x24 jam.') }}</p>
+                                    <p class="font-body-sm text-body-sm font-normal leading-relaxed">{{ session('success', 'Sekretariat MWCNU Gumelar akan menghubungi Anda dalam waktu 1x24 jam.') }}</p>
                                 </div>
                             </div>
                             <!-- Tombol Aksi Solid Hijau Gelap -->
-                            <button class="group flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary-container px-6 py-4 font-headline-sm text-headline-sm text-on-primary transition-all duration-200 hover:bg-primary" id="submit-btn" type="submit">
+                            <button class="group flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-primary-container px-6 py-4 font-headline-sm text-headline-sm font-bold text-on-primary transition-all duration-200 hover:bg-primary" id="submit-btn" type="submit">
                                 <span>Kirim Pesan</span>
                                 <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">arrow_forward</span>
                             </button>
