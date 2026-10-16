@@ -14,7 +14,7 @@ class BanomManagementTest extends TestCase
 
     public function test_dashboard_requires_authentication(): void
     {
-        $this->get(route('dashboard.index'))
+        $this->get(route('dashboard'))
             ->assertRedirect(route('login'));
     }
 
@@ -33,7 +33,7 @@ class BanomManagementTest extends TestCase
     {
         $this->actingAs(User::factory()->create(['is_admin' => true]));
 
-        $this->post(route('dashboard.banoms.store'), [
+        $this->post(route('admin.banoms.store'), [
             'name' => 'Banom Percobaan',
             'category' => 'Badan Otonom',
             'title' => 'Pimpinan Banom Percobaan',
@@ -48,12 +48,12 @@ class BanomManagementTest extends TestCase
             'members' => [
                 ['position' => 'Ketua', 'name' => 'Nama Ketua'],
             ],
-        ])->assertRedirect(route('dashboard.banoms.index'));
+        ])->assertRedirect(route('admin.banoms.index'));
 
         $banom = Banom::with('members')->where('slug', 'banom-percobaan')->firstOrFail();
         $this->assertSame('Nama Ketua', $banom->members->first()->name);
 
-        $this->put(route('dashboard.banoms.update', $banom), [
+        $this->put(route('admin.banoms.update', $banom), [
             'name' => 'Banom Percobaan',
             'category' => 'Badan Otonom',
             'title' => 'Judul yang diperbarui',
@@ -62,14 +62,14 @@ class BanomManagementTest extends TestCase
                 ['position' => 'Ketua', 'name' => 'Nama Ketua Baru'],
                 ['position' => 'Sekretaris', 'name' => 'Nama Sekretaris'],
             ],
-        ])->assertRedirect(route('dashboard.banoms.index'));
+        ])->assertRedirect(route('admin.banoms.index'));
 
         $this->assertDatabaseHas('banoms', ['id' => $banom->id, 'title' => 'Judul yang diperbarui']);
         $this->assertDatabaseHas('banom_members', ['banom_id' => $banom->id, 'name' => 'Nama Ketua Baru']);
         $this->assertDatabaseHas('banom_members', ['banom_id' => $banom->id, 'name' => 'Nama Sekretaris']);
 
-        $this->delete(route('dashboard.banoms.destroy', $banom))
-            ->assertRedirect(route('dashboard.banoms.index'));
+        $this->delete(route('admin.banoms.destroy', $banom))
+            ->assertRedirect(route('admin.banoms.index'));
 
         $this->assertDatabaseMissing('banoms', ['id' => $banom->id]);
         $this->assertDatabaseMissing('banom_members', ['banom_id' => $banom->id]);

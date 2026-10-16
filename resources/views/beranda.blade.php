@@ -35,8 +35,8 @@
                 <!-- Right Hero Visual Capsule (45% -> 5 Cols) -->
                 <div class="lg:col-span-5 flex justify-center lg:justify-end">
                     <div class="relative w-full max-w-lg lg:max-w-none">
-                        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-surface-container shadow-2xl">
-                            <img alt="Dokumentasi" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida/AEtjO1WUxxgtq3vujby4o6KJhGzmLtren-Z5z00urGt3UjV_vP9miWaOtkFU_gg6CCfMnVSgL9sFhRzUyfpuqTo98T50ropasRP35tDa15bnWeAyUU32tFZfv354_HTM5y_7MTmOqhacRFTh47dr7kNhctBZkl6hTGWh1S7N8m0o9MxnZzHvD3WoSS0gt7tu4NsDrNweFVSrdIQM2hY8XZ6S_lAG77Li1AVkAmGGdtMtmB0rT9FzJoOtzbeECw">
+                        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-primary-container via-primary to-[#046c4e] shadow-2xl">
+                            <img alt="Dokumentasi" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida/AEtjO1WUxxgtq3vujby4o6KJhGzmLtren-Z5z00urGt3UjV_vP9miWaOtkFU_gg6CCfMnVSgL9sFhRzUyfpuqTo98T50ropasRP35tDa15bnWeAyUU32tFZfv354_HTM5y_7MTmOqhacRFTh47dr7kNhctBZkl6hTGWh1S7N8m0o9MxnZzHvD3WoSS0gt7tu4NsDrNweFVSrdIQM2hY8XZ6S_lAG77Li1AVkAmGGdtMtmB0rT9FzJoOtzbeECw" onerror="this.remove()">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
                             <div class="absolute bottom-4 left-4 z-10 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/90 backdrop-blur-md text-white border border-white/20 shadow-lg">
                                 <span class="material-symbols-outlined text-[16px] text-primary-fixed">verified</span>

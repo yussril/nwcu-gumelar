@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\KartaNu;
 use App\Models\User;
+use App\Services\KartuQrCode;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -82,5 +83,72 @@ class KartaNuTest extends TestCase
 
         $this->assertDatabaseHas('kartanu_records', ['nia' => 'NIA-GML-ADMIN-1']);
         $this->assertMatchesRegularExpression('/^REG-GML-\d{4}-[A-Z0-9]{8}$/', $record->registration_code);
+    }
+
+    public function test_printed_card_is_one_a4_sheet_with_front_and_back_from_member_data(): void
+    {
+        $record = $this->issuedMember();
+
+        $this->get(route('cetak-kartanu.show', ['registration_code' => $record->registration_code]))
+            ->assertOk()
+            ->assertSee('1 kartu (depan &amp; belakang)', false)
+            ->assertSee('Sisi depan kartu')
+            ->assertSee('Sisi belakang kartu')
+            ->assertSee($record->name)
+            ->assertSee($record->nia)
+            ->assertSee($record->nik)
+            ->assertSee('Laki-laki')
+            ->assertSee('PRNU Desa Cihonje')
+            ->assertSee('Jl. Raya Gumelar No. 19')
+            ->assertSee('21 Apr 1978')
+            ->assertSee('01 Jan 2026 s/d 31 Des 2027')
+            ->assertSee(route('kartanu.verifikasi', ['registrationCode' => $record->registration_code]));
+    }
+
+    public function test_qr_code_on_printed_card_leads_to_verification_page(): void
+    {
+        $record = $this->issuedMember();
+
+        $this->assertSame(
+            route('kartanu.verifikasi', ['registrationCode' => $record->registration_code]),
+            KartuQrCode::payload($record)
+        );
+        $this->assertStringStartsWith('<svg', KartuQrCode::svg($record));
+
+        $this->get(route('kartanu.verifikasi', ['registrationCode' => $record->registration_code]))
+            ->assertOk()
+            ->assertSee($record->name)
+            ->assertSee('Kartu Terbit')
+            ->assertDontSee($record->nik);
+    }
+
+    public function test_verification_page_reports_unknown_registration_code(): void
+    {
+        $this->get(route('kartanu.verifikasi', ['registrationCode' => 'REG-GML-2026-TIDAKADA']))
+            ->assertOk()
+            ->assertSee('Kode pada kartu tidak terdaftar');
+    }
+
+    /**
+     * Anggota dengan status "issued" beserta data identitas lengkap untuk diuji pada kartu cetak.
+     */
+    private function issuedMember(): KartaNu
+    {
+        return KartaNu::create([
+            'name' => 'Anggota Kartu Cetak',
+            'nia' => 'NIA-GML-0003',
+            'nik' => '3302142104780022',
+            'branch_name' => 'PRNU Desa Cihonje',
+            'birth_place' => 'Banyumas',
+            'birth_date' => '1978-04-21',
+            'jenis_kelamin' => 'L',
+            'no_whatsapp' => '081234567890',
+            'alamat_lengkap' => 'Jl. Raya Gumelar No. 19, RT 03/RW 05',
+            'desa_ranting' => 'Cihonje',
+            'registration_code' => 'REG-GML-2026-IJKLMNOP',
+            'verification_status' => 'issued',
+            'valid_from' => '2026-01-01',
+            'valid_until' => '2027-12-31',
+        ]);
     }
 }

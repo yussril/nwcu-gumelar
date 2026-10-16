@@ -55,9 +55,9 @@
                                         @if ($card->photoUrl())<img class="h-full w-full object-cover" src="{{ $card->photoUrl() }}" alt="Foto anggota {{ $card->name }}">@else<span class="material-symbols-outlined text-4xl text-slate-400">person</span>@endif
                                     </div>
                                     <div class="flex min-w-0 flex-1 flex-col gap-3">
-                                        <div class="border-b border-outline-variant/30 pb-2"><h3 class="font-headline-md text-lg font-bold tracking-tight text-on-surface">{{ mb_strtoupper($card->name) }}</h3><p class="mt-1 font-label-md text-label-md font-bold text-primary">NIA: {{ $card->nia }}</p></div>
+                                        <div class="border-b border-outline-variant/30 pb-2"><h3 class="font-headline-md text-lg font-bold tracking-tight text-on-surface">{{ $card->name }}</h3><p class="mt-1 font-label-md text-label-md font-bold text-primary">NIA: {{ $card->nia }}</p></div>
                                         <dl class="grid grid-cols-1 gap-x-4 gap-y-2 text-sm sm:grid-cols-2">
-                                            <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">NIK</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->nik }}</dd></div>
+                                            <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">NIK</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->maskedNik() }}</dd></div>
                                             <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">Ranting</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->branch_name }}</dd></div>
                                             <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">Masa berlaku</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->valid_from?->format('Y') ?? '—' }} — {{ $card->valid_until?->format('Y') ?? '—' }}</dd></div>
                                             <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">Kode validasi</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->registration_code }}</dd></div>

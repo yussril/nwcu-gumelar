@@ -38,10 +38,22 @@ class KartaNuController extends Controller
 
         $record = KartaNu::where('registration_code', strtoupper(trim($validated['registration_code'])))->first();
 
-            return $this->page(null, $record, null, $record ? null : 'Kode pendaftaran belum ditemukan. Pastikan kode dimasukkan dengan benar.');
+        return $this->page(null, $record, null, $record ? null : 'Kode pendaftaran belum ditemukan. Pastikan kode dimasukkan dengan benar.');
     }
 
-            private function page(?KartaNu $card = null, ?KartaNu $tracking = null, ?string $lookupMessage = null, ?string $trackingMessage = null): View
+    /**
+     * Halaman tujuan QR code pada kartu cetak: memverifikasi keabsahan kode registrasi.
+     */
+    public function verify(string $registrationCode): View
+    {
+        $record = KartaNu::where('registration_code', strtoupper(trim($registrationCode)))->first();
+
+        return $this->page(null, $record, null, $record
+            ? null
+            : 'Kode pada kartu tidak terdaftar di MWCNU Gumelar. Pastikan kartu Anda diterbitkan sekretariat MWCNU.');
+    }
+
+    private function page(?KartaNu $card = null, ?KartaNu $tracking = null, ?string $lookupMessage = null, ?string $trackingMessage = null): View
     {
         return view('kartanu', [
             'title' => 'Pusat Layanan KartaNU - MWCNU Gumelar',

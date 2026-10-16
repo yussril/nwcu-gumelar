@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\BanomController as AdminBanomController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\BanomController as AdminBanomController;
 use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\KegiatanController;
 use App\Http\Controllers\Admin\KartaNuController as AdminKartaNuController;
+use App\Http\Controllers\Admin\KegiatanController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CetakKartanuController;
 use App\Http\Controllers\ContactMessageController;
@@ -48,7 +48,7 @@ Route::get('/berita', function () {
 Route::get('/berita/{article:slug}', function (Article $article) {
     abort_unless($article->is_published && (! $article->published_at || $article->published_at->isPast()), 404);
 
-    return view('public.berita-detail', ['title' => $article->title . ' - Warta Nahdliyin', 'article' => $article]);
+    return view('public.berita-detail', ['title' => $article->title.' - Warta Nahdliyin', 'article' => $article]);
 })->name('berita.show');
 
 Route::get('/banom', fn () => view('banom', [
@@ -91,7 +91,7 @@ Route::get('/galeri/{gallery:slug}', function (GalleryItem $gallery) {
     abort_unless($gallery->is_published, 404);
 
     return view('public.galeri-detail', [
-        'title' => $gallery->title . ' - Galeri MWCNU Gumelar',
+        'title' => $gallery->title.' - Galeri MWCNU Gumelar',
         'item' => $gallery->load('photos'),
     ]);
 })->name('galeri.show');
@@ -99,6 +99,9 @@ Route::get('/galeri/{gallery:slug}', function (GalleryItem $gallery) {
 Route::get('/kartanu', [KartaNuController::class, 'index'])->name('kartanu');
 Route::post('/kartanu/lookup', [KartaNuController::class, 'lookup'])->middleware('throttle:6,1')->name('kartanu.lookup');
 Route::post('/kartanu/track', [KartaNuController::class, 'track'])->middleware('throttle:6,1')->name('kartanu.track');
+Route::get('/kartanu/verifikasi/{registrationCode}', [KartaNuController::class, 'verify'])
+    ->middleware('throttle:12,1')
+    ->name('kartanu.verifikasi');
 
 Route::get('/kontak', fn () => view('public.kontak', [
     'title' => 'Hubungi Kami - MWCNU Gumelar',
@@ -145,9 +148,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('kartanu', AdminKartaNuController::class)
         ->names('admin.kartanu');
-Route::post('kartanu/{kartanu}/approve', [AdminKartaNuController::class, 'approve'])->name('admin.kartanu.approve');
-Route::post('kartanu/{kartanu}/reject', [AdminKartaNuController::class, 'reject'])->name('admin.kartanu.reject');
-Route::get('kartanu/{kartanu}/print', [AdminKartaNuController::class, 'print'])->name('admin.kartanu.print');
+    Route::post('kartanu/{kartanu}/approve', [AdminKartaNuController::class, 'approve'])->name('admin.kartanu.approve');
+    Route::post('kartanu/{kartanu}/reject', [AdminKartaNuController::class, 'reject'])->name('admin.kartanu.reject');
+    Route::get('kartanu/{kartanu}/print', [AdminKartaNuController::class, 'print'])->name('admin.kartanu.print');
 
     Route::view('/settings', 'admin.settings', ['title' => 'Pengaturan Akun - Admin NWCU'])->name('admin.settings');
     Route::put('/settings/password', [PasswordController::class, 'update'])->name('admin.settings.password');

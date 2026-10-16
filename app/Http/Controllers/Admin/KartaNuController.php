@@ -30,10 +30,10 @@ class KartaNuController extends Controller
     {
         $kartanu->update([
             'verification_status' => 'issued',
-            'verification_note' => $kartanu->verification_note ?: 'Disetujui oleh Sekretariat MWCNU pada ' . now()->translatedFormat('d F Y'),
+            'verification_note' => $kartanu->verification_note ?: 'Disetujui oleh Sekretariat MWCNU pada '.now()->translatedFormat('d F Y'),
         ]);
 
-        return back()->with('status', 'Pendaftaran ' . $kartanu->name . ' telah disetujui.');
+        return back()->with('status', 'Pendaftaran '.$kartanu->name.' telah disetujui.');
     }
 
     public function reject(Request $request, KartaNu $kartanu): RedirectResponse
@@ -47,13 +47,13 @@ class KartaNuController extends Controller
             'verification_note' => $validated['verification_note'],
         ]);
 
-        return back()->with('status', 'Pendaftaran ' . $kartanu->name . ' telah ditolak.');
+        return back()->with('status', 'Pendaftaran '.$kartanu->name.' telah ditolak.');
     }
 
     public function show(KartaNu $kartanu): View
     {
         return view('admin.kartanu.show', [
-            'title' => 'Detail ' . $kartanu->name . ' - Admin NWCU',
+            'title' => 'Detail '.$kartanu->name.' - Admin NWCU',
             'record' => $kartanu,
         ]);
     }
@@ -90,7 +90,7 @@ class KartaNuController extends Controller
 
         $record = KartaNu::create($data);
 
-        return redirect()->route('admin.kartanu.show', $record)->with('status', 'Data KartaNU berhasil ditambahkan.');
+        return redirect()->route('admin.kartanu.index')->with('status', 'Data KartaNU berhasil ditambahkan.');
     }
 
     public function edit(KartaNu $kartanu): View
@@ -172,7 +172,7 @@ class KartaNuController extends Controller
     private function registrationCode(): string
     {
         do {
-            $code = 'REG-GML-' . now()->format('Y') . '-' . Str::upper(Str::random(8));
+            $code = 'REG-GML-'.now()->format('Y').'-'.Str::upper(Str::random(8));
         } while (KartaNu::where('registration_code', $code)->exists());
 
         return $code;

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class KartaNu extends Model
@@ -43,12 +44,29 @@ class KartaNu extends Model
     {
         $nik = $this->nik;
 
-        return $nik ? str_repeat('*', max(0, strlen($nik) - 4)) . substr($nik, -4) : 'Tidak tersedia';
+        return $nik ? str_repeat('*', max(0, strlen($nik) - 4)).substr($nik, -4) : 'Tidak tersedia';
     }
 
     public function photoUrl(): ?string
     {
-        return $this->photo_path ? asset('storage/' . $this->photo_path) : null;
+        return $this->photo_path ? asset('storage/'.$this->photo_path) : null;
+    }
+
+    public function jenisKelaminLabel(): string
+    {
+        return match ($this->jenis_kelamin) {
+            'L' => 'Laki-laki',
+            'P' => 'Perempuan',
+            default => 'Tidak dicantumkan',
+        };
+    }
+
+    /**
+     * Format tanggal memakai nama bulan bahasa Indonesia, dipakai saat mencetak kartu.
+     */
+    public function tanggalIndonesia(?DateTimeInterface $tanggal, string $format = 'd M Y'): string
+    {
+        return $tanggal?->locale('id')->translatedFormat($format) ?? '—';
     }
 
     public function verificationProgress(): int
@@ -57,7 +75,7 @@ class KartaNu extends Model
             'submitted' => 1,
             'branch_verified' => 2,
             'mwc_verified' => 3,
-                'issued' => 5,
+            'issued' => 5,
             default => 0,
         };
     }

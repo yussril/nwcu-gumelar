@@ -142,7 +142,7 @@
                                     </div>
                                     <div class="min-w-0">
                                         <div class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight"><?php echo e($record->name); ?></div>
-                                        <div class="font-label-sm text-label-sm text-secondary tracking-normal font-medium mt-0.5">NIK: <?php echo e($record->maskedNik()); ?></div>
+                                        <div class="font-label-sm text-label-sm text-on-surface tracking-normal font-medium mt-0.5 font-mono">NIK: <?php echo e($record->nik ?: 'Tidak tersedia'); ?></div>
                                     </div>
                                 </div>
                             </td>
@@ -185,6 +185,10 @@
                                             <span class="material-symbols-outlined text-[14px]">close</span>
                                             <span>Tolak</span>
                                         </button>
+                                        <a href="<?php echo e(route('admin.kartanu.show', $record)); ?>" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-2.5 py-1.5 rounded-lg font-label-sm text-label-sm font-medium transition-all inline-flex items-center gap-1 border border-outline-variant/30" title="Lihat detail">
+                                            <span class="material-symbols-outlined text-[14px] text-secondary">visibility</span>
+                                            <span>Detail</span>
+                                        </a>
                                         <form id="reject-form-<?php echo e($record->id); ?>" action="<?php echo e(route('admin.kartanu.reject', $record)); ?>" method="POST" class="hidden absolute right-0 top-full z-10 bg-surface-container-lowest border border-outline-variant rounded-xl p-3 shadow-lg w-64">
                                             <?php echo csrf_field(); ?>
                                             <label class="block font-label-sm text-label-sm font-semibold text-on-surface mb-1">Catatan Penolakan</label>
@@ -206,6 +210,10 @@
                                         </a>
                                     <?php elseif($record->verification_status === 'rejected' && $record->verification_note): ?>
                                         <span class="font-label-sm text-label-sm text-error"><?php echo e(Str::limit($record->verification_note, 30)); ?></span>
+                                        <a href="<?php echo e(route('admin.kartanu.show', $record)); ?>" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-2.5 py-1.5 rounded-lg font-label-sm text-label-sm font-medium transition-all inline-flex items-center gap-1 border border-outline-variant/30" title="Lihat detail">
+                                            <span class="material-symbols-outlined text-[14px] text-secondary">visibility</span>
+                                            <span>Detail</span>
+                                        </a>
                                     <?php endif; ?>
                                 </div>
                             </td>

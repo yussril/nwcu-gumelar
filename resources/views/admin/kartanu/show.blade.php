@@ -119,7 +119,7 @@
                     </div>
                     <div>
                         <span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">NIK</span>
-                        <p class="font-body-md text-body-md text-on-surface mt-1">{{ $record->maskedNik() }}</p>
+                        <p class="font-body-md text-body-md text-on-surface mt-1 font-mono">{{ $record->nik ?: '-' }}</p>
                     </div>
                     <div>
                         <span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider">Tempat Lahir</span>
