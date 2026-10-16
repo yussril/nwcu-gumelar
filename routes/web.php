@@ -29,6 +29,7 @@ Route::get('/', function () {
 
     return view('beranda', [
         'articles' => $articles,
+        'banoms' => Banom::where('is_active', true)->orderBy('sort_order')->orderBy('name')->get(),
     ]);
 })->name('beranda');
 

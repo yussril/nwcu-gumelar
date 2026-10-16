@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-surface-container-lowest text-on-surface">
-    <section class="border-b border-outline-variant/50 px-6 py-12 lg:px-12">
+    <x-reveal as="section" class="border-b border-outline-variant/50 px-6 py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed/40 px-3 py-1 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Kanal Informasi & Publikasi Resmi</p>
             <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -18,9 +18,9 @@
                 <label class="relative block w-full lg:w-80" for="article-search"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-slate-400">search</span><input class="w-full rounded-full border border-outline-variant bg-surface px-10 py-2.5 text-sm focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/10" id="article-search" type="search" placeholder="Cari warta atau risalah..."></label>
             </div>
         </div>
-    </section>
+    </x-reveal>
 
-    <section class="px-6 py-10 lg:px-12">
+    <x-reveal as="section" :delay="120" class="px-6 py-10 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col gap-10">
             @if ($featuredArticle)
                 <article class="article-card grid overflow-hidden rounded-2xl border border-outline-variant/40 bg-white lg:grid-cols-12" data-article-card data-article-featured data-category="{{ $featuredArticle->category }}" data-search="{{ Str::lower($featuredArticle->title . ' ' . $featuredArticle->excerpt) }}">
@@ -61,10 +61,10 @@
             </div>
             <p class="hidden py-12 text-center text-sm text-slate-500" id="article-empty">Tidak ada warta yang sesuai dengan pencarian ini.</p>
         </div>
-    </section>
+    </x-reveal>
 
     <!-- Banner Saluran WhatsApp (Section Terpisah) -->
-    <section class="px-6 py-6 lg:px-12" aria-labelledby="wa-banner-heading">
+    <x-reveal as="section" :delay="240" class="px-6 py-6 lg:px-12" aria-labelledby="wa-banner-heading">
         <div class="mx-auto max-w-7xl">
             <div class="relative overflow-hidden rounded-3xl bg-primary-container text-white shadow-lg">
                 <div class="pointer-events-none absolute inset-0 opacity-10">
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </x-reveal>
 </div>
 
 <script>

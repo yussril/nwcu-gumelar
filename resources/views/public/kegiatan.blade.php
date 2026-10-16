@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-surface-container-lowest text-on-surface">
-    <section class="border-b border-outline-variant/50 px-6 py-12 lg:px-12">
+    <x-reveal as="section" class="border-b border-outline-variant/50 px-6 py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed/40 px-3 py-1 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Agenda & Jadwal Kegiatan</p>
             <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -18,9 +18,9 @@
                 <label class="relative block w-full lg:w-80" for="kegiatan-search"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-slate-400">search</span><input class="w-full rounded-full border border-outline-variant bg-surface px-10 py-2.5 text-sm focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/10" id="kegiatan-search" type="search" placeholder="Cari kegiatan..."></label>
             </div>
         </div>
-    </section>
+    </x-reveal>
 
-    <section class="px-6 py-10 lg:px-12">
+    <x-reveal as="section" :delay="120" class="px-6 py-10 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col gap-10">
             @if ($featuredKegiatan)
                 <article class="kegiatan-card grid overflow-hidden rounded-2xl border border-outline-variant/40 bg-white lg:grid-cols-12" data-kegiatan-card data-category="{{ $featuredKegiatan->category }}" data-search="{{ Str::lower($featuredKegiatan->title . ' ' . $featuredKegiatan->description) }}">
@@ -54,7 +54,7 @@
             </div>
             <p class="hidden py-12 text-center text-sm text-slate-500" id="kegiatan-empty">Tidak ada kegiatan yang sesuai dengan pencarian ini.</p>
         </div>
-    </section>
+    </x-reveal>
 </div>
 
 <script>

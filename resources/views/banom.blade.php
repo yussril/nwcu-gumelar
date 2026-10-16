@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="w-full bg-surface-container-lowest text-on-surface">
-    <section class="px-4 pb-8 pt-10 sm:px-6 lg:px-12">
+    <x-reveal as="section" class="px-4 pb-8 pt-10 sm:px-6 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col gap-8">
             <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
                 <div class="lg:col-span-8">
@@ -58,9 +58,9 @@
                 </nav>
             @endif
         </div>
-    </section>
+    </x-reveal>
 
-    <section class="px-4 pb-12 sm:px-6 lg:px-12">
+    <x-reveal as="section" :delay="120" class="px-4 pb-12 sm:px-6 lg:px-12">
         <div class="mx-auto max-w-7xl">
             @forelse ($banoms as $index => $banom)
                 @php
@@ -215,7 +215,7 @@
                 </div>
             @endforelse
         </div>
-    </section>
+    </x-reveal>
 </div>
 
 @if ($banoms->isNotEmpty())

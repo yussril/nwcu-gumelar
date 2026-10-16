@@ -57,7 +57,9 @@ class KegiatanMover
             'image_path' => $kegiatan->cover_image_path,
             'event_date' => $kegiatan->endsAt()->toDateString(),
             'location' => $kegiatan->location,
-            'is_published' => true,
+            // Status publikasi ikut dibawa agar kegiatan yang masih draft tidak
+            // bocor tayang di galeri publik begitu waktunya habis.
+            'is_published' => $kegiatan->is_published,
             'sort_order' => 0,
         ]);
 
@@ -73,7 +75,7 @@ class KegiatanMover
         $suffix = 2;
 
         while (GalleryItem::where('slug', $slug)->exists()) {
-            $slug = $base . '-' . $suffix++;
+            $slug = $base.'-'.$suffix++;
         }
 
         return $slug;

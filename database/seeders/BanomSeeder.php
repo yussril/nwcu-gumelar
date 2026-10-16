@@ -7,6 +7,18 @@ use Illuminate\Database\Seeder;
 
 class BanomSeeder extends Seeder
 {
+    /**
+     * Slug banom lama yang digabung ke kategori lain.
+     *
+     * @var list<string>
+     */
+    private const RETIRED_SLUGS = ['muslimat-nu'];
+
+    /**
+     * Isi setiap entitas mengikuti lima kategori banner pada section
+     * "Keluarga Besar MWCNU" di beranda. Urutan array menentukan `sort_order`
+     * sekaligus kartu yang ditampilkan sebagai banner unggulan.
+     */
     public function run(): void
     {
         $records = [
@@ -40,41 +52,26 @@ class BanomSeeder extends Seeder
             ],
             [
                 'slug' => 'fatayat-nu',
-                'name' => 'Fatayat NU',
-                'category' => 'Perempuan Muda Nahdliyin',
-                'title' => 'Pimpinan Anak Cabang Fatayat NU Kecamatan Gumelar',
-                'motto' => 'Pemberdayaan Perempuan Muda, Kesehatan Keluarga & Dakwah Digital',
-                'description' => 'Wadah perjuangan perempuan muda Nahdliyin dengan fokus penguatan ketahanan ekonomi keluarga, advokasi kesehatan ibu dan anak, pencegahan stunting di tingkat ranting, serta pengajian rutin risalah An-Nahdliyyah.',
+                'name' => 'Fatayat & Muslimat NU',
+                'category' => 'Perempuan & Keluarga Nahdliyin',
+                'title' => 'Pimpinan Anak Cabang Fatayat & Muslimat NU Kecamatan Gumelar',
+                'motto' => 'Pemberdayaan Perempuan & Keluarga Sakinah, Taqiyah dan Dakwah',
+                'description' => 'Wadah perjuangan perempuan muda dan ummahat Nahdliyin yang memfokuskan khidmat pada penguatan ketahanan ekonomi keluarga, advokasi kesehatan ibu dan anak, pencegahan stunting di tingkat ranting, pengajian rutin risalah An-Nahdliyyah, pengelolaan santunan dhuafa, serta gerakan sedekah subuh beras jumputan melalui jaringan majelis taklim desa.',
                 'term' => '2024–2028',
-                'member_count' => '260 kader aktif',
-                'coverage' => 'Bina balita mandiri di 10 desa',
-                'legal_status' => 'SK Pimpinan Cabang Fatayat NU Banyumas',
-                'note' => 'Mitra program posyandu dan pendampingan gizi keluarga balita se-Kecamatan Gumelar.',
+                'member_count' => '1.380 kader & jamaah',
+                'coverage' => '10 ranting & 14 kelompok majelis taklim',
+                'legal_status' => 'SK Pimpinan Cabang Fatayat & Muslimat NU Banyumas',
+                'note' => 'Mitra program posyandu dan pendampingan gizi keluarga balita, sekaligus pengampu gerakan infak santunan lansia dan yatim piatu dhuafa di setiap selapanan MWCNU.',
                 'members' => [
                     ['position' => 'Ketua PAC Fatayat', 'name' => 'Sahabat Hj. Siti Nurjanah, S.Pd.I.'],
-                    ['position' => 'Sekretaris', 'name' => 'Sahabat Nida Ul Khasanah, S.Sos.'],
-                    ['position' => 'Bendahara', 'name' => 'Sahabat Umi Kulsum, S.E.'],
+                    ['position' => 'Ketua PAC Muslimat', 'name' => 'Hj. Aminah Masrur, M.Pd.'],
+                    ['position' => 'Sekretaris Fatayat', 'name' => 'Sahabat Nida Ul Khasanah, S.Sos.'],
+                    ['position' => 'Sekretaris Muslimat', 'name' => 'Hj. Siti Fatimah'],
+                    ['position' => 'Bendahara Fatayat', 'name' => 'Sahabat Umi Kulsum, S.E.'],
+                    ['position' => 'Bendahara Muslimat', 'name' => 'Hj. Rohmatin, S.Pd.'],
                     ['position' => 'Pendidikan & Dakwah', 'name' => 'Nyai Faizah Rohmah'],
                     ['position' => 'Ekonomi & Koperasi', 'name' => 'Ratna Juwita, S.E.'],
                     ['position' => 'Kesehatan & Lingkungan', 'name' => 'Bidan Sri Mulyani, A.Md.Keb.'],
-                ],
-            ],
-            [
-                'slug' => 'muslimat-nu',
-                'name' => 'Muslimat NU',
-                'category' => 'Gerakan Ummahat & Sosial',
-                'title' => 'Pimpinan Anak Cabang Muslimat NU Kecamatan Gumelar',
-                'motto' => 'Pilar Pembinaan Ummahat, Majelis Taklim & Kemandirian Sosial',
-                'description' => 'Organisasi kemasyarakatan perempuan NU yang mengakar melalui jaringan majelis taklim desa, pengelolaan santunan dhuafa, bimbingan keluarga sakinah, dan gerakan sedekah subuh beras jumputan.',
-                'term' => '2022–2027',
-                'member_count' => '1.120 anggota jamaah',
-                'coverage' => '14 kelompok majelis taklim',
-                'legal_status' => 'SK Pimpinan Cabang Muslimat NU Banyumas',
-                'note' => 'Mengampu gerakan infak santunan lansia dan yatim piatu dhuafa di setiap selapanan MWCNU.',
-                'members' => [
-                    ['position' => 'Ketua PAC Muslimat', 'name' => 'Hj. Aminah Masrur, M.Pd.'],
-                    ['position' => 'Sekretaris', 'name' => 'Hj. Siti Fatimah'],
-                    ['position' => 'Bendahara', 'name' => 'Hj. Rohmatin, S.Pd.'],
                     ['position' => 'Sosial & Kesejahteraan', 'name' => 'Hj. Nur Asiyah'],
                     ['position' => 'Dakwah & Majelis Taklim', 'name' => 'Ustzh. Marfu’ah'],
                 ],
@@ -145,17 +142,21 @@ class BanomSeeder extends Seeder
             $members = $record['members'];
             unset($record['members']);
 
-            $banom = Banom::firstOrCreate(
+            $banom = Banom::updateOrCreate(
                 ['slug' => $record['slug']],
                 [...$record, 'sort_order' => $sortOrder + 1, 'is_active' => true],
             );
 
             foreach ($members as $memberOrder => $member) {
-                $banom->members()->firstOrCreate(
+                $banom->members()->updateOrCreate(
                     ['position' => $member['position']],
                     [...$member, 'sort_order' => $memberOrder],
                 );
             }
         }
+
+        // Muslimat NU kini menyatu dengan Fatayat NU dalam satu kategori banner,
+        // sehingga record lamanya dibersihkan agar tidak tampil ganda di situs.
+        Banom::whereIn('slug', self::RETIRED_SLUGS)->delete();
     }
 }

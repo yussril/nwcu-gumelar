@@ -29,6 +29,80 @@ class BanomManagementTest extends TestCase
             ->assertDontSee('Semua Banom &amp; Lembaga', false);
     }
 
+    public function test_seeder_matches_the_five_keluarga_besar_banner_categories(): void
+    {
+        $this->seed(BanomSeeder::class);
+
+        $this->assertSame(
+            [
+                'gp-ansor-banser' => 'Badan Otonom Kepemudaan & Kebanseran',
+                'fatayat-nu' => 'Perempuan & Keluarga Nahdliyin',
+                'ipnu-ippnu' => 'Kaderisasi Pelajar & Santri',
+                'upzis-lazisnu' => 'Lembaga Amil & Filantropi',
+                'lbmnu-ldnu' => 'Kajian Syariat & Dakwah',
+            ],
+            Banom::orderBy('sort_order')->pluck('category', 'slug')->all(),
+        );
+
+        // Muslimat NU digabung ke dalam Fatayat NU, jadi tidak ada entitas terpisah.
+        $this->assertDatabaseMissing('banoms', ['slug' => 'muslimat-nu']);
+        $this->assertDatabaseHas('banom_members', ['position' => 'Sekretaris Muslimat']);
+    }
+
+    public function test_homepage_renders_one_banner_per_active_banom_with_its_category(): void
+    {
+        $this->seed(BanomSeeder::class);
+
+        $response = $this->get(route('beranda'))->assertOk();
+
+        foreach (Banom::orderBy('sort_order')->get() as $banom) {
+            $response
+                ->assertSee(route('banom').'#'.$banom->slug, false)
+                ->assertSee($banom->name, false)
+                ->assertSee($banom->category, false);
+        }
+
+        $response->assertSee('Keluarga Besar MWCNU', false);
+    }
+
+    public function test_homepage_banner_skips_inactive_banoms_and_falls_back_when_empty(): void
+    {
+        Banom::create([
+            'name' => 'Banom Nonaktif',
+            'slug' => 'banom-nonaktif',
+            'category' => 'Badan Otonom',
+            'title' => 'Pimpinan Banom Nonaktif',
+            'description' => 'Entitas yang sudah tidak aktif.',
+            'sort_order' => 1,
+            'is_active' => false,
+        ]);
+
+        $this->get(route('beranda'))
+            ->assertOk()
+            ->assertDontSee('banom-nonaktif', false)
+            ->assertSee('Data badan otonom belum tersedia.');
+    }
+
+    public function test_homepage_banner_renders_banoms_without_a_custom_theme(): void
+    {
+        Banom::create([
+            'name' => 'Lembaga Dakwah Baru',
+            'slug' => 'lembaga-dakwah-baru',
+            'category' => 'Kajian Syariat & Dakwah',
+            'title' => 'Pimpinan Lembaga Dakwah Baru',
+            'motto' => 'Tagline lembaga baru',
+            'description' => 'Deskripsi lembaga baru.',
+            'member_count' => '12 kader',
+            'sort_order' => 1,
+            'is_active' => true,
+        ]);
+
+        $this->get(route('beranda'))
+            ->assertOk()
+            ->assertSee('Lembaga Dakwah Baru', false)
+            ->assertSee('Tagline lembaga baru', false);
+    }
+
     public function test_authenticated_user_can_create_update_and_delete_banom_with_members(): void
     {
         $this->actingAs(User::factory()->create(['is_admin' => true]));

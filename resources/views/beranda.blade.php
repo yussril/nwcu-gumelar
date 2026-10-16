@@ -85,105 +85,136 @@
                         Sinergi badan otonom dan lembaga dakwah khidmah keumatan se-Kecamatan Gumelar untuk kemandirian warga.
                     </p>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <!-- 1. Ansor & Banser (Span 7) -->
-                    <a href="{{ route('banom') }}#gp-ansor-banser" class="md:col-span-7 relative group flex flex-col justify-between p-8 md:p-10 rounded-3xl bg-[#ecfdf5] border border-[#a7f3d0]/60 hover:border-[#34d399] transition-all duration-300 shadow-sm hover:shadow-lg overflow-hidden cursor-pointer">
-                        <div class="pointer-events-none absolute -right-4 -bottom-4 font-black text-[5rem] lg:text-[7.5rem] tracking-tighter text-[#065f46]/[0.07] select-none leading-none z-0">BANSER</div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-8">
-                                <div class="w-14 h-14 rounded-2xl bg-[#047857] text-white flex items-center justify-center font-black font-headline-sm shadow-md group-hover:scale-105 transition-transform">GP</div>
-                                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#d1fae5] text-[#065f46] font-label-caps text-label-caps font-bold tracking-wider">
-                                    <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>14 GUGUS POSKO • 350+ KADER
+
+                @if ($banoms->isNotEmpty())
+                    @php
+                        // Tema banner per kategori banom: monogram, watermark, dan palet
+                        // warna kartu. Banom tanpa tema khusus memakai tema yang ada
+                        // secara bergilir sesuai urutan tampilnya.
+                        $bannerThemes = [
+                            'gp-ansor-banser' => [
+                                'monogram' => 'GP',
+                                'watermark' => 'BANSER',
+                                'surface' => 'bg-[#ecfdf5]',
+                                'border' => 'border-[#a7f3d0]/60 hover:border-[#34d399]',
+                                'watermark_text' => 'text-[#065f46]/[0.07]',
+                                'monogram_bg' => 'bg-[#047857]',
+                                'chip' => 'bg-[#d1fae5] text-[#065f46]',
+                                'heading' => 'text-[#064e3b] group-hover:text-[#047857]',
+                                'body' => 'text-[#065f46]/80',
+                                'divider' => 'border-[#a7f3d0]/50',
+                                'footer' => 'text-[#065f46]',
+                                'arrow' => 'bg-[#047857] text-white group-hover:bg-[#065f46]',
+                            ],
+                            'fatayat-nu' => [
+                                'monogram' => 'FM',
+                                'watermark' => 'FATAYAT',
+                                'surface' => 'bg-[#f0fdf4]',
+                                'border' => 'border-[#bbf7d0]/60 hover:border-[#4ade80]',
+                                'watermark_text' => 'text-[#166534]/[0.08]',
+                                'monogram_bg' => 'bg-[#15803d]',
+                                'chip' => 'bg-[#dcfce7] text-[#166534]',
+                                'heading' => 'text-[#14532d] group-hover:text-[#15803d]',
+                                'body' => 'text-[#166534]/80',
+                                'divider' => 'border-[#bbf7d0]/50',
+                                'footer' => 'text-[#15803d]',
+                                'arrow' => 'bg-white text-[#15803d] group-hover:bg-[#15803d] group-hover:text-white',
+                            ],
+                            'ipnu-ippnu' => [
+                                'monogram' => 'IP',
+                                'watermark' => 'PELAJAR',
+                                'surface' => 'bg-[#ecfdf5]',
+                                'border' => 'border-[#a7f3d0]/60 hover:border-[#34d399]',
+                                'watermark_text' => 'text-[#065f46]/[0.08]',
+                                'monogram_bg' => 'bg-[#059669]',
+                                'chip' => 'bg-[#d1fae5] text-[#065f46]',
+                                'heading' => 'text-[#064e3b] group-hover:text-[#059669]',
+                                'body' => 'text-[#065f46]/80',
+                                'divider' => 'border-[#a7f3d0]/50',
+                                'footer' => 'text-[#059669]',
+                                'arrow' => 'bg-white text-[#059669] group-hover:bg-[#059669] group-hover:text-white',
+                            ],
+                            'upzis-lazisnu' => [
+                                'monogram' => 'LZ',
+                                'watermark' => 'KOIN NU',
+                                'surface' => 'bg-[#f0fdfa]',
+                                'border' => 'border-[#99f6e4]/60 hover:border-[#2dd4bf]',
+                                'watermark_text' => 'text-[#115e59]/[0.08]',
+                                'monogram_bg' => 'bg-[#0d9488]',
+                                'chip' => 'bg-[#ccfbf1] text-[#115e59]',
+                                'heading' => 'text-[#134e4a] group-hover:text-[#0d9488]',
+                                'body' => 'text-[#115e59]/80',
+                                'divider' => 'border-[#99f6e4]/50',
+                                'footer' => 'text-[#0d9488]',
+                                'arrow' => 'bg-white text-[#0d9488] group-hover:bg-[#0d9488] group-hover:text-white',
+                            ],
+                            'lbmnu-ldnu' => [
+                                'monogram' => 'BM',
+                                'watermark' => 'FATWA',
+                                'surface' => 'bg-[#f8fafc]',
+                                'border' => 'border-slate-200/80 hover:border-[#047857]/40',
+                                'watermark_text' => 'text-slate-800/[0.06]',
+                                'monogram_bg' => 'bg-[#334155]',
+                                'chip' => 'bg-slate-100 text-slate-700',
+                                'heading' => 'text-slate-900 group-hover:text-[#047857]',
+                                'body' => 'text-slate-600',
+                                'divider' => 'border-slate-200/60',
+                                'footer' => 'text-slate-700',
+                                'arrow' => 'bg-white text-slate-700 group-hover:bg-[#047857] group-hover:text-white',
+                            ],
+                        ];
+
+                        $bannerThemeKeys = array_keys($bannerThemes);
+
+                        $bannerMonogram = function (string $name): string {
+                            $initials = collect(preg_split('/\s+/', trim($name)) ?: [])
+                                ->filter(fn ($word) => ctype_alpha($word[0] ?? ''))
+                                ->take(2)
+                                ->map(fn ($word) => \Illuminate\Support\Str::upper($word[0]))
+                                ->implode('');
+
+                            return $initials !== '' ? $initials : \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($name, 0, 2));
+                        };
+                    @endphp
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        @foreach ($banoms as $index => $banom)
+                            @php
+                                $customTheme = $bannerThemes[$banom->slug] ?? null;
+                                $theme = $customTheme ?? $bannerThemes[$bannerThemeKeys[$index % count($bannerThemeKeys)]];
+                                $monogram = $customTheme['monogram'] ?? $bannerMonogram($banom->name);
+                                $featured = $index === 0;
+                            @endphp
+
+                            <a href="{{ route('banom') }}#{{ $banom->slug }}" class="{{ $featured ? 'md:col-span-7' : ($index === 1 ? 'md:col-span-5' : 'md:col-span-4') }} {{ $featured ? 'p-8 md:p-10' : 'p-8' }} relative group flex flex-col justify-between rounded-3xl {{ $theme['surface'] }} border {{ $theme['border'] }} transition-all duration-300 shadow-sm hover:shadow-lg overflow-hidden cursor-pointer">
+                                <div class="pointer-events-none absolute -right-2 -bottom-2 font-black tracking-tighter {{ $theme['watermark_text'] }} select-none leading-none z-0 {{ $featured ? 'text-[5rem] lg:text-[7.5rem]' : 'text-[5rem]' }}">{{ $theme['watermark'] }}</div>
+                                <div class="relative z-10">
+                                    <div class="flex items-center justify-between {{ $featured ? 'mb-8' : 'mb-6' }}">
+                                        <div class="{{ $featured ? 'w-14 h-14 font-black shadow-md' : 'w-12 h-12 font-bold shadow-sm' }} rounded-2xl {{ $theme['monogram_bg'] }} text-white flex items-center justify-center font-headline-sm group-hover:scale-105 transition-transform">{{ $monogram }}</div>
+                                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-left {{ $theme['chip'] }} font-label-caps text-label-caps font-bold tracking-wider">
+                                            @if ($featured)
+                                                <span class="w-2 h-2 shrink-0 rounded-full bg-current animate-pulse"></span>
+                                            @endif
+                                            {{ $banom->member_count ?: $banom->coverage }}
+                                        </span>
+                                    </div>
+                                    <h3 class="{{ $featured ? 'text-headline-md font-extrabold mb-3' : 'text-headline-sm font-bold mb-2' }} {{ $theme['heading'] }} tracking-tight transition-colors">{{ $banom->name }}</h3>
+                                    <p class="{{ $featured ? 'font-body-md text-body-md max-w-xl' : 'font-body-sm text-body-sm' }} {{ $theme['body'] }} leading-relaxed">{{ $banom->motto ?: $banom->coverage }}</p>
                                 </div>
-                            </div>
-                            <h3 class="text-headline-md font-extrabold text-[#064e3b] tracking-tight mb-3 group-hover:text-[#047857] transition-colors">GP Ansor & Satkoryon Banser</h3>
-                            <p class="font-body-md text-[#065f46]/80 leading-relaxed max-w-xl">Kawal benteng ulama, ketahanan bela negara, tanggap darurat bencana LPBI, dan penggerak garda terdepan kepemudaan Nahdliyin di seluruh desa se-Kecamatan Gumelar.</p>
-                        </div>
-                        <div class="relative z-10 flex items-center justify-between pt-8 mt-6 border-t border-[#a7f3d0]/50">
-                            <span class="text-body-sm font-semibold text-[#065f46]">Kesiagaan 24 Jam • Densus 99 & Bagana</span>
-                            <div class="w-10 h-10 rounded-full bg-[#047857] text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#065f46] transition-all shadow-sm">
-                                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 2. Fatayat & Muslimat (Span 5) -->
-                    <a href="{{ route('banom') }}#fatayat-nu" class="md:col-span-5 relative group flex flex-col justify-between p-8 rounded-3xl bg-[#f0fdf4] border border-[#bbf7d0]/60 hover:border-[#4ade80] transition-all duration-300 shadow-sm hover:shadow-lg overflow-hidden cursor-pointer">
-                        <div class="pointer-events-none absolute -right-2 -bottom-3 font-black text-[5.5rem] tracking-tighter text-[#166534]/[0.08] select-none leading-none z-0">FATAYAT</div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-[#15803d] text-white flex items-center justify-center font-bold font-headline-sm shadow-sm group-hover:scale-105 transition-transform">FN</div>
-                                <span class="px-3 py-1 rounded-full bg-[#dcfce7] text-[#166534] font-label-caps text-label-caps font-bold">10 Majelis Ranting</span>
-                            </div>
-                            <h3 class="text-headline-sm font-bold text-[#14532d] mb-2 group-hover:text-[#15803d] transition-colors">Fatayat & Muslimat NU</h3>
-                            <p class="font-body-sm text-[#166534]/80 leading-relaxed">Pemberdayaan perempuan Nahdliyin, ketahanan gizi keluarga, bina UMKM mandiri, dan penguatan posyandu bina sakinah.</p>
-                        </div>
-                        <div class="relative z-10 flex items-center justify-between pt-6 border-t border-[#bbf7d0]/50">
-                            <span class="font-label-caps text-label-caps uppercase tracking-wider text-[#15803d] font-bold">Pemberdayaan Umat</span>
-                            <div class="w-9 h-9 rounded-full bg-white text-[#15803d] flex items-center justify-center group-hover:bg-[#15803d] group-hover:text-white transition-all shadow-sm">
-                                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 3. IPNU & IPPNU (Span 4) -->
-                    <a href="{{ route('banom') }}#ipnu-ippnu" class="md:col-span-4 relative group flex flex-col justify-between p-8 rounded-3xl bg-[#ecfdf5] border border-[#a7f3d0]/60 hover:border-[#34d399] transition-all duration-300 shadow-sm hover:shadow-lg overflow-hidden cursor-pointer">
-                        <div class="pointer-events-none absolute -right-2 -bottom-2 font-black text-[5rem] tracking-tighter text-[#065f46]/[0.08] select-none leading-none z-0">PELAJAR</div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-[#059669] text-white flex items-center justify-center font-bold font-headline-sm shadow-sm group-hover:scale-105 transition-transform">IP</div>
-                                <span class="px-3 py-1 rounded-full bg-[#d1fae5] text-[#065f46] font-label-caps text-label-caps font-bold">7 Komisariat</span>
-                            </div>
-                            <h3 class="text-headline-sm font-bold text-[#064e3b] mb-2 group-hover:text-[#059669] transition-colors">PAC IPNU & IPPNU</h3>
-                            <p class="font-body-sm text-[#065f46]/80 leading-relaxed">Kaderisasi santri madrasah, milenial kreatif, literasi dakwah digital, dan wadah kepemimpinan pelajar di Gumelar.</p>
-                        </div>
-                        <div class="relative z-10 flex items-center justify-between pt-6 border-t border-[#a7f3d0]/50">
-                            <span class="font-label-caps text-label-caps uppercase tracking-wider text-[#059669] font-bold">Kader Muda Aswaja</span>
-                            <div class="w-9 h-9 rounded-full bg-white text-[#059669] flex items-center justify-center group-hover:bg-[#059669] group-hover:text-white transition-all shadow-sm">
-                                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 4. UPZIS LAZISNU (Span 4) -->
-                    <a href="{{ route('banom') }}#upzis-lazisnu" class="md:col-span-4 relative group flex flex-col justify-between p-8 rounded-3xl bg-[#f0fdfa] border border-[#99f6e4]/60 hover:border-[#2dd4bf] transition-all duration-300 shadow-sm hover:shadow-lg overflow-hidden cursor-pointer">
-                        <div class="pointer-events-none absolute -right-2 -bottom-2 font-black text-[5rem] tracking-tighter text-[#115e59]/[0.08] select-none leading-none z-0">KOIN NU</div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-[#0d9488] text-white flex items-center justify-center font-bold font-headline-sm shadow-sm group-hover:scale-105 transition-transform">LZ</div>
-                                <span class="px-3 py-1 rounded-full bg-[#ccfbf1] text-[#115e59] font-label-caps text-label-caps font-bold">Akuntabel</span>
-                            </div>
-                            <h3 class="text-headline-sm font-bold text-[#134e4a] mb-2 group-hover:text-[#0d9488] transition-colors">UPZIS LAZISNU</h3>
-                            <p class="font-body-sm text-[#115e59]/80 leading-relaxed">Optimalisasi Gerakan Koin NU, penyaluran beasiswa dhuafa, tanggap darurat kesehatan, serta pemberdayaan ekonomi mustahiq.</p>
-                        </div>
-                        <div class="relative z-10 flex items-center justify-between pt-6 border-t border-[#99f6e4]/50">
-                            <span class="font-label-caps text-label-caps uppercase tracking-wider text-[#0d9488] font-bold">Filantropi Mandiri</span>
-                            <div class="w-9 h-9 rounded-full bg-white text-[#0d9488] flex items-center justify-center group-hover:bg-[#0d9488] group-hover:text-white transition-all shadow-sm">
-                                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 5. Bahtsul Masail & LDNU (Span 4) -->
-                    <a href="{{ route('banom') }}#lbmnu-ldnu" class="md:col-span-4 relative group flex flex-col justify-between p-8 rounded-3xl bg-[#f8fafc] border border-slate-200/80 hover:border-[#047857]/40 transition-all duration-300 shadow-sm hover:shadow-lg overflow-hidden cursor-pointer">
-                        <div class="pointer-events-none absolute -right-2 -bottom-2 font-black text-[5rem] tracking-tighter text-slate-800/[0.06] select-none leading-none z-0">FATWA</div>
-                        <div class="relative z-10">
-                            <div class="flex items-center justify-between mb-6">
-                                <div class="w-12 h-12 rounded-2xl bg-[#334155] text-white flex items-center justify-center font-bold font-headline-sm shadow-sm group-hover:scale-105 transition-transform">BM</div>
-                                <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-label-caps text-label-caps font-bold">Kajian Rutin</span>
-                            </div>
-                            <h3 class="text-headline-sm font-bold text-slate-900 mb-2 group-hover:text-[#047857] transition-colors">Bahtsul Masail & LDNU</h3>
-                            <p class="font-body-sm text-slate-600 leading-relaxed">Musyawarah fatwa keagamaan waqi'iyyah, standarisasi khutbah, dan rujukan hukum Islam kontekstual bagi nahdliyin.</p>
-                        </div>
-                        <div class="relative z-10 flex items-center justify-between pt-6 border-t border-slate-200/60">
-                            <span class="font-label-caps text-label-caps uppercase tracking-wider text-slate-700 font-bold">Risalah Hukum</span>
-                            <div class="w-9 h-9 rounded-full bg-white text-slate-700 group-hover:bg-[#047857] group-hover:text-white transition-all shadow-sm flex items-center justify-center">
-                                <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                                <div class="relative z-10 flex items-center justify-between {{ $featured ? 'pt-8 mt-6' : 'pt-6' }} border-t {{ $theme['divider'] }}">
+                                    <span class="{{ $featured ? 'text-body-sm font-semibold' : 'font-label-caps uppercase tracking-wider font-bold' }} {{ $theme['footer'] }}">{{ $banom->category }}</span>
+                                    <div class="{{ $featured ? 'w-10 h-10' : 'w-9 h-9' }} rounded-full flex items-center justify-center transition-all shadow-sm {{ $theme['arrow'] }}">
+                                        <span class="material-symbols-outlined {{ $featured ? 'text-[20px]' : 'text-[18px]' }}">{{ $featured ? 'arrow_forward' : 'arrow_outward' }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="rounded-3xl bg-surface-container-low px-6 py-16 text-center text-slate-500">
+                        Data badan otonom belum tersedia.
+                    </div>
+                @endif
             </section>
 
         <!-- SECTION D: Warta Terkini (Editorial Magazine Layout) -->

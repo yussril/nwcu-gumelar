@@ -5,7 +5,7 @@
     <section class="w-full px-6 py-8 md:py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <!-- Header Halaman -->
-            <header class="mb-10 lg:mb-12">
+            <x-reveal as="header" class="mb-10 lg:mb-12">
                 <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed/40 px-3 py-1 text-primary">
                     <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-primary"></span>
                     <span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider">Pusat Informasi &amp; Layanan Warga • Kecamatan Gumelar</span>
@@ -16,12 +16,12 @@
                 <p class="max-w-3xl font-body-lg text-body-lg leading-relaxed text-on-surface-variant">
                     Pusat informasi, layanan bantuan KartaNU, dan lokasi sekretariat Majelis Wakil Cabang Nahdlatul Ulama Kecamatan Gumelar.
                 </p>
-            </header>
+            </x-reveal>
 
             <!-- Tata Letak 2 Kolom Seimbang -->
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
                 <!-- KOLOM KIRI: Informasi, Kontak Cepat & Lokasi -->
-                <div class="space-y-6 lg:col-span-6">
+                <x-reveal as="div" :delay="120" class="space-y-6 lg:col-span-6">
                     <!-- Kotak Alamat & Sekretariat -->
                     <article class="rounded-2xl bg-surface-container-lowest p-6 lg:p-7">
                         <div class="mb-3 flex items-center gap-2">
@@ -137,10 +137,10 @@
                             </a>
                         </div>
                     </article>
-                </div>
+                </x-reveal>
 
                 <!-- KOLOM KANAN: Formulir Pesan Singkat -->
-                <div class="lg:col-span-6">
+                <x-reveal as="div" :delay="240" class="lg:col-span-6">
                     <article class="rounded-2xl bg-surface-container-lowest p-6 sm:p-8 lg:p-10">
                         <header class="mb-8">
                             <div class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary-fixed/40 px-2.5 py-1 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary">
@@ -226,7 +226,7 @@
                             </button>
                         </form>
                     </article>
-                </div>
+                </x-reveal>
             </div>
         </div>
     </section>

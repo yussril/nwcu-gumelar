@@ -25,7 +25,7 @@
 @endphp
 
 <div class="w-full bg-[#FAFAF9] text-on-surface">
-    <section class="w-full border-b border-[#E5E7EB] bg-[#FAFAF9] px-6 pb-10 pt-12 lg:px-12">
+    <x-reveal as="section" class="w-full border-b border-[#E5E7EB] bg-[#FAFAF9] px-6 pb-10 pt-12 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col items-start">
             <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-[#FAFAF9] px-3 py-1"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span><span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary-container">ARSIP VISUAL & REKAM JEJAK • KECAMATAN GUMELAR, BANYUMAS</span></div>
             <div class="flex max-w-4xl flex-col gap-3"><h1 class="font-headline-xl text-headline-xl-mobile font-extrabold leading-tight text-[#111827] lg:text-headline-xl">Galeri & Dokumentasi Khidmat</h1><p class="max-w-2xl font-body-lg text-body-lg leading-relaxed text-[#4B5563]">Arsip visual pergerakan, kegiatan sosial, dan syiar dakwah keluarga besar MWCNU Kecamatan Gumelar.</p></div>
@@ -38,9 +38,9 @@
                 <div class="inline-flex items-center gap-2 text-label-sm text-[#4B5563]" aria-live="polite"><span class="material-symbols-outlined text-[16px] text-primary-container">folder_open</span><span><strong id="gallery-visible-count" class="font-semibold text-[#111827]">{{ min(6, $galleryItems->count()) }}</strong> dari {{ $galleryItems->count() }} entri terdokumentasi</span></div>
             </div>
         </div>
-    </section>
+    </x-reveal>
 
-    <section class="w-full bg-[#FAFAF9] px-6 py-12 lg:px-12">
+    <x-reveal as="section" :delay="120" class="w-full bg-[#FAFAF9] px-6 py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-12" id="gallery-grid">
                 @foreach ($galleryItems as $index => $item)
@@ -64,7 +64,7 @@
                 <div class="mt-16 flex w-full flex-col items-center justify-center border-t border-[#E5E7EB] pb-8 pt-12"><div class="flex flex-col items-center gap-3"><p class="font-body-sm text-body-sm text-[#6B7280]">Menampilkan <span class="font-bold text-[#111827]" id="gallery-status-count">{{ min(6, $galleryItems->count()) }}</span> dari <span class="font-bold text-[#111827]">{{ $galleryItems->count() }}</span> arsip foto digital</p><button class="inline-flex items-center justify-center gap-2 rounded-full border border-[#D1D5DB] bg-[#FAFAF9] px-8 py-3 font-label-md text-label-md font-semibold text-[#111827] transition-colors hover:border-[#9CA3AF] hover:bg-[#F3F4F6]" id="gallery-load-more" type="button"><span>Muat Lebih Banyak</span><span class="material-symbols-outlined text-[18px]">expand_more</span></button></div></div>
             @endif
         </div>
-    </section>
+    </x-reveal>
 </div>
 
 <script>
