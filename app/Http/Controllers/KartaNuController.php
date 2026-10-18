@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KartaNu;
+use App\Services\KartuQrCode;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -55,9 +56,16 @@ class KartaNuController extends Controller
 
     private function page(?KartaNu $card = null, ?KartaNu $tracking = null, ?string $lookupMessage = null, ?string $trackingMessage = null): View
     {
+        // QR hanya dibutuhkan untuk kartu yang sudah diterbitkan; sisi belakang
+        // pratinjau memakainya, sama persis seperti kartu yang dicetak.
+        $qrSvg = $card && $card->verification_status === 'issued'
+            ? KartuQrCode::svg($card)
+            : null;
+
         return view('kartanu', [
             'title' => 'Pusat Layanan KartaNU - MWCNU Gumelar',
             'card' => $card,
+            'qrSvg' => $qrSvg,
             'tracking' => $tracking,
             'lookupMessage' => $lookupMessage,
             'trackingMessage' => $trackingMessage,

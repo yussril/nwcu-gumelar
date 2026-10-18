@@ -22,7 +22,7 @@
 
     <div class="overflow-hidden rounded-2xl border border-outline-variant/30 bg-surface-container-lowest">
         <div class="overflow-x-auto">
-            <table class="w-full text-left">
+            <table class="w-full text-left min-w-[760px]">
                 <thead>
                     <tr class="border-b border-outline-variant/30 bg-surface-container-low">
                         <th class="px-5 py-4 font-label-md text-label-md font-semibold text-on-surface-variant">Pengirim</th>

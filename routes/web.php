@@ -151,7 +151,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         ->names('admin.kartanu');
     Route::post('kartanu/{kartanu}/approve', [AdminKartaNuController::class, 'approve'])->name('admin.kartanu.approve');
     Route::post('kartanu/{kartanu}/reject', [AdminKartaNuController::class, 'reject'])->name('admin.kartanu.reject');
-    Route::get('kartanu/{kartanu}/print', [AdminKartaNuController::class, 'print'])->name('admin.kartanu.print');
 
     Route::view('/settings', 'admin.settings', ['title' => 'Pengaturan Akun - Admin NWCU'])->name('admin.settings');
     Route::put('/settings/password', [PasswordController::class, 'update'])->name('admin.settings.password');

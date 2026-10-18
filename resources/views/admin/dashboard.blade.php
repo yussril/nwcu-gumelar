@@ -20,7 +20,7 @@
 <!-- Metric Statistics Bento Grid -->
 <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
     <!-- Stat 1: KartaNU -->
-    <div class="bg-surface-container-lowest rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
+    <div class="bg-surface-container-lowest rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
         <div class="flex items-center justify-between mb-4">
             <span class="font-label-md text-label-md text-secondary font-medium">Total KartaNU</span>
             <div class="w-10 h-10 rounded-xl bg-primary-fixed/40 flex items-center justify-center text-primary-container">
@@ -36,7 +36,7 @@
         </div>
     </div>
     <!-- Stat 2: Koin NU -->
-    <div class="bg-surface-container-lowest rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
+    <div class="bg-surface-container-lowest rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
         <div class="flex items-center justify-between mb-4">
             <span class="font-label-md text-label-md text-secondary font-medium">Koin NU Bulan Ini</span>
             <div class="w-10 h-10 rounded-xl bg-primary-fixed/40 flex items-center justify-center text-primary-container">
@@ -52,7 +52,7 @@
         </div>
     </div>
     <!-- Stat 3: Warta Nahdliyin Diterbitkan -->
-    <div class="bg-surface-container-lowest rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
+    <div class="bg-surface-container-lowest rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
         <div class="flex items-center justify-between mb-4">
             <span class="font-label-md text-label-md text-secondary font-medium">Warta Nahdliyin Diterbitkan</span>
             <div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant">
@@ -68,7 +68,7 @@
         </div>
     </div>
     <!-- Stat 4: Banom & Ranting -->
-    <div class="bg-surface-container-lowest rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
+    <div class="bg-surface-container-lowest rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md border border-surface-container/50">
         <div class="flex items-center justify-between mb-4">
             <span class="font-label-md text-label-md text-secondary font-medium">Banom &amp; Ranting Aktif</span>
             <div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant">
@@ -88,7 +88,7 @@
 <!-- Middle Row: Analytical Visualizations & Operational Access -->
 <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
     <!-- Left Column: Publikasi & Organisasi Progress (8 Cols) -->
-    <div class="lg:col-span-8 bg-surface-container-lowest rounded-2xl p-8 flex flex-col justify-between shadow-sm border border-surface-container/50">
+    <div class="lg:col-span-8 bg-surface-container-lowest rounded-2xl p-5 sm:p-8 flex flex-col justify-between shadow-sm border border-surface-container/50">
         <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-8">
             <div>
                 <span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest">Publikasi &amp; Organisasi</span>
@@ -127,7 +127,7 @@
     </div>
 
     <!-- Right Column: Quick Operational Dispatch (4 Cols) -->
-    <div class="lg:col-span-4 bg-surface-container-lowest rounded-2xl p-8 flex flex-col justify-between shadow-sm border border-surface-container/50">
+    <div class="lg:col-span-4 bg-surface-container-lowest rounded-2xl p-5 sm:p-8 flex flex-col justify-between shadow-sm border border-surface-container/50">
         <div>
             <span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest">Tindakan Cepat</span>
             <h2 class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight mt-1">Akses Cepat</h2>
@@ -194,7 +194,7 @@
 </section>
 
 <!-- Inbox: Messages from the Public Contact Page -->
-<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm border border-surface-container/50 mb-10">
+<section class="bg-surface-container-lowest rounded-2xl p-5 sm:p-8 shadow-sm border border-surface-container/50 mb-10">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-surface-container">
         <div>
             <span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest">Kotak Masuk</span>
@@ -232,7 +232,7 @@
 </section>
 
 <!-- Bottom Row: Realtime Activity Ledger -->
-<section class="bg-surface-container-lowest rounded-2xl p-8 shadow-sm border border-surface-container/50">
+<section class="bg-surface-container-lowest rounded-2xl p-5 sm:p-8 shadow-sm border border-surface-container/50">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-surface-container">
         <div>
             <span class="font-label-caps text-label-caps text-primary uppercase font-bold tracking-widest">Audit Trail Realtime</span>

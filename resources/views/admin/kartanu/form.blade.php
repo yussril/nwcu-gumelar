@@ -30,7 +30,7 @@
             </div>
             <label class="flex flex-col gap-2 font-label-md text-label-md font-semibold text-on-surface" for="photo">Foto anggota<input class="block w-full font-body-sm text-body-sm text-on-surface file:mr-3 file:rounded-lg file:border-0 file:bg-surface-container file:px-3 file:py-2 file:font-semibold file:text-on-surface-variant" id="photo" name="photo" type="file" accept="image/*"><span class="font-body-sm text-body-sm font-normal text-on-surface-variant">Maksimum 5 MB.</span></label>
             @if ($record->photoUrl())
-                <img class="h-40 w-32 rounded-lg border border-outline-variant object-cover" src="{{ $record->photoUrl() }}" alt="Foto anggota saat ini">
+                <img class="h-40 w-30 rounded-lg border border-outline-variant object-cover object-top" src="{{ $record->photoUrl() }}" alt="Foto anggota saat ini">
             @endif
         </section>
         <section class="flex flex-col gap-5 rounded-2xl border border-outline-variant/30 bg-surface-container-lowest p-5 sm:p-7">

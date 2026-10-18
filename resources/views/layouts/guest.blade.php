@@ -16,8 +16,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-screen bg-background font-body-md text-on-surface antialiased">
-        <main class="flex min-h-screen">
+    <body class="min-h-dvh bg-background font-body-md text-on-surface antialiased">
+        <main class="flex min-h-dvh">
             <!-- Left Panel - Branding (Hidden on mobile) -->
             <div class="hidden lg:flex lg:w-[45%] xl:w-[40%] relative overflow-hidden bg-primary">
                 <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-container to-tertiary-container opacity-90"></div>
@@ -64,9 +64,9 @@
             </div>
 
             <!-- Right Panel - Login Form -->
-            <div class="flex-1 flex flex-col justify-center items-center px-6 py-12 sm:px-12 lg:px-16 xl:px-24 bg-surface-container-lowest">
+            <div class="flex-1 flex flex-col justify-center items-center px-4 py-10 sm:px-8 sm:py-12 lg:px-16 xl:px-24 bg-surface-container-lowest">
                 <!-- Mobile Logo (Visible only on mobile) -->
-                <div class="lg:hidden flex items-center gap-3 mb-10">
+                <div class="lg:hidden flex items-center gap-3 mb-8 sm:mb-10">
                     <div class="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center bg-primary">
                         <img src="{{ asset('images/logo-nu-40178.png') }}" alt="Logo MWCNU Gumelar" class="w-full h-full object-contain filter brightness-0 invert">
                     </div>
@@ -89,7 +89,7 @@
                     </div>
 
                     <!-- Form Card -->
-                    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 p-6 sm:p-8 shadow-sm">
+                    <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 p-5 sm:p-8 shadow-sm">
                         {{ $slot }}
                     </div>
 

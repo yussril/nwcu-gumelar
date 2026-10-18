@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="w-full bg-surface text-on-surface">
-    <section class="w-full px-6 py-8 md:py-12 lg:px-12">
+    <section class="w-full px-4 sm:px-6 py-8 md:py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <!-- Header Halaman -->
-            <x-reveal as="header" class="mb-10 lg:mb-12">
+            <x-reveal as="header" class="mb-8 lg:mb-12">
                 <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed/40 px-3 py-1 text-primary">
                     <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-primary"></span>
                     <span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider">Pusat Informasi &amp; Layanan Warga • Kecamatan Gumelar</span>
@@ -23,7 +23,7 @@
                 <!-- KOLOM KIRI: Informasi, Kontak Cepat & Lokasi -->
                 <x-reveal as="div" :delay="120" class="space-y-6 lg:col-span-6">
                     <!-- Kotak Alamat & Sekretariat -->
-                    <article class="rounded-2xl bg-surface-container-lowest p-6 lg:p-7">
+                    <article class="rounded-2xl bg-surface-container-lowest p-5 sm:p-6 lg:p-7">
                         <div class="mb-3 flex items-center gap-2">
                             <span class="material-symbols-outlined text-[22px] text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
                             <span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary">Sekretariat Utama</span>
@@ -35,7 +35,7 @@
                             Gedung Bersama MWCNU, Jl. Raya Gumelar No. 19, Kecamatan Gumelar, Kabupaten Banyumas, Jawa Tengah 53165
                         </p>
                         <div class="flex items-start gap-2.5 rounded-xl bg-surface-container-low p-3.5">
-                            <span class="material-symbols-outlined mt-0.5 text-[18px] text-primary">schedule</span>
+                            <span class="material-symbols-outlined mt-0.5 shrink-0 text-[18px] text-primary">schedule</span>
                             <div class="font-body-sm text-body-sm text-on-surface">
                                 <span class="font-medium">Senin – Sabtu:</span> 08.00 – 16.00 WIB
                                 <span class="mx-1 text-on-surface-variant">•</span>
@@ -45,8 +45,8 @@
                     </article>
 
                     <!-- Kotak Kontak Cepat -->
-                    <article class="space-y-5 rounded-2xl bg-surface-container-lowest p-6 lg:p-7">
-                        <div class="flex items-center justify-between pb-3">
+                    <article class="space-y-5 rounded-2xl bg-surface-container-lowest p-5 sm:p-6 lg:p-7">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-3">
                             <h3 class="font-headline-sm text-headline-sm font-bold leading-snug text-on-surface">Saluran Komunikasi Langsung</h3>
                             <span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-on-surface-variant">Respons Cepat</span>
                         </div>
@@ -67,7 +67,7 @@
                             </button>
                         </div>
                         <!-- Hotline WhatsApp -->
-                        <a class="group flex items-center justify-between gap-3 rounded-xl bg-surface-container-low p-3 transition-colors hover:bg-surface-container" href="https://wa.me/6281228901926" rel="noopener noreferrer" target="_blank">
+                        <a class="group flex flex-wrap items-center justify-between gap-3 rounded-xl bg-surface-container-low p-3 transition-colors hover:bg-surface-container" href="https://wa.me/6281228901926" rel="noopener noreferrer" target="_blank">
                             <div class="flex min-w-0 items-center gap-3">
                                 <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                                     <span class="material-symbols-outlined text-[20px]">call</span>
@@ -91,22 +91,32 @@
                         </div>
                     </article>
 
-                    <!-- Tombol Saluran WhatsApp -->
-                    <a class="group block rounded-2xl bg-surface-container-lowest p-5 transition-colors hover:bg-primary-fixed/20" href="https://whatsapp.com/channel" rel="noopener noreferrer" target="_blank">
-                        <div class="mb-1 flex items-center justify-center gap-2.5 font-headline-sm text-headline-sm font-bold text-primary">
-                            <svg aria-hidden="true" class="h-5 w-5 shrink-0 fill-current" viewBox="0 0 24 24">
-                                <path d="M12.031 2C6.495 2 2 6.493 2 12.028c0 1.97.57 3.807 1.558 5.36L2 22l4.767-1.53a9.972 9.972 0 0 0 5.264 1.558h.005c5.534 0 10.027-4.492 10.027-10.028 0-2.678-1.043-5.197-2.937-7.091A10.007 10.007 0 0 0 12.031 2zm0 18.23a8.212 8.212 0 0 1-4.22-1.162l-.303-.18-2.82.905.918-2.75-.198-.316a8.225 8.225 0 0 1-1.258-4.4c0-4.542 3.696-8.238 8.24-8.238 2.2 0 4.269.858 5.823 2.413a8.217 8.217 0 0 1 2.41 5.826c0 4.542-3.696 8.24-8.24 8.24zm4.516-6.177c-.247-.124-1.464-.723-1.691-.806-.227-.082-.393-.124-.558.124-.165.247-.64.806-.784.97-.144.165-.289.186-.536.062-.247-.124-1.044-.385-1.989-1.228-.735-.656-1.232-1.467-1.376-1.714-.144-.247-.015-.38.109-.503.111-.112.247-.29.371-.434.124-.144.165-.247.247-.412.082-.165.041-.31-.021-.433-.062-.124-.558-1.343-.764-1.84-.2-.484-.403-.418-.558-.426l-.475-.008c-.165 0-.433.062-.66.31-.227.247-.866.847-.866 2.066 0 1.219.887 2.396 1.011 2.561.124.165 1.745 2.665 4.228 3.738.591.256 1.052.409 1.411.523.593.188 1.133.161 1.56.098.476-.071 1.464-.599 1.67-1.176.206-.577.206-1.072.144-1.175-.062-.103-.227-.165-.474-.288z"></path>
-                            </svg>
-                            <span>Ikuti Saluran WhatsApp MWCNU</span>
+                    <!-- Kartu Saluran WhatsApp (identik dengan banner di halaman Berita) -->
+                    <article class="relative overflow-hidden rounded-2xl bg-primary-container p-5 text-on-primary sm:p-6">
+                        <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary via-primary-container to-tertiary-container opacity-90"></div>
+                        <div class="relative z-10 flex flex-col items-center gap-5 sm:flex-row">
+                            <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25">
+                                <svg aria-hidden="true" class="h-8 w-8 fill-primary-fixed" viewBox="0 0 24 24">
+                                    <path d="M12.031 2C6.495 2 2 6.493 2 12.028c0 1.97.57 3.807 1.558 5.36L2 22l4.767-1.53a9.972 9.972 0 0 0 5.264 1.558h.005c5.534 0 10.027-4.492 10.027-10.028 0-2.678-1.043-5.197-2.937-7.091A10.007 10.007 0 0 0 12.031 2zm0 18.23a8.212 8.212 0 0 1-4.22-1.162l-.303-.18-2.82.905.918-2.75-.198-.316a8.225 8.225 0 0 1-1.258-4.4c0-4.542 3.696-8.238 8.24-8.238 2.2 0 4.269.858 5.823 2.413a8.217 8.217 0 0 1 2.41 5.826c0 4.542-3.696 8.24-8.24 8.24zm4.516-6.177c-.247-.124-1.464-.723-1.691-.806-.227-.082-.393-.124-.558.124-.165.247-.64.806-.784.97-.144.165-.289.186-.536.062-.247-.124-1.044-.385-1.989-1.228-.735-.656-1.232-1.467-1.376-1.714-.144-.247-.015-.38.109-.503.111-.112.247-.29.371-.434.124-.144.165-.247.247-.412.082-.165.041-.31-.021-.433-.062-.124-.558-1.343-.764-1.84-.2-.484-.403-.418-.558-.426l-.475-.008c-.165 0-.433.062-.66.31-.227.247-.866.847-.866 2.066 0 1.219.887 2.396 1.011 2.561.124.165 1.745 2.665 4.228 3.738.591.256 1.052.409 1.411.523.593.188 1.133.161 1.56.098.476-.071 1.464-.599 1.67-1.176.206-.577.206-1.072.144-1.175-.062-.103-.227-.165-.474-.288z"></path>
+                                </svg>
+                            </div>
+                            <div class="min-w-0 text-center sm:text-left">
+                                <span class="font-label-caps text-label-caps font-bold uppercase tracking-widest text-primary-fixed">Saluran WhatsApp Resmi</span>
+                                <h3 class="mt-1.5 font-headline-sm text-headline-sm font-extrabold leading-tight text-white">Jangan lewatkan warta berikutnya</h3>
+                                <p class="mt-2 font-body-sm text-body-sm leading-relaxed text-primary-fixed-dim">
+                                    Dapatkan warta harian, pengumuman ta'lim, dan info resmi MWCNU Gumelar langsung di aplikasi WhatsApp Anda.
+                                </p>
+                            </div>
                         </div>
-                        <p class="mx-auto max-w-md text-center font-body-sm text-body-sm text-on-surface-variant">
-                            Dapatkan warta harian, pengumuman ta'lim, dan info resmi langsung di aplikasi WhatsApp Anda.
-                        </p>
-                    </a>
+                        <a class="relative z-10 mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-surface-container-lowest px-6 py-3.5 font-headline-sm text-headline-sm font-bold text-primary-container shadow-lg transition-all hover:bg-primary-fixed active:scale-[0.99]" href="{{ config('services.whatsapp.channel') }}" rel="noopener noreferrer" target="_blank">
+                            <span>Gabung Saluran WhatsApp</span>
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </a>
+                    </article>
 
                     <!-- Placeholder Peta Interaktif -->
                     <article class="space-y-3 overflow-hidden rounded-2xl bg-surface-container-lowest p-3">
-                        <div class="relative flex h-64 flex-col items-center justify-center overflow-hidden rounded-xl bg-surface-container-high bg-cover bg-center p-6 text-center" data-location="Gedung Bersama MWCNU Gumelar, Banyumas">
+                        <a class="group relative flex h-64 flex-col items-center justify-center overflow-hidden rounded-xl bg-surface-container-high bg-cover bg-center p-6 text-center transition-colors hover:bg-surface-container" data-location="Sekretariat MWCNU Gumelar, Gumelar, Banyumas" href="{{ config('services.maps.sekretariat') }}" rel="noopener noreferrer" target="_blank">
                             <!-- Peta Grafis Geometris Vektor Pelengkap -->
                             <div class="pointer-events-none absolute inset-0 opacity-15">
                                 <svg class="h-full w-full text-on-surface" xmlns="http://www.w3.org/2000/svg">
@@ -119,19 +129,19 @@
                                 </svg>
                             </div>
                             <div class="relative z-10 flex flex-col items-center">
-                                <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-on-primary">
+                                <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-on-primary transition-transform group-hover:scale-105">
                                     <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">pin_drop</span>
                                 </div>
-                                <span class="mb-1 font-headline-sm text-headline-sm font-bold text-on-surface">Gedung Bersama MWCNU Gumelar</span>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant">Peta Interaktif (Google Maps) • Gumelar, Banyumas</p>
+                                <span class="mb-1 font-headline-sm text-headline-sm font-bold text-on-surface">Sekretariat MWCNU Gumelar</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Kec. Gumelar, Kabupaten Banyumas</p>
                                 <div class="mt-2 rounded-full bg-surface-container-lowest px-3 py-1 font-label-caps text-label-caps font-semibold uppercase text-primary">
                                     Lat: -7.3684, Long: 108.9881
                                 </div>
                             </div>
-                        </div>
-                        <div class="flex items-center justify-between px-2 pb-1 pt-1">
+                        </a>
+                        <div class="flex flex-col gap-3 px-1 pb-1 pt-1 sm:flex-row sm:items-center sm:justify-between">
                             <span class="font-label-sm text-label-sm text-on-surface-variant">Titik Penjemputan &amp; Parkir Kendaraan Tersedia</span>
-                            <a class="inline-flex items-center gap-1.5 rounded-lg bg-surface-container px-3 py-1.5 font-label-md text-label-md font-medium text-on-surface transition-colors hover:bg-primary-fixed hover:text-primary" href="https://maps.google.com/?q=Gedung+MWCNU+Gumelar+Banyumas" rel="noopener noreferrer" target="_blank">
+                            <a class="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-surface-container px-3 py-2 font-label-md text-label-md font-medium text-on-surface transition-colors hover:bg-primary-fixed hover:text-primary" href="{{ config('services.maps.sekretariat') }}" rel="noopener noreferrer" target="_blank">
                                 <span>Buka di Google Maps</span>
                                 <span class="material-symbols-outlined text-[16px]">open_in_new</span>
                             </a>
@@ -141,8 +151,8 @@
 
                 <!-- KOLOM KANAN: Formulir Pesan Singkat -->
                 <x-reveal as="div" :delay="240" class="lg:col-span-6">
-                    <article class="rounded-2xl bg-surface-container-lowest p-6 sm:p-8 lg:p-10">
-                        <header class="mb-8">
+                    <article class="rounded-2xl bg-surface-container-lowest p-5 sm:p-8 lg:p-10">
+                        <header class="mb-7 sm:mb-8">
                             <div class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-primary-fixed/40 px-2.5 py-1 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary">
                                 <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
                                 Respons Cepat

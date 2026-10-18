@@ -47,7 +47,7 @@
             </div>
 
             @if ($banoms->isNotEmpty())
-                <nav class="overflow-x-auto pb-2" aria-label="Pilih organisasi">
+                <nav class="overflow-x-auto scrollbar-none -mx-4 px-4 pb-2 sm:mx-0 sm:px-0" aria-label="Pilih organisasi">
                     <div class="flex min-w-max items-center gap-3" role="tablist" aria-label="Banom dan lembaga">
                         @foreach ($banoms as $index => $banom)
                             <button class="banom-tab rounded-full px-5 py-2.5 text-sm font-semibold transition-colors {{ $index === 0 ? 'bg-primary-container text-white' : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high' }}" id="tab-{{ $banom->slug }}" type="button" role="tab" aria-controls="panel-{{ $banom->slug }}" aria-selected="{{ $index === 0 ? 'true' : 'false' }}" data-banom-tab="{{ $banom->slug }}">
@@ -130,7 +130,7 @@
                                 <div class="mx-auto grid w-full max-w-4xl grid-cols-1 gap-5 md:grid-cols-2">
                                     @foreach ($leaders as $member)
                                         <div class="flex flex-col items-center rounded-xl border border-outline-variant/50 bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-                                            <div class="mb-4 w-40 h-48 sm:w-48 sm:h-56 rounded-lg overflow-hidden bg-surface-container border border-outline-variant/40">
+                                            <div class="mb-4 w-32 h-40 sm:w-48 sm:h-56 rounded-lg overflow-hidden bg-surface-container border border-outline-variant/40">
                                                 @if($member->photo_path)
                                                     <img src="{{ $member->photoUrl() }}" alt="{{ $member->name }}" class="w-full h-full object-cover">
                                                 @else

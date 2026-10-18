@@ -81,7 +81,7 @@
         <!-- Toolbar -->
         <div class="p-4 flex flex-col xl:flex-row xl:items-center justify-between gap-3 bg-surface-container-lowest border-b border-outline-variant/20">
             <!-- Filter Tabs - Dengan fungsionalitas filter -->
-            <div class="flex items-center gap-6 overflow-x-auto pb-1 xl:pb-0" id="filter-tabs">
+            <div class="flex items-center gap-6 overflow-x-auto scrollbar-none pb-1 xl:pb-0" id="filter-tabs">
                 <button class="filter-tab font-label-md text-label-md text-secondary hover:text-on-surface whitespace-nowrap py-1 font-medium transition-colors" data-filter="all">
                     Semua Data <span class="font-label-sm text-secondary">({{ $totalCount }})</span>
                 </button>
@@ -97,25 +97,25 @@
                 </button>
             </div>
             <!-- Filters & Search -->
-            <div class="flex flex-wrap items-center gap-2">
+            <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
                 <div class="relative">
-                    <select class="appearance-none bg-surface-container-low text-on-surface font-label-md text-label-md pl-3 pr-8 py-2 rounded-xl focus:outline-none focus:bg-surface-container-lowest transition-colors cursor-pointer border border-outline-variant/30">
+                    <select class="w-full appearance-none bg-surface-container-low text-on-surface font-label-md text-label-md pl-3 pr-8 py-2 rounded-xl focus:outline-none focus:bg-surface-container-lowest transition-colors cursor-pointer border border-outline-variant/30" id="filter-ranting">
                         <option value="">Semua Ranting</option>
-                        <option value="gumelar">Ranting Gumelar</option>
-                        <option value="cihonje">Ranting Cihonje</option>
-                        <option value="samudra">Ranting Samudra</option>
+                        @foreach ($branchOptions as $branch)
+                            <option value="{{ Str::lower($branch) }}">{{ $branch }}</option>
+                        @endforeach
                     </select>
                     <span class="material-symbols-outlined text-[16px] text-secondary absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
                 </div>
                 <div class="relative flex items-center">
                     <span class="material-symbols-outlined absolute left-3 text-secondary text-[16px]">search</span>
-                    <input class="w-52 md:w-64 h-9 pl-9 pr-3 rounded-xl bg-surface-container-low font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:bg-surface-container-lowest transition-all border border-outline-variant/30" placeholder="Cari NIK atau Nama warga..." type="text">
+                    <input class="w-full sm:w-64 h-9 pl-9 pr-3 rounded-xl bg-surface-container-low font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:bg-surface-container-lowest transition-all border border-outline-variant/30" id="filter-search" placeholder="Cari NIK atau Nama warga..." type="search">
                 </div>
             </div>
         </div>
         <!-- Table Section -->
         <div class="overflow-x-auto w-full">
-            <table class="w-full text-left border-collapse min-w-[800px]">
+            <table class="w-full text-left border-collapse min-w-[760px]">
                 <thead class="bg-surface-container-low/70">
                     <tr>
                         <th class="px-5 py-3 font-label-caps text-label-caps font-semibold uppercase text-secondary" scope="col">Identitas Warga</th>
@@ -135,7 +135,7 @@
                                 default => 'pending',
                             };
                         @endphp
-                        <tr class="data-row hover:bg-surface-container-low/40 transition-colors group border-b border-outline-variant/10 last:border-0" data-status="{{ $statusClass }}">
+                        <tr class="data-row hover:bg-surface-container-low/40 transition-colors group border-b border-outline-variant/10 last:border-0" data-status="{{ $statusClass }}" data-ranting="{{ Str::lower($record->branch_name) }}" data-search="{{ Str::lower(trim($record->name.' '.$record->nik.' '.$record->nia.' '.$record->branch_name.' '.($record->desa_ranting ?? ''))) }}">
                             <td class="px-5 py-4">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-primary-fixed text-on-primary-fixed-variant font-headline-sm text-headline-sm flex items-center justify-center font-bold flex-shrink-0">
@@ -200,11 +200,6 @@
                                             </div>
                                         </form>
                                     @elseif($record->verification_status === 'issued')
-                                        <span class="font-label-sm text-label-sm text-secondary font-medium hidden sm:inline">Siap Cetak Fisik</span>
-                                        <a href="{{ route('admin.kartanu.print', $record) }}" target="_blank" class="bg-primary-container hover:bg-primary text-on-primary px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold inline-flex items-center gap-1 shadow-sm transition-all hover:shadow-md" title="Cetak kartu KartaNU">
-                                            <span class="material-symbols-outlined text-[14px]">print</span>
-                                            <span>Cetak Kartu</span>
-                                        </a>
                                         <a href="{{ route('admin.kartanu.show', $record) }}" class="bg-surface-container-low hover:bg-surface-container text-on-surface px-2.5 py-1.5 rounded-lg font-label-sm text-label-sm font-medium transition-all inline-flex items-center gap-1 border border-outline-variant/30" title="Lihat detail">
                                             <span class="material-symbols-outlined text-[14px] text-secondary">visibility</span>
                                             <span>Detail</span>
@@ -222,6 +217,10 @@
                     @empty
                         <tr><td colspan="5" class="py-12 text-center font-body-md text-body-md text-secondary">Belum ada data sensus KartaNU.</td></tr>
                     @endforelse
+                    {{-- Ditampilkan skrip ketika filter tidak menghasilkan baris apa pun. --}}
+                    <tr class="hidden" id="filter-kosong">
+                        <td colspan="5" class="py-12 text-center font-body-md text-body-md text-secondary">Tidak ada data yang cocok dengan filter saat ini.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -244,43 +243,66 @@
 @endif
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Filter tabs functionality
         const filterTabs = document.querySelectorAll('.filter-tab');
         const dataRows = document.querySelectorAll('.data-row');
+        const rantingSelect = document.getElementById('filter-ranting');
+        const searchInput = document.getElementById('filter-search');
+        const kosong = document.getElementById('filter-kosong');
+
+        // Satu fungsi untuk ketiga kontrol (tab status, ranting, pencarian)
+        // supaya mereka salingffects dan tidak perlu saling Override.
+        const terapkanFilter = function () {
+            const status = (document.querySelector('.filter-tab.active') || {}).dataset;
+            const statusAktif = status ? status.filter : 'all';
+            const ranting = rantingSelect ? rantingSelect.value : '';
+            const cari = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+            let tampil = 0;
+            dataRows.forEach(row => {
+                const cocokStatus = statusAktif === 'all' || row.dataset.status === statusAktif;
+                const cocokRanting = !ranting || row.dataset.ranting === ranting;
+                const cocokCari = !cari || (row.dataset.search || '').includes(cari);
+                const tampilkan = cocokStatus && cocokRanting && cocokCari;
+                row.style.display = tampilkan ? '' : 'none';
+                if (tampilkan) tampil++;
+            });
+
+            if (kosong) kosong.classList.toggle('hidden', tampil > 0);
+        };
+
+        const aktifkanTab = function (tab) {
+            filterTabs.forEach(t => {
+                t.classList.remove('text-primary', 'font-bold', 'active');
+                t.classList.add('text-secondary');
+                const indicator = t.querySelector('.absolute.bottom-0');
+                if (indicator) indicator.remove();
+            });
+
+            tab.classList.remove('text-secondary');
+            tab.classList.add('text-primary', 'font-bold', 'active');
+
+            if (!tab.querySelector('.absolute.bottom-0')) {
+                const indicator = document.createElement('span');
+                indicator.className = 'absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full';
+                tab.appendChild(indicator);
+            }
+        };
 
         filterTabs.forEach(tab => {
             tab.addEventListener('click', function() {
-                const filter = this.dataset.filter;
-
-                // Update active tab styling
-                filterTabs.forEach(t => {
-                    t.classList.remove('text-primary', 'font-bold', 'active');
-                    t.classList.add('text-secondary');
-                    const indicator = t.querySelector('.absolute.bottom-0');
-                    if (indicator) indicator.remove();
-                });
-
-                this.classList.remove('text-secondary');
-                this.classList.add('text-primary', 'font-bold', 'active');
-
-                // Add indicator to active tab
-                if (!this.querySelector('.absolute.bottom-0')) {
-                    const indicator = document.createElement('span');
-                    indicator.className = 'absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full';
-                    this.appendChild(indicator);
-                }
-
-                // Filter rows
-                dataRows.forEach(row => {
-                    const status = row.dataset.status;
-                    if (filter === 'all' || status === filter) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
+                aktifkanTab(this);
+                terapkanFilter();
             });
         });
+
+        if (rantingSelect) rantingSelect.addEventListener('change', terapkanFilter);
+        if (searchInput) searchInput.addEventListener('input', terapkanFilter);
+
+        // Terapkan filter sesuai tab yang aktif saat halaman dibuka. Tanpa ini
+        // tabel menampilkan seluruh baris padahal tab "Menunggu Keputusan"
+        // sudah aktif sejak server, sehingga angka dan isi tabel tidak cocok.
+        aktifkanTab(document.querySelector('.filter-tab.active') || filterTabs[0]);
+        terapkanFilter();
 
         // Reject form toggle
         const rejectButtons = document.querySelectorAll('[onclick*="reject-form"]');

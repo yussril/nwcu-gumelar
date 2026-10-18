@@ -23,6 +23,13 @@ class KartaNuController extends Controller
             'pendingCount' => KartaNu::whereIn('verification_status', ['submitted', 'branch_verified', 'mwc_verified'])->count(),
             'approvedCount' => KartaNu::where('verification_status', 'issued')->count(),
             'rejectedCount' => KartaNu::where('verification_status', 'rejected')->count(),
+            // Opsi filter ranting diambil dari data yang benar-benar ada, supaya
+            // setiap pilihan selalu cocok dengan kolom "Asal Ranting" di tabel.
+            'branchOptions' => KartaNu::query()
+                ->whereNotNull('branch_name')
+                ->distinct()
+                ->orderBy('branch_name')
+                ->pluck('branch_name'),
         ]);
     }
 
@@ -54,13 +61,6 @@ class KartaNuController extends Controller
     {
         return view('admin.kartanu.show', [
             'title' => 'Detail '.$kartanu->name.' - Admin NWCU',
-            'record' => $kartanu,
-        ]);
-    }
-
-    public function print(KartaNu $kartanu): View
-    {
-        return view('admin.kartanu.print', [
             'record' => $kartanu,
         ]);
     }

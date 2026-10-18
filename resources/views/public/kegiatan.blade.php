@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-surface-container-lowest text-on-surface">
-    <x-reveal as="section" class="border-b border-outline-variant/50 px-6 py-12 lg:px-12">
+    <x-reveal as="section" class="border-b border-outline-variant/50 px-4 sm:px-6 py-10 sm:py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed/40 px-3 py-1 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Agenda & Jadwal Kegiatan</p>
             <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -20,7 +20,7 @@
         </div>
     </x-reveal>
 
-    <x-reveal as="section" :delay="120" class="px-6 py-10 lg:px-12">
+    <x-reveal as="section" :delay="120" class="px-4 sm:px-6 py-10 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col gap-10">
             @if ($featuredKegiatan)
                 <article class="kegiatan-card grid overflow-hidden rounded-2xl border border-outline-variant/40 bg-white lg:grid-cols-12" data-kegiatan-card data-category="{{ $featuredKegiatan->category }}" data-search="{{ Str::lower($featuredKegiatan->title . ' ' . $featuredKegiatan->description) }}">

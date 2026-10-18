@@ -58,14 +58,20 @@
 	--font-label-caps: "Inter", sans-serif;
 	--font-label-md: "Inter", sans-serif;
 	--font-label-sm: "Inter", sans-serif;
-	--text-display-hero: 4.5rem;
-	--text-display-hero-mobile: 2.75rem;
-	--text-headline-xl: 3.25rem;
-	--text-headline-xl-mobile: 2.25rem;
-	--text-headline-lg: 2.25rem;
-	--text-headline-md: 1.5rem;
-	--text-headline-sm: 1.125rem;
-	--text-body-lg: 1.125rem;
+	/*
+	 * Tipografi fluid: semua ukuran judul memakai clamp() agar otomatis menyusut
+	 * pada layar ponsel (320–430px, terutama Android) dan kembali besar di desktop,
+	 * tanpa perlu pasangan kelas `text-*-mobile lg:text-*` di tiap view.
+	 * Nilai batas atas tetap sama dengan desain semula.
+	 */
+	--text-display-hero: clamp(2.375rem, 1.16rem + 6.06vw, 4.5rem);
+	--text-display-hero-mobile: clamp(2rem, 1.28rem + 3.6vw, 2.75rem);
+	--text-headline-xl: clamp(1.75rem, 1.27rem + 2.39vw, 3.25rem);
+	--text-headline-xl-mobile: clamp(1.5rem, 1.24rem + 1.3vw, 2.25rem);
+	--text-headline-lg: clamp(1.375rem, 1.19rem + 0.92vw, 2.25rem);
+	--text-headline-md: clamp(1.125rem, 1.06rem + 0.33vw, 1.5rem);
+	--text-headline-sm: clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
+	--text-body-lg: clamp(1rem, 0.97rem + 0.15vw, 1.125rem);
 	--text-body-md: 0.9375rem;
 	--text-body-sm: 0.8125rem;
 	--text-label-caps: 0.6875rem;
@@ -77,4 +83,95 @@
 		0% { opacity: 0; transform: translateY(30px); }
 		100% { opacity: 1; transform: translateY(0); }
 	}
+}
+
+@layer base {
+	/*
+	 * Cegah halaman melebar horizontal di Android. Nilai `clip` berbeda dari `hidden`
+	 * karena tidak membuat elemen menjadi scroll container, sehingga `position: sticky`
+	 * dan `position: fixed` (header lengket & drawer navigasi) tetap bekerja normal.
+	 */
+	html {
+		overflow-x: clip;
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
+
+		/* Hilangkan scrollbar halaman; scrollbar area dalam (filter/tab) tetap terlihat. */
+		scrollbar-width: none;
+	}
+
+	html::-webkit-scrollbar {
+		display: none;
+	}
+
+	body {
+		overflow-x: clip;
+	}
+
+	/* Target sentuh yang rapi & tanpa kilatan biru bawaan Android saat link ditekan. */
+	a,
+	button,
+	summary,
+	label,
+	[role="button"] {
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	/*
+	 * Naikkan ukuran teks field formulir minimal 16px di layar kecil supaya isian
+	 * tetap terbaca dan tidak memicu zoom otomatis saat difokuskan.
+	 */
+	@media (width < 40rem) {
+		input,
+		select,
+		textarea {
+			font-size: max(1rem, 1em);
+		}
+	}
+
+	/* Cegah teks panjang (kode registrasi, alamat surel) meluber keluar kotaknya. */
+	p,
+	li,
+	dd,
+	address {
+		overflow-wrap: break-word;
+	}
+
+	/* Target anchor harus menyisakan ruang di bawah header lengket. */
+	[id] {
+		scroll-margin-top: 6rem;
+	}
+
+	/*
+	 * Halaman memakai `opacity-0 animate-fade-up` untuk blok konten. Bila animasi
+	 * dinonaktifkan (mis. "Remove animations" di Android), konten harus tetap terlihat.
+	 */
+	@media (prefers-reduced-motion: reduce) {
+		.animate-fade-up {
+			animation: none !important;
+			opacity: 1 !important;
+		}
+
+		html {
+			scroll-behavior: auto !important;
+		}
+	}
+}
+
+/* Utilitas untuk baris filter/tab yang digeser horizontal di layar sempit. */
+@utility scrollbar-none {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* Area yang bisa digeser horizontal tetap empezando dari sisi kiri di layar kecil. */
+@utility scroll-hint {
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior-x: contain;
+	scrollbar-width: thin;
 }

@@ -3,9 +3,9 @@
 @extends('layouts.site')
 \
 <div class="bg-surface-container-lowest text-on-surface">
-    <section class="border-b border-outline-variant/50 px-6 pt-24 pb-12 lg:px-12">
+    <section class="border-b border-outline-variant/50 px-4 pt-20 sm:pt-24 pb-10 sm:pb-12 sm:px-6 lg:px-12">
         <div class="mx-auto max-w-7xl">
-            <a href="{{ route('berita') }}" class="mb-6 inline-flex items-center gap-2 rounded-full border border-outline-variant bg-surface-container-lowest px-4 py-2 text-sm font-semibold text-primary hover:bg-primary-fixed/20 transition-colors">
+            <a href="{{ route('berita') }}" class="mb-5 sm:mb-6 inline-flex items-center gap-2 rounded-full border border-outline-variant bg-surface-container-lowest px-4 py-2 text-sm font-semibold text-primary hover:bg-primary-fixed/20 transition-colors">
                 <span class="material-symbols-outlined text-[18px]">arrow_back</span>Kembali ke Halaman Berita
             </a>
             <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -20,7 +20,7 @@
         </div>
     </section>
 
-    <section class="px-6 py-10 lg:px-12">
+    <section class="px-4 py-8 sm:px-6 sm:py-10 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <article class="overflow-hidden rounded-2xl border border-outline-variant/40 bg-white">
                 @if ($article->imageSource())
@@ -29,7 +29,7 @@
                     <span class="absolute left-4 top-4 rounded-full bg-primary-container px-3 py-1 font-label-caps text-label-caps font-bold uppercase tracking-wider text-white">{{ $article->category }}</span>
                 </div>
                 @endif
-                <div class="p-6 sm:p-8 lg:p-10">
+                <div class="p-5 sm:p-8 lg:p-10">
                     <div class="flex flex-wrap items-center gap-2 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-on-surface-variant">
                         <span class="text-primary">{{ $article->category }}</span>
                         <span>•</span>

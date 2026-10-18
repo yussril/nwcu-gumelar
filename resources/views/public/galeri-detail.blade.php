@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="w-full bg-[#FAFAF9] text-on-surface">
-    <section class="w-full border-b border-[#E5E7EB] bg-[#FAFAF9] px-6 pb-10 pt-12 lg:px-12">
+    <section class="w-full border-b border-[#E5E7EB] bg-[#FAFAF9] px-4 sm:px-6 pb-8 pt-10 sm:pb-10 sm:pt-12 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col items-start">
             <a href="{{ route('galeri') }}" class="mb-5 inline-flex items-center gap-1 font-label-md text-label-md font-semibold text-primary hover:underline">
                 <span class="material-symbols-outlined text-[18px]">arrow_back</span>Kembali ke galeri
@@ -19,7 +19,7 @@
         </div>
     </section>
 
-    <section class="w-full bg-[#FAFAF9] px-6 py-12 lg:px-12">
+    <section class="w-full bg-[#FAFAF9] px-4 sm:px-6 py-10 sm:py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             @php
                 $photos = $item->photos;
@@ -27,9 +27,9 @@
             @endphp
 
             @if ($photos->isNotEmpty() || $cover)
-                <div class="grid grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     @if ($cover && $photos->isEmpty())
-                        <div class="col-span-2 sm:col-span-3 lg:col-span-4">
+                        <div class="sm:col-span-2 lg:col-span-4">
                             <img src="{{ $cover }}" alt="{{ $item->alt_text ?: $item->title }}" class="w-full rounded-xl border border-[#E5E7EB] object-cover">
                         </div>
                     @else

@@ -25,7 +25,7 @@
 @endphp
 
 <div class="w-full bg-[#FAFAF9] text-on-surface">
-    <x-reveal as="section" class="w-full border-b border-[#E5E7EB] bg-[#FAFAF9] px-6 pb-10 pt-12 lg:px-12">
+    <x-reveal as="section" class="w-full border-b border-[#E5E7EB] bg-[#FAFAF9] px-4 sm:px-6 pb-8 pt-10 sm:pb-10 sm:pt-12 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col items-start">
             <div class="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D1D5DB] bg-[#FAFAF9] px-3 py-1"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span><span class="font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary-container">ARSIP VISUAL & REKAM JEJAK • KECAMATAN GUMELAR, BANYUMAS</span></div>
             <div class="flex max-w-4xl flex-col gap-3"><h1 class="font-headline-xl text-headline-xl-mobile font-extrabold leading-tight text-[#111827] lg:text-headline-xl">Galeri & Dokumentasi Khidmat</h1><p class="max-w-2xl font-body-lg text-body-lg leading-relaxed text-[#4B5563]">Arsip visual pergerakan, kegiatan sosial, dan syiar dakwah keluarga besar MWCNU Kecamatan Gumelar.</p></div>
@@ -40,7 +40,7 @@
         </div>
     </x-reveal>
 
-    <x-reveal as="section" :delay="120" class="w-full bg-[#FAFAF9] px-6 py-12 lg:px-12">
+    <x-reveal as="section" :delay="120" class="w-full bg-[#FAFAF9] px-4 sm:px-6 py-10 sm:py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <div class="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-12" id="gallery-grid">
                 @foreach ($galleryItems as $index => $item)

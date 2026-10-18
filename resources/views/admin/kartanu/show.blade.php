@@ -26,11 +26,6 @@
                     <span class="material-symbols-outlined text-[16px]">close</span>
                     <span>Tolak</span>
                 </button>
-            @elseif($record->verification_status === 'issued')
-                <a href="{{ route('admin.kartanu.print', $record) }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-primary transition-all shadow-sm">
-                    <span class="material-symbols-outlined text-[16px]">print</span>
-                    <span>Cetak Kartu</span>
-                </a>
             @endif
         </div>
     </div>
@@ -56,9 +51,11 @@
         <div class="lg:col-span-1 space-y-6">
             <!-- Photo Card -->
             <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-sm">
-                <div class="aspect-square bg-surface-container-low flex items-center justify-center">
+                <!-- Rasio 3:4 sesuai kolom foto kartu cetak, bukan kotak squarelyang memotong
+                         kepala anggota. -->
+                <div class="aspect-[3/4] bg-surface-container-low flex items-center justify-center">
                     @if($record->photo_path)
-                        <img src="{{ $record->photoUrl() }}" alt="Foto {{ $record->name }}" class="w-full h-full object-cover">
+                        <img src="{{ $record->photoUrl() }}" alt="Foto {{ $record->name }}" class="w-full h-full object-cover object-top">
                     @else
                         <div class="w-24 h-24 rounded-full bg-primary-fixed flex items-center justify-center">
                             <span class="font-headline-lg text-headline-lg text-primary-container font-bold">{{ strtoupper(substr($record->name, 0, 2)) }}</span>

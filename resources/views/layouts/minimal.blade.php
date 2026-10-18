@@ -16,12 +16,11 @@
             main > :first-child { margin-top:0!important; }
             main > :last-child { margin-bottom:0!important; }
         }
-        ::-webkit-scrollbar { display: none; }
-    </style>
+        </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary selection:text-on-primary">
-    <main class="w-full bg-surface min-h-screen">
+    <main class="w-full bg-surface min-h-dvh">
         <div class="flex flex-col w-full bg-surface-container-lowest overflow-hidden selection:bg-primary selection:text-on-primary">
             @yield('content')
         </div>

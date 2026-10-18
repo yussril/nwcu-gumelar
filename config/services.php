@@ -28,6 +28,34 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | WhatsApp
+    |--------------------------------------------------------------------------
+    |
+    | Tautan saluran WhatsApp resmi MWCNU. Disimpan di sini supaya halaman
+    | yang berbeda tidak memakai URL terpisah dan supaya mudah diganti.
+    |
+    */
+
+    'whatsapp' => [
+        'channel' => env('MWCNU_WHATSAPP_CHANNEL', 'https://whatsapp.com/channel/0029Vb95DHQ4NVio49ZRCH1y'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google Maps
+    |--------------------------------------------------------------------------
+    |
+    | Tautan lokasi sekretariat MWCNU Gumelar. Memakai short-link resmi dari
+    | Google Maps supaya mudah diganti tanpa menyentuh kode tampilan.
+    |
+    */
+
+    'maps' => [
+        'sekretariat' => env('MWCNU_MAPS_URL', 'https://maps.app.goo.gl/3prE39RPGmEpfMni9?g_st=ac'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),

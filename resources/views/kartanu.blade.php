@@ -1,5 +1,9 @@
 @extends('layouts.site')
 
+@section('head')
+    @include('partials.kartu-anggota-css')
+@endsection
+
 @section('content')
 <div class="w-full bg-[#FAFAF9] px-4 py-10 text-on-surface sm:px-6 md:py-16 lg:px-8">
     <div class="mx-auto max-w-6xl space-y-14 md:space-y-20">
@@ -40,38 +44,27 @@
                             <span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Pratinjau Kartu Anggota</span>
                             <span class="inline-flex items-center gap-1.5 rounded-full bg-primary-fixed/40 px-2.5 py-1 font-label-sm text-label-sm font-semibold text-primary-container"><span class="h-1.5 w-1.5 rounded-full bg-primary-container"></span>{{ $card->verification_status === 'issued' ? 'Terverifikasi Aktif' : $card->verificationLabel() }}</span>
                         </div>
-                        <div class="mx-auto max-w-2xl overflow-hidden rounded-2xl border border-outline-variant/70 bg-white">
-                            <div class="h-1.5 w-full bg-primary-container"></div>
-                            <div class="p-5 sm:p-6">
-                                <div class="flex items-center justify-between gap-3 border-b border-outline-variant/40 pb-4">
-                                    <div class="flex min-w-0 items-center gap-3.5">
-                                        <img class="h-10 w-10 shrink-0 rounded-lg border border-outline-variant/40 object-contain" src="{{ asset('images/logo-nu-40178.png') }}" alt="Logo Nahdlatul Ulama">
-                                        <div class="min-w-0"><h2 class="font-headline-sm text-sm font-bold uppercase leading-tight text-primary sm:text-base">Kartu Tanda Anggota Nahdlatul Ulama</h2><p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-on-surface-variant">Pengurus MWCNU Kecamatan Gumelar</p></div>
-                                    </div>
-                                    <span class="hidden shrink-0 rounded border border-outline-variant/40 bg-surface-container-low px-2.5 py-1 font-label-caps text-label-caps uppercase text-on-surface-variant sm:inline">KTA Elektronik</span>
+                        {{-- Kartu yang sama persis dengan yang dicetak: memakai komponen & gaya yang
+                             identik dengan lembar A4, lalu diskalakan agar muat di
+                             lebar yang tersedia tanpa mengubah proporsi. --}}
+                        <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-center">
+                            <figure class="kartu-blok">
+                                <figcaption class="mb-2 font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Sisi depan</figcaption>
+                                <div class="kartu-skala" data-kartu-skala>
+                                    <x-kartu-anggota :record="$card" sisi="depan" />
                                 </div>
-                                <div class="flex flex-col gap-5 pt-5 sm:flex-row">
-                                    <div class="mx-auto flex h-40 w-32 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-outline-variant/70 bg-surface-container sm:mx-0">
-                                        @if ($card->photoUrl())<img class="h-full w-full object-cover" src="{{ $card->photoUrl() }}" alt="Foto anggota {{ $card->name }}">@else<span class="material-symbols-outlined text-4xl text-slate-400">person</span>@endif
-                                    </div>
-                                    <div class="flex min-w-0 flex-1 flex-col gap-3">
-                                        <div class="border-b border-outline-variant/30 pb-2"><h3 class="font-headline-md text-lg font-bold tracking-tight text-on-surface">{{ $card->name }}</h3><p class="mt-1 font-label-md text-label-md font-bold text-primary">NIA: {{ $card->nia }}</p></div>
-                                        <dl class="grid grid-cols-1 gap-x-4 gap-y-2 text-sm sm:grid-cols-2">
-                                            <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">NIK</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->maskedNik() }}</dd></div>
-                                            <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">Ranting</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->branch_name }}</dd></div>
-                                            <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">Masa berlaku</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->valid_from?->format('Y') ?? '—' }} — {{ $card->valid_until?->format('Y') ?? '—' }}</dd></div>
-                                            <div><dt class="font-label-caps text-label-caps uppercase text-on-surface-variant">Kode validasi</dt><dd class="mt-0.5 font-medium text-on-surface">{{ $card->registration_code }}</dd></div>
-                                        </dl>
-                                        <div class="mt-auto flex items-center justify-between gap-3 border-t border-outline-variant/40 pt-3">
-                                            <div><p class="font-label-caps text-label-caps font-semibold uppercase text-primary">Pengesahan Digital MWCNU Gumelar</p><p class="mt-0.5 text-xs text-on-surface-variant">Sensus warga Nahdliyin Banyumas</p></div>
-                                            <span class="material-symbols-outlined text-3xl text-primary">verified</span>
-                                        </div>
-                                    </div>
+                            </figure>
+
+                            <figure class="kartu-blok">
+                                <figcaption class="mb-2 font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Sisi belakang</figcaption>
+                                <div class="kartu-skala" data-kartu-skala>
+                                    <x-kartu-anggota :record="$card" sisi="belakang" :qr-svg="$qrSvg" />
                                 </div>
-                            </div>
+                            </figure>
                         </div>
-                        <div class="print:hidden mt-4 flex flex-wrap items-center justify-between gap-3">
-                            <p class="font-body-sm text-body-sm text-on-surface-variant">Gunakan fitur cetak browser untuk mencetak atau menyimpan kartu sebagai PDF.</p>
+
+                        <div class="print:hidden mt-5 flex flex-wrap items-center justify-between gap-3">
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Pratinjau di atas sama persis dengan kartu yang akan dicetak pada kertas A4. Gunakan fitur cetak browser untuk mencetak atau menyimpan kartu sebagai PDF.</p>
                             <a href="{{ route('cetak-kartanu.show', ['registration_code' => $card->registration_code]) }}" class="inline-flex items-center gap-2 rounded-lg bg-primary-container px-4 py-2.5 font-label-md text-label-md text-white hover:bg-primary"><span class="material-symbols-outlined text-[18px]">print</span>Cetak / Simpan PDF</a>
                         </div>
                     </div>
@@ -136,6 +129,66 @@
         </x-reveal>
     </div>
 </div>
+
+<script>
+    /*
+     * Kartu tetap berukuran asli 85 x 55 mm; hanya tampilannya yang diskalakan.
+     * Di layar lebar kartu sedikit diperbesar, di layar sempit diperkecil, dan
+     * proporsinya tetap 85:55 sehingga tidak pernah melenceng.
+     * Batas MAKS_SKALA mencegah kartu membesar berlebihan di monitor besar.
+     */
+    (function () {
+        var MAKS_SKALA = 1.45;
+
+        var sesuaikan = function (wadah) {
+            var kartu = wadah.querySelector('.kartu');
+            if (!kartu) return;
+
+            // Lebar yang tersedia diambil dari blok induknya, bukan dari
+            // pembungkus sendiri: pembungkus lebarnya disetel di bawah ini,
+            // jadi mengukurnya akan membuat skala menyusut terus setiap resize.
+            var induk = wadah.parentElement;
+            var tersedia = induk ? induk.clientWidth : wadah.clientWidth;
+            if (!tersedia) return;
+
+            var skala = Math.min(MAKS_SKALA, tersedia / kartu.offsetWidth);
+
+            // Jangan memasang transform saat skala tepat 1: transform identitas
+            // tetap membuat lapisan kompositing dan mengubah cara browser
+            // merender antialias teks, sehingga pratinjau bisa terlihat sedikit
+            // berbeda dari cetakan.
+            kartu.style.transform = skala === 1 ? 'none' : 'scale(' + skala + ')';
+            // Pembungkus ikut ukuran kartu supaya tidak ada ruang kosong maupun
+            // bagian kartu yang terpotong.
+            wadah.style.width = (kartu.offsetWidth * skala) + 'px';
+            wadah.style.height = (kartu.offsetHeight * skala) + 'px';
+        };
+
+        var semuaWadah = Array.prototype.slice.call(document.querySelectorAll('[data-kartu-skala]'));
+        if (!semuaWadah.length) return;
+
+        var sesuaikanSemua = function () {
+            semuaWadah.forEach(sesuaikan);
+        };
+
+        sesuaikanSemua();
+        window.addEventListener('resize', sesuaikanSemua);
+
+        // Hitung ulang bila gambar anggota atau font belum selesai dimuat.
+        semuaWadah.forEach(function (wadah) {
+            var gambar = wadah.querySelectorAll('img');
+            Array.prototype.forEach.call(gambar, function (el) {
+                if (!el.complete) {
+                    el.addEventListener('load', sesuaikanSemua);
+                    el.addEventListener('error', sesuaikanSemua);
+                }
+            });
+        });
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(sesuaikanSemua);
+        }
+    })();
+</script>
 
 <style>
     @media print {

@@ -21,7 +21,7 @@
 
 <div class="rounded-2xl border border-outline-variant/30 bg-surface-container-lowest overflow-hidden shadow-sm mt-6">
     <div class="w-full overflow-x-auto">
-        <table class="w-full text-left border-collapse">
+        <table class="w-full text-left border-collapse min-w-[720px]">
             <thead>
                 <tr class="bg-surface-container-low/50 border-b border-outline-variant/30 font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant font-semibold">
                     <th class="py-3.5 px-6 font-semibold" scope="col">Organisasi</th>

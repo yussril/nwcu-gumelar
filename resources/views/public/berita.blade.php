@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="bg-surface-container-lowest text-on-surface">
-    <x-reveal as="section" class="border-b border-outline-variant/50 px-6 py-12 lg:px-12">
+    <x-reveal as="section" class="border-b border-outline-variant/50 px-4 sm:px-6 py-10 sm:py-12 lg:px-12">
         <div class="mx-auto max-w-7xl">
             <p class="mb-4 inline-flex items-center gap-2 rounded-full bg-primary-fixed/40 px-3 py-1 font-label-caps text-label-caps font-semibold uppercase tracking-wider text-primary"><span class="h-1.5 w-1.5 rounded-full bg-primary"></span>Kanal Informasi & Publikasi Resmi</p>
             <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -20,7 +20,7 @@
         </div>
     </x-reveal>
 
-    <x-reveal as="section" :delay="120" class="px-6 py-10 lg:px-12">
+    <x-reveal as="section" :delay="120" class="px-4 sm:px-6 py-10 lg:px-12">
         <div class="mx-auto flex max-w-7xl flex-col gap-10">
             @if ($featuredArticle)
                 <article class="article-card grid overflow-hidden rounded-2xl border border-outline-variant/40 bg-white lg:grid-cols-12" data-article-card data-article-featured data-category="{{ $featuredArticle->category }}" data-search="{{ Str::lower($featuredArticle->title . ' ' . $featuredArticle->excerpt) }}">
@@ -41,7 +41,7 @@
                     <article class="article-card flex flex-col overflow-hidden rounded-xl border border-outline-variant/40 bg-white" data-article-card data-category="{{ $article->category }}" data-search="{{ Str::lower($article->title . ' ' . $article->excerpt) }}">
                         <a class="relative aspect-[16/10] overflow-hidden bg-surface-container" href="{{ route('berita.show', $article) }}">@if ($article->imageSource())<img class="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]" src="{{ $article->imageSource() }}" alt="{{ $article->title }}" loading="lazy">@endif<span class="absolute left-3 top-3 rounded-full border border-slate-200 bg-white/95 px-2.5 py-1 font-label-caps text-label-caps font-bold uppercase tracking-wider text-primary">{{ $article->category }}</span></a>
                         <div class="flex flex-1 flex-col p-5"><p class="font-label-caps text-label-caps text-slate-500">{{ $article->published_at?->translatedFormat('d F Y') ?? 'Draf terjadwal' }} <span class="mx-1">•</span> {{ $article->author ?: 'Redaksi MWCNU' }}</p>
-                <h3 class="mt-2 font-headline-sm text-headline-sm font-bold leading-snug"><a class="text-slate-900 transition-colors hover:text-primary" href="{{ route('berita.show', $article) }}">{{ $article->title }}</a></h3><p class="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-slate-600">{{ $article->excerpt }}</p><a class="mt-5 inline-flex items-center gap-1 border-t border-slate-100 pt-4 text-sm font-semibold text-primary" href="{{ route('berita.show', $article) }}">Baca selengkapnya<span class="material-symbols-outlined text-[17px]">chevron_right</span></a></div>
+                <h3 class="mt-2 font-headline-sm text-headline-sm font-bold leading-snug"><a class="inline-block rounded-md px-1 py-1.5 -mx-1 text-slate-900 transition-colors hover:text-primary hover:bg-primary-fixed/30" href="{{ route('berita.show', $article) }}">{{ $article->title }}</a></h3><p class="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-slate-600">{{ $article->excerpt }}</p><a class="mt-5 inline-flex items-center gap-1 border-t border-slate-100 pt-4 text-sm font-semibold text-primary" href="{{ route('berita.show', $article) }}">Baca selengkapnya<span class="material-symbols-outlined text-[17px]">chevron_right</span></a></div>
                     </article>
                 @endforeach
             </div>
@@ -64,7 +64,7 @@
     </x-reveal>
 
     <!-- Banner Saluran WhatsApp (Section Terpisah) -->
-    <x-reveal as="section" :delay="240" class="px-6 py-6 lg:px-12" aria-labelledby="wa-banner-heading">
+    <x-reveal as="section" :delay="240" class="px-4 sm:px-6 py-6 lg:px-12" aria-labelledby="wa-banner-heading">
         <div class="mx-auto max-w-7xl">
             <div class="relative overflow-hidden rounded-3xl bg-primary-container text-white shadow-lg">
                 <div class="pointer-events-none absolute inset-0 opacity-10">
@@ -79,8 +79,8 @@
                 </div>
                 <div class="relative z-10 flex flex-col items-center gap-7 px-6 py-12 sm:px-12 lg:flex-row lg:justify-between lg:text-left">
                     <div class="flex flex-col items-center gap-5 lg:flex-row lg:items-center">
-                        <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#25D366] shadow-lg">
-                            <svg aria-hidden="true" class="h-9 w-9 fill-current text-white" viewBox="0 0 24 24">
+                        <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25">
+                            <svg aria-hidden="true" class="h-9 w-9 fill-primary-fixed" viewBox="0 0 24 24">
                                 <path d="M12.031 2C6.495 2 2 6.493 2 12.028c0 1.97.57 3.807 1.558 5.36L2 22l4.767-1.53a9.972 9.972 0 0 0 5.264 1.558h.005c5.534 0 10.027-4.492 10.027-10.028 0-2.678-1.043-5.197-2.937-7.091A10.007 10.007 0 0 0 12.031 2zm0 18.23a8.212 8.212 0 0 1-4.22-1.162l-.303-.18-2.82.905.918-2.75-.198-.316a8.225 8.225 0 0 1-1.258-4.4c0-4.542 3.696-8.238 8.24-8.238 2.2 0 4.269.858 5.823 2.413a8.217 8.217 0 0 1 2.41 5.826c0 4.542-3.696 8.24-8.24 8.24zm4.516-6.177c-.247-.124-1.464-.723-1.691-.806-.227-.082-.393-.124-.558.124-.165.247-.64.806-.784.97-.144.165-.289.186-.536.062-.247-.124-1.044-.385-1.989-1.228-.735-.656-1.232-1.467-1.376-1.714-.144-.247-.015-.38.109-.503.111-.112.247-.29.371-.434.124-.144.165-.247.247-.412.082-.165.041-.31-.021-.433-.062-.124-.558-1.343-.764-1.84-.2-.484-.403-.418-.558-.426l-.475-.008c-.165 0-.433.062-.66.31-.227.247-.866.847-.866 2.066 0 1.219.887 2.396 1.011 2.561.124.165 1.745 2.665 4.228 3.738.591.256 1.052.409 1.411.523.593.188 1.133.161 1.56.098.476-.071 1.464-.599 1.67-1.176.206-.577.206-1.072.144-1.175-.062-.103-.227-.165-.474-.288z"></path>
                             </svg>
                         </div>
@@ -90,7 +90,7 @@
                             <p class="mt-2 font-body-md text-body-md leading-relaxed text-primary-fixed-dim">Ikuti saluran WhatsApp MWCNU Gumelar untuk kabar kegiatan, pengumuman ta'lim, dan info resmi langsung di genggaman Anda.</p>
                         </div>
                     </div>
-                    <a href="https://whatsapp.com/channel/0029Vb95DHQ4NVio49ZRCH1y" target="_blank" rel="noopener noreferrer" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-8 py-4 font-headline-sm text-headline-sm font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-[#20bd5a]">
+                    <a href="{{ config('services.whatsapp.channel') }}" target="_blank" rel="noopener noreferrer" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-surface-container-lowest px-8 py-4 font-headline-sm text-headline-sm font-bold text-primary-container shadow-lg transition-all hover:-translate-y-0.5 hover:bg-primary-fixed">
                         <span>Gabung Sekarang</span>
                         <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
                     </a>

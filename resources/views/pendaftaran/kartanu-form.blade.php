@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
-<div class="w-full bg-surface px-4 py-10 sm:px-6 md:py-16">
+<div class="w-full bg-surface px-4 py-8 sm:px-6 sm:py-10 md:py-16">
     <div class="mx-auto max-w-3xl">
         @if (session('success'))
             <div class="mb-6 rounded-xl border border-primary-container/30 bg-primary-fixed/20 px-5 py-4 text-sm font-semibold text-primary-container" role="status">
@@ -37,26 +37,26 @@
         </header>
 
         <!-- Stepper / Progress Bar -->
-        <nav aria-label="Progress Tahapan Formulir" class="mb-10">
-            <div class="relative flex items-center justify-between">
-                <div class="absolute left-10 right-10 top-5 h-px bg-outline-variant/50 -z-0"></div>
+        <nav aria-label="Progress Tahapan Formulir" class="mb-8 sm:mb-10">
+            <div class="relative flex items-start justify-between">
+                <div class="absolute left-[16.666%] right-[16.666%] top-5 h-px bg-outline-variant/50"></div>
 
-                <div class="relative z-10 flex flex-col items-center" id="stepper-1">
-                    <div class="stepper-circle flex h-10 w-10 items-center justify-center rounded-full bg-primary-container font-label-md text-label-md font-bold text-on-primary ring-4 ring-surface">1</div>
-                    <span class="mt-2.5 font-label-md text-label-md font-bold text-on-surface">Data Pribadi</span>
-                    <span class="stepper-status font-label-sm text-label-sm font-semibold text-primary-container">Tahap Aktif</span>
+                <div class="relative z-10 flex min-w-0 flex-1 flex-col items-center px-0.5" id="stepper-1">
+                    <div class="stepper-circle flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-container font-label-md text-label-md font-bold text-on-primary ring-4 ring-surface">1</div>
+                    <span class="mt-2.5 text-center font-label-sm text-label-sm font-bold leading-tight text-on-surface sm:font-label-md sm:text-label-md"><span class="sm:hidden">Data</span><span class="hidden sm:inline">Data Pribadi</span></span>
+                    <span class="stepper-status font-label-caps text-label-caps font-semibold uppercase tracking-wide text-primary-container">Tahap Aktif</span>
                 </div>
 
-                <div class="relative z-10 flex flex-col items-center opacity-75" id="stepper-2">
-                    <div class="stepper-circle flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface-variant ring-4 ring-surface">2</div>
-                    <span class="mt-2.5 font-label-md text-label-md font-semibold text-on-surface-variant">Domisili &amp; Ranting</span>
-                    <span class="stepper-status font-label-sm text-label-sm text-outline">Menunggu</span>
+                <div class="relative z-10 flex min-w-0 flex-1 flex-col items-center px-0.5 opacity-75" id="stepper-2">
+                    <div class="stepper-circle flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface-variant ring-4 ring-surface">2</div>
+                    <span class="mt-2.5 text-center font-label-sm text-label-sm font-semibold leading-tight text-on-surface-variant sm:font-label-md sm:text-label-md"><span class="sm:hidden">Domisili</span><span class="hidden sm:inline">Domisili &amp; Ranting</span></span>
+                    <span class="stepper-status font-label-caps text-label-caps font-semibold uppercase tracking-wide text-outline">Menunggu</span>
                 </div>
 
-                <div class="relative z-10 flex flex-col items-center opacity-75" id="stepper-3">
-                    <div class="stepper-circle flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface-variant ring-4 ring-surface">3</div>
-                    <span class="mt-2.5 font-label-md text-label-md font-semibold text-on-surface-variant">Unggah Dokumen</span>
-                    <span class="stepper-status font-label-sm text-label-sm text-outline">Menunggu</span>
+                <div class="relative z-10 flex min-w-0 flex-1 flex-col items-center px-0.5 opacity-75" id="stepper-3">
+                    <div class="stepper-circle flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface-variant ring-4 ring-surface">3</div>
+                    <span class="mt-2.5 text-center font-label-sm text-label-sm font-semibold leading-tight text-on-surface-variant sm:font-label-md sm:text-label-md"><span class="sm:hidden">Dokumen</span><span class="hidden sm:inline">Unggah Dokumen</span></span>
+                    <span class="stepper-status font-label-caps text-label-caps font-semibold uppercase tracking-wide text-outline">Menunggu</span>
                 </div>
             </div>
         </nav>
@@ -66,8 +66,8 @@
             @csrf
 
             <!-- Step 1: Data Pribadi -->
-            <section class="mb-6 rounded-xl border border-outline-variant/70 bg-surface-container-lowest p-6 md:p-10" id="step-1">
-                <div class="mb-8 border-b border-outline-variant/30 pb-6">
+            <section class="mb-6 rounded-xl border border-outline-variant/70 bg-surface-container-lowest p-5 sm:p-6 md:p-10" id="step-1">
+                <div class="mb-6 sm:mb-8 border-b border-outline-variant/30 pb-5 sm:pb-6">
                     <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Langkah 1: Identitas &amp; Data Kependudukan</h2>
                     <p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Pastikan informasi yang diisi sesuai dengan dokumen e-KTP fisik yang masih berlaku.</p>
                 </div>
@@ -107,20 +107,20 @@
                     <!-- Jenis Kelamin -->
                     <div class="flex flex-col gap-2">
                         <label class="font-label-md text-label-md font-semibold text-on-surface">Jenis Kelamin <span class="text-error">*</span></label>
-                        <div class="grid grid-cols-2 gap-3" role="radiogroup">
-                            <label class="relative flex cursor-pointer items-center justify-between rounded-lg border border-primary-container bg-surface-container-low p-3.5 transition-colors" id="label-gender-l">
-                                <div class="flex items-center gap-3">
-                                    <input checked class="h-4 w-4 accent-primary-container" name="jenis_kelamin" type="radio" value="L" {{ old('jenis_kelamin', 'L') === 'L' ? 'checked' : '' }}>
+                        <div class="grid grid-cols-2 gap-2 sm:gap-3" role="radiogroup">
+                            <label class="relative flex cursor-pointer items-center justify-between rounded-lg border border-primary-container bg-surface-container-low p-2.5 transition-colors sm:p-3.5" id="label-gender-l">
+                                <div class="flex items-center gap-2.5 sm:gap-3">
+                                    <input checked class="h-4 w-4 shrink-0 accent-primary-container" name="jenis_kelamin" type="radio" value="L" {{ old('jenis_kelamin', 'L') === 'L' ? 'checked' : '' }}>
                                     <span class="font-label-md text-label-md font-bold text-on-surface">Laki-laki</span>
                                 </div>
-                                <span class="material-symbols-outlined text-primary text-[20px]">male</span>
+                                <span class="material-symbols-outlined text-primary text-[20px] max-sm:hidden">male</span>
                             </label>
-                            <label class="relative flex cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-container-lowest p-3.5 transition-colors hover:bg-surface-container-low" id="label-gender-p">
-                                <div class="flex items-center gap-3">
-                                    <input class="h-4 w-4 accent-primary-container" name="jenis_kelamin" type="radio" value="P" {{ old('jenis_kelamin') === 'P' ? 'checked' : '' }}>
+                            <label class="relative flex cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-container-lowest p-2.5 transition-colors hover:bg-surface-container-low sm:p-3.5" id="label-gender-p">
+                                <div class="flex items-center gap-2.5 sm:gap-3">
+                                    <input class="h-4 w-4 shrink-0 accent-primary-container" name="jenis_kelamin" type="radio" value="P" {{ old('jenis_kelamin') === 'P' ? 'checked' : '' }}>
                                     <span class="font-label-md text-label-md font-semibold text-on-surface">Perempuan</span>
                                 </div>
-                                <span class="material-symbols-outlined text-outline text-[20px]">female</span>
+                                <span class="material-symbols-outlined text-outline text-[20px] max-sm:hidden">female</span>
                             </label>
                         </div>
                     </div>
@@ -138,8 +138,8 @@
             </section>
 
             <!-- Step 2: Domisili & Ranting -->
-            <section class="mb-6 hidden rounded-xl border border-outline-variant/70 bg-surface-container-lowest p-6 md:p-10" id="step-2">
-                <div class="mb-8 border-b border-outline-variant/30 pb-6">
+            <section class="mb-6 hidden rounded-xl border border-outline-variant/70 bg-surface-container-lowest p-5 sm:p-6 md:p-10" id="step-2">
+                <div class="mb-6 sm:mb-8 border-b border-outline-variant/30 pb-5 sm:pb-6">
                     <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Langkah 2: Domisili &amp; Ranting MWCNU</h2>
                     <p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Data domisili digunakan untuk menentukan ranting tempat Anda terdaftar sebagai warga Nahdliyin.</p>
                 </div>
@@ -173,8 +173,8 @@
             </section>
 
             <!-- Step 3: Unggah Dokumen -->
-            <section class="mb-6 hidden rounded-xl border border-outline-variant/70 bg-surface-container-lowest p-6 md:p-10" id="step-3">
-                <div class="mb-8 border-b border-outline-variant/30 pb-6">
+            <section class="mb-6 hidden rounded-xl border border-outline-variant/70 bg-surface-container-lowest p-5 sm:p-6 md:p-10" id="step-3">
+                <div class="mb-6 sm:mb-8 border-b border-outline-variant/30 pb-5 sm:pb-6">
                     <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Langkah 3: Unggah Dokumen Pendukung</h2>
                     <p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Unggah foto KTP dan pas foto untuk verifikasi identitas oleh pengurus ranting.</p>
                 </div>
@@ -247,23 +247,23 @@
                 const circle = steppers[i].querySelector('.stepper-circle');
                 const status = steppers[i].querySelector('.stepper-status');
                 if (i < step) {
-                    circle.className = 'stepper-circle flex h-10 w-10 items-center justify-center rounded-full bg-primary-container font-label-md text-label-md font-bold text-on-primary ring-4 ring-surface';
+                    circle.className = 'stepper-circle flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-container font-label-md text-label-md font-bold text-on-primary ring-4 ring-surface';
                     circle.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span>';
                     steppers[i].classList.remove('opacity-75');
                     status.textContent = 'Selesai';
-                    status.className = 'stepper-status font-label-sm text-label-sm font-semibold text-primary-container';
+                    status.className = 'stepper-status font-label-caps text-label-caps font-semibold uppercase tracking-wide text-primary-container';
                 } else if (i === step) {
-                    circle.className = 'stepper-circle flex h-10 w-10 items-center justify-center rounded-full bg-primary-container font-label-md text-label-md font-bold text-on-primary ring-4 ring-surface';
+                    circle.className = 'stepper-circle flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-container font-label-md text-label-md font-bold text-on-primary ring-4 ring-surface';
                     circle.textContent = i;
                     steppers[i].classList.remove('opacity-75');
                     status.textContent = 'Tahap Aktif';
-                    status.className = 'stepper-status font-label-sm text-label-sm font-semibold text-primary-container';
+                    status.className = 'stepper-status font-label-caps text-label-caps font-semibold uppercase tracking-wide text-primary-container';
                 } else {
-                    circle.className = 'stepper-circle flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface-variant ring-4 ring-surface';
+                    circle.className = 'stepper-circle flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-outline-variant bg-surface-container-lowest font-label-md text-label-md font-semibold text-on-surface-variant ring-4 ring-surface';
                     circle.textContent = i;
                     steppers[i].classList.add('opacity-75');
                     status.textContent = 'Menunggu';
-                    status.className = 'stepper-status font-label-sm text-label-sm text-outline';
+                    status.className = 'stepper-status font-label-caps text-label-caps font-semibold uppercase tracking-wide text-outline';
                 }
             }
         }
@@ -327,11 +327,11 @@
         genderRadios.forEach(function(radio) {
             radio.addEventListener('change', function() {
                 if (this.value === 'L') {
-                    labelL.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-primary-container bg-surface-container-low p-3.5 transition-colors';
-                    labelP.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-container-lowest p-3.5 transition-colors hover:bg-surface-container-low';
+                    labelL.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-primary-container bg-surface-container-low p-2.5 transition-colors sm:p-3.5';
+                    labelP.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-container-lowest p-2.5 transition-colors hover:bg-surface-container-low sm:p-3.5';
                 } else {
-                    labelP.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-primary-container bg-surface-container-low p-3.5 transition-colors';
-                    labelL.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-container-lowest p-3.5 transition-colors hover:bg-surface-container-low';
+                    labelP.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-primary-container bg-surface-container-low p-2.5 transition-colors sm:p-3.5';
+                    labelL.className = 'relative flex cursor-pointer items-center justify-between rounded-lg border border-outline-variant bg-surface-container-lowest p-2.5 transition-colors hover:bg-surface-container-low sm:p-3.5';
                 }
             });
         });
