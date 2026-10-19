@@ -80,6 +80,24 @@
         </div>
     </div>
 
+    <!-- Login Notice -->
+    <div class="w-full max-w-xl px-4 mt-4">
+        <div class="rounded-xl border border-primary-container/40 bg-primary-fixed/20 p-4 flex flex-col sm:flex-row sm:items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-white text-[20px]">login</span>
+            </div>
+            <div class="flex-1">
+                <span class="text-base text-primary font-bold">Akun Portal Anda sudah dibuat</span>
+                <p class="text-sm text-on-surface-variant leading-relaxed mt-0.5">
+                    Masuk memakai <strong>NIK</strong> dan kata sandi default <strong>tanggal lahir (DDMMYYYY)</strong>. Ubah kata sandi setelah berhasil masuk.
+                </p>
+            </div>
+            <a class="shrink-0 inline-flex items-center justify-center gap-2 rounded-lg bg-primary-container px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary transition-colors" href="{{ route('masuk') }}">
+                <span class="material-symbols-outlined text-[18px]">login</span>Masuk Portal
+            </a>
+        </div>
+    </div>
+
     <!-- SLA Information & Notification Block -->
     <div class="w-full max-w-xl px-4 mt-4">
         <div class="bg-surface-container-low rounded-xl p-4 flex gap-4 items-start shadow-sm">

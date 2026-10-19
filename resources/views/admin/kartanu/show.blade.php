@@ -141,6 +141,33 @@
                 </div>
             </div>
 
+            <!-- Identity Documents -->
+            <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 p-6 shadow-sm">
+                <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
+                    <h3 class="font-label-md text-label-md font-semibold text-on-surface">Dokumen Identitas (KTP)</h3>
+                    <span class="font-label-sm text-label-sm text-secondary">Diunggah saat pendaftaran</span>
+                </div>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    @foreach ([['KTP — Depan', $record->fotoKtpDepanUrl()], ['KTP — Belakang', $record->fotoKtpBelakangUrl()]] as [$label, $url])
+                        <figure class="overflow-hidden rounded-xl border border-outline-variant/50 bg-surface-container">
+                            <div class="aspect-[8/5] bg-surface-container-high">
+                                @if ($url)
+                                    <a class="block h-full w-full" href="{{ $url }}" target="_blank" rel="noopener" title="Buka {{ $label }} ukuran penuh">
+                                        <img class="h-full w-full object-cover" src="{{ $url }}" alt="{{ $label }} {{ $record->name }}" loading="lazy">
+                                    </a>
+                                @else
+                                    <div class="flex h-full flex-col items-center justify-center gap-1 text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-2xl">no_photography</span>
+                                        <span class="font-label-sm text-label-sm">Belum diunggah</span>
+                                    </div>
+                                @endif
+                            </div>
+                            <figcaption class="border-t border-outline-variant/40 px-3 py-2 font-label-md text-label-md font-semibold text-on-surface">{{ $label }}</figcaption>
+                        </figure>
+                    @endforeach
+                </div>
+            </div>
+
             <!-- Branch Information -->
             <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 p-6 shadow-sm">
                 <h3 class="font-label-md text-label-md font-semibold text-on-surface mb-4">Data Ranting</h3>

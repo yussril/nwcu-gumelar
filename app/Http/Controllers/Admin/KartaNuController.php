@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\KartaNu;
+use App\Services\MemberAccountService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class KartaNuController extends Controller
 {
@@ -30,6 +32,61 @@ class KartaNuController extends Controller
                 ->distinct()
                 ->orderBy('branch_name')
                 ->pluck('branch_name'),
+        ]);
+    }
+
+    /**
+     * Unduh seluruh data KartaNU sebagai CSV yang kompatibel dengan Excel.
+     */
+    public function exportExcel(): StreamedResponse
+    {
+        $records = KartaNu::orderBy('name')->get();
+        $filename = 'data-kartanu-'.now()->format('Ymd-His').'.csv';
+
+        return response()->streamDownload(function () use ($records): void {
+            $handle = fopen('php://output', 'w');
+
+            // BOM UTF-8 supaya Excel membaca karakter non-ASCII dengan benar.
+            fwrite($handle, "\xEF\xBB\xBF");
+
+            fputcsv($handle, [
+                'No', 'Nama', 'NIA', 'NIK', 'Ranting', 'Desa/Ranting', 'Tempat Lahir',
+                'Tanggal Lahir', 'Jenis Kelamin', 'No. WhatsApp', 'Alamat', 'Status',
+                'Catatan Verifikasi', 'Terdaftar',
+            ], ',', '"', '');
+
+            foreach ($records as $index => $record) {
+                fputcsv($handle, [
+                    $index + 1,
+                    $record->name,
+                    $record->nia,
+                    $record->nik,
+                    $record->branch_name,
+                    $record->desa_ranting,
+                    $record->birth_place,
+                    $record->birth_date?->format('d-m-Y'),
+                    $record->jenisKelaminLabel(),
+                    $record->no_whatsapp,
+                    $record->alamat_lengkap,
+                    $record->verificationLabel(),
+                    $record->verification_note,
+                    $record->created_at?->format('d-m-Y H:i'),
+                ], ',', '"', '');
+            }
+
+            fclose($handle);
+        }, $filename, ['Content-Type' => 'text/csv; charset=UTF-8']);
+    }
+
+    /**
+     * Tampilan cetak data KartaNU; pengguna menyimpannya sebagai PDF lewat dialog cetak.
+     */
+    public function exportPdf(): View
+    {
+        return view('admin.kartanu.export-pdf', [
+            'title' => 'Data KartaNU - MWCNU Gumelar',
+            'records' => KartaNu::orderBy('name')->get(),
+            'printedAt' => now(),
         ]);
     }
 
@@ -90,6 +147,9 @@ class KartaNuController extends Controller
 
         $record = KartaNu::create($data);
 
+        // Pastikan jamaah yang dibuatkan datanya lewat admin juga bisa login.
+        MemberAccountService::ensureFor($record);
+
         return redirect()->route('admin.kartanu.index')->with('status', 'Data KartaNU berhasil ditambahkan.');
     }
 
@@ -120,6 +180,10 @@ class KartaNuController extends Controller
         }
 
         $kartanu->update($data);
+
+        // Sinkronkan akun jamaah: buat bila belum ada, samakan NIK bila diubah.
+        MemberAccountService::ensureFor($kartanu);
+        MemberAccountService::syncNik($kartanu, $data['nik'] ?? null);
 
         return redirect()->route('admin.kartanu.index')->with('status', 'Perubahan data KartaNU berhasil disimpan.');
     }

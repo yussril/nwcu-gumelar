@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\KartaNu;
+use App\Services\BranchDirectory;
+use App\Services\MemberAccountService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,7 +15,8 @@ class PendaftarKartanuController extends Controller
     public function index(): View
     {
         return view('pendaftaran.kartanu-form', [
-            'title' => 'Registrasi Sensus KartaNU - MWCNU Gumelar'
+            'title' => 'Registrasi Sensus KartaNU - MWCNU Gumelar',
+            'desaList' => BranchDirectory::desaList(),
         ]);
     }
 
@@ -29,24 +32,26 @@ class PendaftarKartanuController extends Controller
             'alamat_lengkap' => 'required|string',
             'desa_ranting' => 'required|string',
             'foto_ktp' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'foto_ktp_belakang' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'pas_foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $ktpPath = $request->file('foto_ktp')->store('kartanu/ktp', 'public');
+        $ktpBelakangPath = $request->file('foto_ktp_belakang')->store('kartanu/ktp', 'public');
         $pasFotoPath = $request->file('pas_foto')->store('kartanu/pas_foto', 'public');
 
         // Generate unique registration code
-        $registrationCode = 'REG-GML-' . date('Y') . '-' . strtoupper(Str::random(8));
+        $registrationCode = 'REG-GML-'.date('Y').'-'.strtoupper(Str::random(8));
 
         // Generate NIA (Nomor Induk Anggota)
-        $nia = 'NIA-' . date('Y') . '-' . str_pad(KartaNu::count() + 1, 5, '0', STR_PAD_LEFT);
+        $nia = 'NIA-'.date('Y').'-'.str_pad(KartaNu::count() + 1, 5, '0', STR_PAD_LEFT);
 
-        KartaNu::create([
+        $kartanu = KartaNu::create([
             'name' => $validated['nama_lengkap'],
             'nia' => $nia,
             'nik' => $validated['nik'],
             'nik_hash' => hash('sha256', $validated['nik']),
-            'branch_name' => $this->getBranchName($validated['desa_ranting']),
+            'branch_name' => BranchDirectory::resolve($validated['desa_ranting']),
             'birth_place' => $validated['tempat_lahir'],
             'birth_date' => $validated['tanggal_lahir'],
             'jenis_kelamin' => $validated['jenis_kelamin'],
@@ -55,14 +60,18 @@ class PendaftarKartanuController extends Controller
             'desa_ranting' => $validated['desa_ranting'],
             'photo_path' => $pasFotoPath,
             'foto_ktp_path' => $ktpPath,
+            'foto_ktp_belakang_path' => $ktpBelakangPath,
             'registration_code' => $registrationCode,
             'verification_status' => 'submitted',
             'verification_note' => 'Menunggu verifikasi dari Sekretariat MWCNU',
         ]);
 
+        // Buatkan akun login jamaah (NIK + kata sandi default tanggal lahir DDMMYYYY).
+        MemberAccountService::ensureFor($kartanu);
+
         return redirect()->route('pendaftaran.kartanu.sukses', [
             'registration_code' => $registrationCode,
-            'branch_name' => $this->getBranchName($validated['desa_ranting']),
+            'branch_name' => BranchDirectory::resolve($validated['desa_ranting']),
         ]);
     }
 
@@ -80,23 +89,5 @@ class PendaftarKartanuController extends Controller
             'registrationCode' => $registrationCode,
             'branchName' => $branchName,
         ]);
-    }
-
-    private function getBranchName(string $desa): string
-    {
-        $branches = [
-            'Desa Gumelar' => 'Ranting Gumelar',
-            'Desa Cihonje' => 'Ranting Cihonje',
-            'Desa Samudra' => 'Ranting Samudra',
-            'Desa Kemitir' => 'Ranting Kemitir',
-            'Desa Puring' => 'Ranting Puring',
-            'Desa Somawangi' => 'Ranting Somawangi',
-            'Desa Somagede' => 'Ranting Somagede',
-            'Desa Cilangkap' => 'Ranting Cilangkap',
-            'Desa Karanganyar' => 'Ranting Karanganyar',
-            'Desa Lumbir' => 'Ranting Lumbir',
-        ];
-
-        return $branches[$desa] ?? 'Ranting Gumelar';
     }
 }

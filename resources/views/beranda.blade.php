@@ -29,6 +29,17 @@
                                 Jelajahi Ekosistem
                             </a>
                         </div>
+
+                        @guest
+                            <div class="mt-4 sm:mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+                                <a class="group inline-flex items-center justify-center gap-2 rounded-2xl border border-primary-container/30 bg-surface-container-lowest px-5 sm:px-6 py-3 font-label-md text-label-md font-semibold text-primary-container hover:bg-primary-fixed/30 hover:border-primary-container/50 transition-all duration-200 active:scale-[0.99]" href="{{ route('masuk') }}">
+                                    <span class="material-symbols-outlined text-[20px]">login</span>
+                                    <span>Masuk / Login</span>
+                                    <span class="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:translate-x-0.5">arrow_forward</span>
+                                </a>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant">Sudah mendaftar KartaNU? Masuk ke portal Anda.</span>
+                            </div>
+                        @endguest
                     </div>
                 </div>
 
@@ -233,18 +244,18 @@
                     <span class="material-symbols-outlined text-[20px]">arrow_right_alt</span>
                 </a>
             </div>
-    
+
             @if ($articles->isNotEmpty())
             <!-- Asymmetric Editorial Grid (60% : 40%) -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
-                
+
                 @php
                     $featured = $articles->first();
                     $regularArticles = $articles->slice(1)->values();
                 @endphp
 
                 <!-- Left Featured News (60% -> 7 Cols) -->
-                <a href="{{ route('berita.show', $featured) }}" class="lg:col-span-7 group relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-on-background min-h-[360px] sm:min-h-[460px] flex flex-col justify-end p-6 sm:p-8 md:p-12 cursor-pointer shadow-lg">
+                <a href="{{ route('berita.show', $featured) }}" class="lg:col-span-7 group relative rounded-xl sm:rounded-2xl overflow-hidden bg-on-background min-h-[360px] sm:min-h-[460px] flex flex-col justify-end p-6 sm:p-8 md:p-12 cursor-pointer shadow-lg">
                     @if ($featured->imageSource())
                         <img alt="{{ $featured->title }}" class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out opacity-60" src="{{ $featured->imageSource() }}">
                     @endif
@@ -266,13 +277,13 @@
                     </div>
                 </a>
 
-                <!-- Right Stacked News Cards & Notice (40% -> 5 Cols) -->
+                <!-- Right Stacked News Cards (40% -> 5 Cols) -->
                 <div class="lg:col-span-5 flex flex-col gap-5 sm:gap-6">
-                    
+
                     @foreach ($regularArticles as $article)
                         <!-- Card Berita -->
-                        <a href="{{ route('berita.show', $article) }}" class="group flex gap-4 sm:gap-5 p-4 sm:p-5 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-all duration-200 cursor-pointer">
-                            <div class="w-28 h-24 sm:w-36 sm:h-28 shrink-0 rounded-2xl overflow-hidden bg-surface-container">
+                        <a href="{{ route('berita.show', $article) }}" class="group flex gap-4 sm:gap-5 p-4 sm:p-5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all duration-200 cursor-pointer">
+                            <div class="w-28 h-24 sm:w-36 sm:h-28 shrink-0 rounded-lg overflow-hidden bg-surface-container">
                                 @if ($article->imageSource())
                                     <img alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="{{ $article->imageSource() }}">
                                 @else
@@ -292,22 +303,6 @@
                             </div>
                         </a>
                     @endforeach
-
-                    <!-- Quick Notice Banner (Buletin Jumat) -->
-                    <div class="p-5 sm:p-6 rounded-3xl bg-primary-fixed/40 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-4 min-w-0">
-                            <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-[20px]">feed</span>
-                            </div>
-                            <div class="min-w-0">
-                                <p class="font-headline-sm text-headline-sm font-bold text-on-surface leading-tight">Buletin Jumat Nahdliyin</p>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant">Unduh khutbah & naskah kajian pekan ini</p>
-                            </div>
-                        </div>
-                        <a class="w-9 h-9 shrink-0 rounded-full bg-surface-container-lowest flex items-center justify-center text-primary hover:scale-105 transition-transform shadow-sm" href="#">
-                            <span class="material-symbols-outlined text-[18px]">download</span>
-                        </a>
-                    </div>
 
                 </div>
             </div>

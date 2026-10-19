@@ -85,6 +85,32 @@ class KartaNuTest extends TestCase
         $this->assertMatchesRegularExpression('/^REG-GML-\d{4}-[A-Z0-9]{8}$/', $record->registration_code);
     }
 
+    public function test_admin_can_export_kartanu_records_as_csv_and_pdf(): void
+    {
+        $admin = User::factory()->create(['is_admin' => true]);
+
+        KartaNu::create([
+            'name' => 'Anggota Ekspor',
+            'nia' => 'NIA-GML-EXPORT-1',
+            'nik' => '3302142104780022',
+            'nik_hash' => hash_hmac('sha256', '3302142104780022', (string) config('app.key')),
+            'branch_name' => 'PRNU Desa Cihonje',
+            'registration_code' => 'REG-GML-2026-EXPT',
+            'verification_status' => 'issued',
+        ]);
+
+        $csv = $this->actingAs($admin)->get(route('admin.kartanu.export.excel'));
+        $csv->assertOk();
+        $csv->assertHeader('content-type', 'text/csv; charset=UTF-8');
+        $this->assertStringContainsString('Anggota Ekspor', $csv->streamedContent());
+
+        $this->actingAs($admin)
+            ->get(route('admin.kartanu.export.pdf'))
+            ->assertOk()
+            ->assertSee('Data Sensus KartaNU')
+            ->assertSee('Anggota Ekspor');
+    }
+
     public function test_printed_card_is_one_a4_sheet_with_front_and_back_from_member_data(): void
     {
         $record = $this->issuedMember();

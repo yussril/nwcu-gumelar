@@ -55,15 +55,27 @@
                 </div>
             </a>
 
-            <nav class="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Navigasi utama">
+            <nav class="hidden lg:flex items-center gap-6 xl:gap-8 lg:ml-6 xl:ml-10" aria-label="Navigasi utama">
                 @foreach ($navLinks as $link)
-                    <a class="whitespace-nowrap font-label-md text-label-md font-semibold transition-colors pb-0.5 {{ request()->routeIs($link['match']) ? 'text-[#047857] border-b-2 border-[#047857]' : 'text-slate-600 hover:text-slate-900' }}" href="{{ route($link['route']) }}">{{ $link['label'] }}</a>
+                    @php $active = request()->routeIs($link['match']); @endphp
+                    <a
+                        class="group relative whitespace-nowrap py-1 font-label-md text-label-md font-medium tracking-wide transition-colors duration-200 {{ $active ? 'text-[#047857]' : 'text-slate-600 hover:text-[#047857]' }}"
+                        href="{{ route($link['route']) }}"
+                        @if ($active) aria-current="page" @endif
+                    >
+                        {{ $link['label'] }}
+                        <span class="pointer-events-none absolute inset-x-0 -bottom-0.5 h-[2px] origin-left rounded-full bg-[#047857] transition-transform duration-300 ease-out {{ $active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100' }}"></span>
+                    </a>
                 @endforeach
             </nav>
 
             <div class="flex items-center gap-2 sm:gap-4 shrink-0">
                 @auth
-                    <a class="hidden sm:inline-flex items-center justify-center px-5 py-2 rounded-xl bg-primary-container text-white font-label-md text-label-md font-semibold hover:bg-primary transition-all" href="{{ route('dashboard') }}">Admin</a>
+                    @if (auth()->user()->is_admin)
+                        <a class="hidden sm:inline-flex items-center justify-center px-5 py-2 rounded-xl bg-primary-container text-white font-label-md text-label-md font-semibold hover:bg-primary transition-all" href="{{ route('dashboard') }}">Admin</a>
+                    @else
+                        <a class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl bg-primary-container text-white font-label-md text-label-md font-semibold hover:bg-primary transition-all" href="{{ route('portal') }}"><span class="material-symbols-outlined text-[18px]">dashboard</span>Portal</a>
+                    @endif
                 @endauth
                 <button
                     aria-controls="menu-mobile"
@@ -202,10 +214,6 @@
                         <p class="leading-relaxed">Surel: <a href="mailto:sekretariat@mwcnu-gumelar.or.id" class="text-primary hover:underline">sekretariat@mwcnu-gumelar.or.id</a></p>
                         <p class="leading-relaxed font-semibold text-on-surface mt-1">Pusat Pelayanan: <a href="tel:+6281234567890" class="hover:text-primary transition-colors">+62 821-3456-7890</a></p>
                     </address>
-                    <a class="mt-3 inline-flex items-center gap-1.5 rounded-lg px-2 py-2 font-label-md text-label-md font-medium text-primary transition-colors hover:bg-primary-fixed/20 hover:underline" href="{{ route('kontak') }}">
-                        <span>Halaman Kontak</span>
-                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    </a>
                 </div>
             </div>
             <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-on-surface-variant border-t border-slate-200">

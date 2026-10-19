@@ -7,10 +7,14 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\KartaNuController as AdminKartaNuController;
 use App\Http\Controllers\Admin\KegiatanController;
+use App\Http\Controllers\Auth\MemberSessionController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CetakKartanuController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\KartaNuController;
+use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
+use App\Http\Controllers\Member\PasswordController as MemberPasswordController;
+use App\Http\Controllers\Member\ProfileController as MemberProfileController;
 use App\Http\Controllers\PendaftarKartanuController;
 use App\Models\Article;
 use App\Models\Banom;
@@ -24,7 +28,7 @@ Route::get('/', function () {
         ->where(fn ($query) => $query->whereNull('published_at')->orWhere('published_at', '<=', now()))
         ->orderByDesc('published_at')
         ->orderByDesc('id')
-        ->take(3)
+        ->take(4)
         ->get();
 
     return view('beranda', [
@@ -112,6 +116,20 @@ Route::post('/kontak', [ContactMessageController::class, 'store'])
     ->middleware('throttle:10,1')
     ->name('kontak.store');
 
+// Portal jamaah: login memakai NIK + kata sandi (default tanggal lahir DDMMYYYY).
+Route::middleware('member.guest')->group(function () {
+    Route::get('/masuk', [MemberSessionController::class, 'create'])->name('masuk');
+    Route::post('/masuk', [MemberSessionController::class, 'store']);
+});
+
+Route::middleware('member.auth')->group(function () {
+    Route::post('/keluar', [MemberSessionController::class, 'destroy'])->name('keluar');
+    Route::get('/portal', [MemberDashboardController::class, 'index'])->name('portal');
+    Route::put('/portal/kata-sandi', [MemberPasswordController::class, 'update'])->name('portal.kata-sandi');
+    Route::put('/portal/data-pribadi', [MemberProfileController::class, 'update'])->name('portal.data-pribadi');
+    Route::put('/portal/foto-ktp', [MemberProfileController::class, 'updateKtp'])->name('portal.foto-ktp');
+});
+
 Route::get('/pendaftaran/kartanu', [PendaftarKartanuController::class, 'index'])->name('pendaftaran.kartanu');
 Route::post('/pendaftaran/kartanu', [PendaftarKartanuController::class, 'store'])->name('pendaftaran.kartanu.store');
 Route::get('/pendaftaran/kartanu/sukses', [PendaftarKartanuController::class, 'success'])->name('pendaftaran.kartanu.sukses');
@@ -146,6 +164,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         ->except('show')
         ->parameters(['kegiatans' => 'kegiatan'])
         ->names('admin.kegiatans');
+
+    Route::get('kartanu/export/excel', [AdminKartaNuController::class, 'exportExcel'])->name('admin.kartanu.export.excel');
+    Route::get('kartanu/export/pdf', [AdminKartaNuController::class, 'exportPdf'])->name('admin.kartanu.export.pdf');
 
     Route::resource('kartanu', AdminKartaNuController::class)
         ->names('admin.kartanu');

@@ -1,6 +1,15 @@
 <?php $__env->startSection('content'); ?>
 <div class="w-full bg-surface-container-lowest text-on-surface">
-    <section class="px-4 pb-8 pt-10 sm:px-6 lg:px-12">
+    <?php if (isset($component)) { $__componentOriginal614ecbf779abef4cbf171febaaae5c92 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal614ecbf779abef4cbf171febaaae5c92 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.reveal','data' => ['as' => 'section','class' => 'px-4 pb-8 pt-10 sm:px-6 lg:px-12']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('reveal'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['as' => 'section','class' => 'px-4 pb-8 pt-10 sm:px-6 lg:px-12']); ?>
         <div class="mx-auto flex max-w-7xl flex-col gap-8">
             <div class="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
                 <div class="lg:col-span-8">
@@ -45,7 +54,7 @@
             </div>
 
             <?php if($banoms->isNotEmpty()): ?>
-                <nav class="overflow-x-auto pb-2" aria-label="Pilih organisasi">
+                <nav class="overflow-x-auto scrollbar-none -mx-4 px-4 pb-2 sm:mx-0 sm:px-0" aria-label="Pilih organisasi">
                     <div class="flex min-w-max items-center gap-3" role="tablist" aria-label="Banom dan lembaga">
                         <?php $__currentLoopData = $banoms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $banom): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <button class="banom-tab rounded-full px-5 py-2.5 text-sm font-semibold transition-colors <?php echo e($index === 0 ? 'bg-primary-container text-white' : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'); ?>" id="tab-<?php echo e($banom->slug); ?>" type="button" role="tab" aria-controls="panel-<?php echo e($banom->slug); ?>" aria-selected="<?php echo e($index === 0 ? 'true' : 'false'); ?>" data-banom-tab="<?php echo e($banom->slug); ?>">
@@ -57,9 +66,27 @@
                 </nav>
             <?php endif; ?>
         </div>
-    </section>
+     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal614ecbf779abef4cbf171febaaae5c92)): ?>
+<?php $attributes = $__attributesOriginal614ecbf779abef4cbf171febaaae5c92; ?>
+<?php unset($__attributesOriginal614ecbf779abef4cbf171febaaae5c92); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal614ecbf779abef4cbf171febaaae5c92)): ?>
+<?php $component = $__componentOriginal614ecbf779abef4cbf171febaaae5c92; ?>
+<?php unset($__componentOriginal614ecbf779abef4cbf171febaaae5c92); ?>
+<?php endif; ?>
 
-    <section class="px-4 pb-12 sm:px-6 lg:px-12">
+    <?php if (isset($component)) { $__componentOriginal614ecbf779abef4cbf171febaaae5c92 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal614ecbf779abef4cbf171febaaae5c92 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.reveal','data' => ['as' => 'section','delay' => 120,'class' => 'px-4 pb-12 sm:px-6 lg:px-12']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('reveal'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['as' => 'section','delay' => 120,'class' => 'px-4 pb-12 sm:px-6 lg:px-12']); ?>
         <div class="mx-auto max-w-7xl">
             <?php $__empty_1 = true; $__currentLoopData = $banoms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $banom): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <?php
@@ -129,7 +156,7 @@
                                 <div class="mx-auto grid w-full max-w-4xl grid-cols-1 gap-5 md:grid-cols-2">
                                     <?php $__currentLoopData = $leaders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $member): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="flex flex-col items-center rounded-xl border border-outline-variant/50 bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-                                            <div class="mb-4 w-40 h-48 sm:w-48 sm:h-56 rounded-lg overflow-hidden bg-surface-container border border-outline-variant/40">
+                                            <div class="mb-4 w-32 h-40 sm:w-48 sm:h-56 rounded-lg overflow-hidden bg-surface-container border border-outline-variant/40">
                                                 <?php if($member->photo_path): ?>
                                                     <img src="<?php echo e($member->photoUrl()); ?>" alt="<?php echo e($member->name); ?>" class="w-full h-full object-cover">
                                                 <?php else: ?>
@@ -214,7 +241,16 @@
                 </div>
             <?php endif; ?>
         </div>
-    </section>
+     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal614ecbf779abef4cbf171febaaae5c92)): ?>
+<?php $attributes = $__attributesOriginal614ecbf779abef4cbf171febaaae5c92; ?>
+<?php unset($__attributesOriginal614ecbf779abef4cbf171febaaae5c92); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal614ecbf779abef4cbf171febaaae5c92)): ?>
+<?php $component = $__componentOriginal614ecbf779abef4cbf171febaaae5c92; ?>
+<?php unset($__componentOriginal614ecbf779abef4cbf171febaaae5c92); ?>
+<?php endif; ?>
 </div>
 
 <?php if($banoms->isNotEmpty()): ?>

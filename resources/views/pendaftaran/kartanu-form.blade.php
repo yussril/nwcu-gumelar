@@ -160,7 +160,7 @@
                         <label class="font-label-md text-label-md font-semibold text-on-surface" for="desa_ranting">Desa / Ranting MWCNU <span class="text-error">*</span></label>
                         <select class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface transition-colors focus:border-primary-container focus:outline-none" id="desa_ranting" name="desa_ranting" required>
                             <option value="" disabled {{ old('desa_ranting') ? '' : 'selected' }}>Pilih desa ranting</option>
-                            @foreach (['Desa Gumelar', 'Desa Cihonje', 'Desa Samudra', 'Desa Kemitir', 'Desa Puring', 'Desa Somawangi', 'Desa Somagede', 'Desa Cilangkap', 'Desa Karanganyar', 'Desa Lumbir'] as $desa)
+                            @foreach ($desaList ?? [] as $desa)
                                 <option value="{{ $desa }}" {{ old('desa_ranting') === $desa ? 'selected' : '' }}>{{ $desa }}</option>
                             @endforeach
                         </select>
@@ -176,27 +176,37 @@
             <section class="mb-6 hidden rounded-xl border border-outline-variant/70 bg-surface-container-lowest p-5 sm:p-6 md:p-10" id="step-3">
                 <div class="mb-6 sm:mb-8 border-b border-outline-variant/30 pb-5 sm:pb-6">
                     <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Langkah 3: Unggah Dokumen Pendukung</h2>
-                    <p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Unggah foto KTP dan pas foto untuk verifikasi identitas oleh pengurus ranting.</p>
+                    <p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Unggah pas foto 3x4 dan foto KTP (depan &amp; belakang) untuk verifikasi identitas oleh pengurus ranting.</p>
                 </div>
 
                 <div class="space-y-6">
-                    <!-- Foto KTP -->
-                    <div class="flex flex-col gap-1.5">
-                        <label class="font-label-md text-label-md font-semibold text-on-surface" for="foto_ktp">Foto KTP <span class="text-error">*</span></label>
-                        <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface file:mr-4 file:rounded-md file:border-0 file:bg-surface-container file:px-4 file:py-2 file:font-label-md file:text-label-md file:font-semibold file:text-on-surface-variant file:cursor-pointer hover:file:bg-surface-container-high transition-colors focus:border-primary-container focus:outline-none" id="foto_ktp" name="foto_ktp" required type="file" accept="image/jpeg,image/png,image/jpg">
-                        <p class="mt-0.5 flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
-                            <span class="material-symbols-outlined text-[16px] text-primary">badge</span>
-                            <span>Format JPG/PNG, maksimal 2 MB. Pastikan foto jelas dan tidak buram.</span>
-                        </p>
-                    </div>
-
                     <!-- Pas Foto -->
                     <div class="flex flex-col gap-1.5">
                         <label class="font-label-md text-label-md font-semibold text-on-surface" for="pas_foto">Pas Foto 3x4 <span class="text-error">*</span></label>
                         <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface file:mr-4 file:rounded-md file:border-0 file:bg-surface-container file:px-4 file:py-2 file:font-label-md file:text-label-md file:font-semibold file:text-on-surface-variant file:cursor-pointer hover:file:bg-surface-container-high transition-colors focus:border-primary-container focus:outline-none" id="pas_foto" name="pas_foto" required type="file" accept="image/jpeg,image/png,image/jpg">
                         <p class="mt-0.5 flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
                             <span class="material-symbols-outlined text-[16px] text-primary">face</span>
-                            <span>Latar belakang merah atau biru, maksimal 2 MB.</span>
+                            <span>Latar belakang merah atau biru, maksimal 2 MB. Foto ini menjadi foto profil KartaNU Anda.</span>
+                        </p>
+                    </div>
+
+                    <!-- Foto KTP Depan -->
+                    <div class="flex flex-col gap-1.5">
+                        <label class="font-label-md text-label-md font-semibold text-on-surface" for="foto_ktp">Foto KTP Depan <span class="text-error">*</span></label>
+                        <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface file:mr-4 file:rounded-md file:border-0 file:bg-surface-container file:px-4 file:py-2 file:font-label-md file:text-label-md file:font-semibold file:text-on-surface-variant file:cursor-pointer hover:file:bg-surface-container-high transition-colors focus:border-primary-container focus:outline-none" id="foto_ktp" name="foto_ktp" required type="file" accept="image/jpeg,image/png,image/jpg">
+                        <p class="mt-0.5 flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[16px] text-primary">badge</span>
+                            <span>Cantumkan foto KTP bagian depan. Format JPG/PNG, maksimal 2 MB.</span>
+                        </p>
+                    </div>
+
+                    <!-- Foto KTP Belakang -->
+                    <div class="flex flex-col gap-1.5">
+                        <label class="font-label-md text-label-md font-semibold text-on-surface" for="foto_ktp_belakang">Foto KTP Belakang <span class="text-error">*</span></label>
+                        <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface file:mr-4 file:rounded-md file:border-0 file:bg-surface-container file:px-4 file:py-2 file:font-label-md file:text-label-md file:font-semibold file:text-on-surface-variant file:cursor-pointer hover:file:bg-surface-container-high transition-colors focus:border-primary-container focus:outline-none" id="foto_ktp_belakang" name="foto_ktp_belakang" required type="file" accept="image/jpeg,image/png,image/jpg">
+                        <p class="mt-0.5 flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+                            <span class="material-symbols-outlined text-[16px] text-primary">badge</span>
+                            <span>Cantumkan foto KTP bagian belakang. Format JPG/PNG, maksimal 2 MB.</span>
                         </p>
                     </div>
                 </div>

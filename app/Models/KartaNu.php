@@ -4,6 +4,7 @@ namespace App\Models;
 
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class KartaNu extends Model
 {
@@ -23,11 +24,13 @@ class KartaNu extends Model
         'desa_ranting',
         'photo_path',
         'foto_ktp_path',
+        'foto_ktp_belakang_path',
         'registration_code',
         'verification_status',
         'valid_from',
         'valid_until',
         'verification_note',
+        'user_id',
     ];
 
     protected function casts(): array
@@ -40,6 +43,14 @@ class KartaNu extends Model
         ];
     }
 
+    /**
+     * Akun login jamaah yang terkait dengan catatan KartaNU ini.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function maskedNik(): string
     {
         $nik = $this->nik;
@@ -50,6 +61,22 @@ class KartaNu extends Model
     public function photoUrl(): ?string
     {
         return $this->photo_path ? asset('storage/'.$this->photo_path) : null;
+    }
+
+    /**
+     * URL foto KTP bagian depan yang diunggah saat pendaftaran.
+     */
+    public function fotoKtpDepanUrl(): ?string
+    {
+        return $this->foto_ktp_path ? asset('storage/'.$this->foto_ktp_path) : null;
+    }
+
+    /**
+     * URL foto KTP bagian belakang yang diunggah saat pendaftaran.
+     */
+    public function fotoKtpBelakangUrl(): ?string
+    {
+        return $this->foto_ktp_belakang_path ? asset('storage/'.$this->foto_ktp_belakang_path) : null;
     }
 
     public function jenisKelaminLabel(): string

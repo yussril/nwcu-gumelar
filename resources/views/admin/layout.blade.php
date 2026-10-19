@@ -96,6 +96,12 @@
                     </button>
                 </form>
             </div>
+
+            <a class="mt-3 flex items-center gap-2.5 rounded-xl px-3 py-2.5 font-label-md text-label-md text-on-surface-variant transition-colors hover:bg-surface-container-low hover:text-primary" href="{{ route('beranda') }}" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined text-[20px]">public</span>
+                <span>Lihat Website</span>
+                <span class="material-symbols-outlined text-[16px] ml-auto">arrow_outward</span>
+            </a>
         </div>
     </aside>
 
