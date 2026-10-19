@@ -269,7 +269,7 @@
 
                                             <div class="flex flex-col gap-1.5">
                                                 <label class="font-label-caps text-label-caps text-outline uppercase tracking-wider" for="tempat_lahir">Tempat Lahir</label>
-                                                <input class="w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10" id="tempat_lahir" name="tempat_lahir" type="text" value="{{ old('tempat_lahir', $record->birth_place) }}" required>
+                                                <input class="w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 font-body-md text-body-md text-on-surface focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10" id="tempat_lahir" maxlength="100" minlength="3" name="tempat_lahir" pattern="[A-Za-z .,'\-]{3,100}" title="Hanya huruf, spasi, titik, koma, apostrof, dan tanda hubung (3–100 karakter)" type="text" value="{{ old('tempat_lahir', $record->birth_place) }}" required>
                                                 <x-input-error :messages="$errors->get('tempat_lahir')" class="mt-1" />
                                             </div>
 
@@ -291,7 +291,7 @@
 
                                             <div class="flex flex-col gap-1.5">
                                                 <label class="font-label-caps text-label-caps text-outline uppercase tracking-wider" for="no_whatsapp">No. WhatsApp</label>
-                                                <input class="w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 font-mono text-body-md text-on-surface focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10" id="no_whatsapp" name="no_whatsapp" type="tel" inputmode="tel" value="{{ old('no_whatsapp', $record->no_whatsapp) }}" required>
+                                                <input class="w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 font-mono text-body-md text-on-surface focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10" id="no_whatsapp" maxlength="13" minlength="10" name="no_whatsapp" pattern="0?8[0-9]{8,11}" title="10–13 angka dengan awalan 08" type="tel" inputmode="tel" value="{{ old('no_whatsapp', $record->no_whatsapp) }}" required>
                                                 <x-input-error :messages="$errors->get('no_whatsapp')" class="mt-1" />
                                             </div>
 

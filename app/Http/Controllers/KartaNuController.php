@@ -25,7 +25,7 @@ class KartaNuController extends Controller
         $digits = preg_replace('/\D+/', '', $identifier);
 
         $record = strlen($digits) === 16
-            ? KartaNu::where('nik_hash', hash_hmac('sha256', $digits, (string) config('app.key')))->first()
+            ? KartaNu::whereIn('nik_hash', KartaNu::nikHashCandidates($digits))->first()
             : KartaNu::where('nia', $identifier)->first();
 
         return $this->page($record, null, $record ? null : 'Data KartaNU belum ditemukan. Periksa kembali NIA atau NIK yang dimasukkan.');

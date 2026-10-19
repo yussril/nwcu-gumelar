@@ -51,6 +51,30 @@ class KartaNu extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Hash NIK kanonik (HMAC-SHA256 dengan APP_KEY) untuk pencarian
+     * deterministik tanpa menyimpan NIK asli.
+     */
+    public static function hashNik(string $nik): string
+    {
+        return hash_hmac('sha256', $nik, (string) config('app.key'));
+    }
+
+    /**
+     * Semua varian hash NIK yang pernah dipakai. Catatan lama dari formulir
+     * pendaftaran memakai SHA-256 biasa, sedangkan data baru memakai HMAC.
+     * Pencarian memeriksa keduanya agar data lama tetap dapat ditemukan.
+     *
+     * @return array<int, string>
+     */
+    public static function nikHashCandidates(string $nik): array
+    {
+        return array_values(array_unique([
+            self::hashNik($nik),
+            hash('sha256', $nik),
+        ]));
+    }
+
     public function maskedNik(): string
     {
         $nik = $this->nik;

@@ -27,19 +27,24 @@ class ProfileController extends Controller
         }
 
         $validated = $request->validate([
-            'tempat_lahir' => ['required', 'string', 'max:100'],
+            'tempat_lahir' => ['required', 'string', 'min:3', 'max:100', 'regex:/^[A-Za-z][A-Za-z .,\'\-]*$/'],
             'tanggal_lahir' => ['required', 'date', 'before:tomorrow'],
             'jenis_kelamin' => ['required', 'in:L,P'],
-            'no_whatsapp' => ['required', 'string', 'max:20'],
+            'no_whatsapp' => ['required', 'string', 'regex:/^(?:\+?62|0)?8[0-9]{8,11}$/'],
             'alamat_lengkap' => ['required', 'string', 'max:1000'],
             'desa_ranting' => ['required', 'string', 'in:'.implode(',', BranchDirectory::desaList())],
+        ], [
+            'tempat_lahir.min' => 'Tempat lahir minimal 3 karakter.',
+            'tempat_lahir.max' => 'Tempat lahir maksimal 100 karakter.',
+            'tempat_lahir.regex' => 'Tempat lahir hanya boleh berisi huruf, spasi, titik, koma, apostrof, dan tanda hubung.',
+            'no_whatsapp.regex' => 'Nomor WhatsApp tidak valid. Gunakan 10–13 angka dengan awalan 08 (contoh: 081234567890).',
         ]);
 
         $record->update([
             'birth_place' => $validated['tempat_lahir'],
             'birth_date' => $validated['tanggal_lahir'],
             'jenis_kelamin' => $validated['jenis_kelamin'],
-            'no_whatsapp' => $validated['no_whatsapp'],
+            'no_whatsapp' => $this->normalizeWhatsapp($validated['no_whatsapp']),
             'alamat_lengkap' => $validated['alamat_lengkap'],
             'desa_ranting' => $validated['desa_ranting'],
             'branch_name' => BranchDirectory::resolve($validated['desa_ranting']),
@@ -94,5 +99,18 @@ class ProfileController extends Controller
 
         return redirect()->to(route('portal').'#dokumen-ktp')
             ->with('status_ktp', 'Foto KTP berhasil diperbarui.');
+    }
+
+    /**
+     * Seragamkan nomor WhatsApp ke format lokal 08xxxxxxxxxx.
+     * Menerima input 08..., 8..., 62..., atau +62....
+     */
+    private function normalizeWhatsapp(string $nomor): string
+    {
+        $angka = preg_replace('/\D/', '', $nomor);
+        $angka = preg_replace('/^62/', '', $angka);
+        $angka = ltrim($angka, '0');
+
+        return '0'.$angka;
     }
 }

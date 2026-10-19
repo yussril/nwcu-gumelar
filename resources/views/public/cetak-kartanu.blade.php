@@ -101,9 +101,28 @@
 
         @media print {
             html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; }
+            /* Tailwind `min-h-screen` membuat body setinggi 1 halaman; bila lembar
+               juga tepat 297mm, pembulatan browser mendorong halaman kedua kosong. */
+            body { min-height: 0 !important; }
             .no-print { display: none !important; }
             .pratinjau { padding: 0 !important; background: #fff !important; }
-            .lembar { box-shadow: none !important; margin: 0 auto; transform: none !important; }
+            /* Tinggi #susun disetel skrip untuk pratinjau layar (hasil penskalaan).
+               Saat mencetak, tinggi itu harus dilepas — kalau tidak, lembar A4
+               penuh terpotong dan hanya sisi depan yang ikut tercetak. */
+            #susun {
+                height: auto !important;
+                max-width: none !important;
+                overflow: visible !important;
+            }
+            .lembar {
+                box-shadow: none !important;
+                margin: 0 auto !important;
+                transform: none !important;
+                /* Sisakan 1mm agar tidak meluber ke halaman kedua. */
+                height: 296mm !important;
+                page-break-after: avoid;
+                break-after: avoid;
+            }
             * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>

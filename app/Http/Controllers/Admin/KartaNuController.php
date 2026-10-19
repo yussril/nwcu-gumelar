@@ -138,7 +138,7 @@ class KartaNuController extends Controller
         $photo = $data['photo'] ?? null;
         unset($data['photo']);
         $data['nik'] = $data['nik'] ?: null;
-        $data['nik_hash'] = $data['nik'] ? $this->nikHash($data['nik']) : null;
+        $data['nik_hash'] = $data['nik'] ? KartaNu::hashNik($data['nik']) : null;
         $data['registration_code'] = $this->registrationCode();
 
         if ($photo) {
@@ -169,7 +169,7 @@ class KartaNuController extends Controller
         $photo = $data['photo'] ?? null;
         unset($data['photo']);
         $data['nik'] = $data['nik'] ?: null;
-        $data['nik_hash'] = $data['nik'] ? $this->nikHash($data['nik']) : null;
+        $data['nik_hash'] = $data['nik'] ? KartaNu::hashNik($data['nik']) : null;
 
         if ($photo) {
             if ($kartanu->photo_path) {
@@ -216,7 +216,7 @@ class KartaNuController extends Controller
         ]);
 
         if ($data['nik'] ?? null) {
-            $duplicateNik = KartaNu::where('nik_hash', $this->nikHash($data['nik']))
+            $duplicateNik = KartaNu::whereIn('nik_hash', KartaNu::nikHashCandidates($data['nik']))
                 ->when($record, fn ($query) => $query->whereKeyNot($record->id))
                 ->exists();
 
@@ -226,11 +226,6 @@ class KartaNuController extends Controller
         }
 
         return $data;
-    }
-
-    private function nikHash(string $nik): string
-    {
-        return hash_hmac('sha256', $nik, (string) config('app.key'));
     }
 
     private function registrationCode(): string

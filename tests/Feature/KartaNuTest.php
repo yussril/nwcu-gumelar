@@ -19,7 +19,7 @@ class KartaNuTest extends TestCase
         $this->get(route('admin.kartanu.index'))->assertRedirect(route('login'));
     }
 
-    public function test_card_lookup_uses_encrypted_nik_and_never_displays_full_nik(): void
+    public function test_card_lookup_uses_encrypted_nik_and_displays_it_on_the_card(): void
     {
         $nik = '3302142104780003';
         $record = KartaNu::create([
@@ -38,8 +38,27 @@ class KartaNuTest extends TestCase
         $this->post(route('kartanu.lookup'), ['identifier' => $nik])
             ->assertOk()
             ->assertSee('Anggota Contoh')
-            ->assertSee('************0003')
-            ->assertDontSee($nik);
+            ->assertSee($nik);
+    }
+
+    public function test_card_lookup_accepts_nik_with_legacy_sha256_hash(): void
+    {
+        $nik = '3302142104780099';
+        KartaNu::create([
+            'name' => 'Anggota Lama',
+            'nia' => 'NIA-GML-LEGACY-1',
+            'nik' => $nik,
+            // Data lama dari formulir pendaftaran memakai SHA-256 biasa.
+            'nik_hash' => hash('sha256', $nik),
+            'branch_name' => 'PRNU Desa Gumelar',
+            'registration_code' => 'REG-GML-2026-LEGACY',
+            'verification_status' => 'issued',
+        ]);
+
+        $this->post(route('kartanu.lookup'), ['identifier' => $nik])
+            ->assertOk()
+            ->assertSee('Anggota Lama')
+            ->assertSee($nik);
     }
 
     public function test_pending_card_is_not_printed_but_can_be_tracked(): void

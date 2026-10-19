@@ -78,7 +78,7 @@
                             <span>Nomor Induk Kependudukan (NIK) <span class="text-error">*</span></span>
                             <span class="font-label-sm text-label-sm font-normal text-on-surface-variant" id="nik-counter">0 / 16</span>
                         </label>
-                        <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors focus:border-primary-container focus:outline-none" id="nik" inputmode="numeric" maxlength="16" name="nik" placeholder="Contoh: 330214xxxxxxxxxx (16 Digit)" required type="text" value="<?php echo e(old('nik')); ?>">
+                        <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors focus:border-primary-container focus:outline-none" id="nik" inputmode="numeric" maxlength="16" minlength="16" name="nik" pattern="[0-9]{16}" placeholder="Contoh: 330214xxxxxxxxxx (16 Digit)" required title="NIK harus tepat 16 angka" type="text" value="<?php echo e(old('nik')); ?>">
                         <p class="mt-0.5 flex items-center gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
                             <span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
                             <span>NIK digunakan untuk verifikasi tunggal basis data sensus PBNU.</span>
@@ -88,14 +88,16 @@
                     <!-- Nama Lengkap -->
                     <div class="flex flex-col gap-1.5">
                         <label class="font-label-md text-label-md font-semibold text-on-surface" for="nama_lengkap">Nama Lengkap <span class="text-error">*</span></label>
-                        <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors focus:border-primary-container focus:outline-none" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama lengkap beserta gelar jika ada" required type="text" value="<?php echo e(old('nama_lengkap')); ?>">
+                        <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors focus:border-primary-container focus:outline-none" id="nama_lengkap" maxlength="100" minlength="3" name="nama_lengkap" pattern="[A-Za-z .,'\-]{3,100}" placeholder="Masukkan nama lengkap beserta gelar jika ada" required title="Hanya huruf, spasi, titik, koma, apostrof, dan tanda hubung (3–100 karakter)" type="text" value="<?php echo e(old('nama_lengkap')); ?>">
+                        <p class="mt-0.5 font-body-sm text-body-sm text-on-surface-variant">Hanya huruf, spasi, titik, koma, apostrof, dan tanda hubung. Maksimal 100 karakter.</p>
                     </div>
 
                     <!-- Tempat & Tanggal Lahir -->
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
                         <div class="flex flex-col gap-1.5">
                             <label class="font-label-md text-label-md font-semibold text-on-surface" for="tempat_lahir">Tempat Lahir <span class="text-error">*</span></label>
-                            <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors focus:border-primary-container focus:outline-none" id="tempat_lahir" name="tempat_lahir" placeholder="Kabupaten / Kota kelahiran" required type="text" value="<?php echo e(old('tempat_lahir')); ?>">
+                            <input class="w-full rounded-lg border border-outline-variant bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors focus:border-primary-container focus:outline-none" id="tempat_lahir" maxlength="100" minlength="3" name="tempat_lahir" pattern="[A-Za-z .,'\-]{3,100}" placeholder="Kabupaten / Kota kelahiran" required title="Hanya huruf, spasi, titik, koma, apostrof, dan tanda hubung (3–100 karakter)" type="text" value="<?php echo e(old('tempat_lahir')); ?>">
+                            <p class="mt-0.5 font-body-sm text-body-sm text-on-surface-variant">Hanya huruf. Maksimal 100 karakter.</p>
                         </div>
                         <div class="flex flex-col gap-1.5">
                             <label class="font-label-md text-label-md font-semibold text-on-surface" for="tanggal_lahir">Tanggal Lahir <span class="text-error">*</span></label>
@@ -129,8 +131,9 @@
                         <label class="font-label-md text-label-md font-semibold text-on-surface" for="no_whatsapp">Nomor WhatsApp Aktif <span class="text-error">*</span></label>
                         <div class="flex overflow-hidden rounded-lg border border-outline-variant transition-colors focus-within:border-primary-container">
                             <span class="inline-flex select-none items-center border-r border-outline-variant bg-surface-container px-4 font-label-md text-label-md text-on-surface-variant">+62</span>
-                            <input class="w-full bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none" id="no_whatsapp" inputmode="numeric" name="no_whatsapp" placeholder="812-3456-7890" required type="tel" value="<?php echo e(old('no_whatsapp')); ?>">
+                            <input class="w-full bg-surface-container-lowest px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none" id="no_whatsapp" inputmode="numeric" maxlength="12" minlength="9" name="no_whatsapp" pattern="8[0-9]{8,11}" placeholder="81234567890" required title="9–12 angka setelah +62, diawali angka 8" type="tel" value="<?php echo e(old('no_whatsapp')); ?>">
                         </div>
+                        <p class="mt-1 font-body-sm text-body-sm leading-relaxed text-on-surface-variant">Hanya angka, 9–12 digit setelah +62 (contoh: 81234567890).</p>
                         <p class="mt-1 font-body-sm text-body-sm leading-relaxed text-on-surface-variant">Digunakan untuk pengiriman bukti resi pendaftaran, notifikasi status verifikasi, dan barcode pengambilan kartu fisik.</p>
                     </div>
                 </div>
@@ -301,7 +304,16 @@
             });
             if (step === 1) {
                 const nik = document.getElementById('nik');
-                if (nik.value && nik.value.length !== 16) { valid = false; nik.classList.add('border-error'); }
+                if (nik.value.length !== 16) { valid = false; nik.classList.add('border-error'); }
+
+                const nama = document.getElementById('nama_lengkap');
+                if (nama.value.trim().length < 3) { valid = false; nama.classList.add('border-error'); }
+
+                const tempat = document.getElementById('tempat_lahir');
+                if (tempat.value.trim().length < 3) { valid = false; tempat.classList.add('border-error'); }
+
+                const wa = document.getElementById('no_whatsapp');
+                if (!/^8[0-9]{8,11}$/.test(wa.value)) { valid = false; wa.classList.add('border-error'); }
             }
             return valid;
         }
@@ -326,6 +338,23 @@
                 nikCounter.textContent = count + ' / 16';
                 nikCounter.classList.toggle('text-primary', count === 16);
                 nikCounter.classList.toggle('text-on-surface-variant', count !== 16);
+            });
+        }
+
+        // Batasi nama & tempat lahir: hanya huruf, spasi, dan tanda baca nama.
+        ['nama_lengkap', 'tempat_lahir'].forEach(function(id) {
+            const field = document.getElementById(id);
+            if (!field) return;
+            field.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^A-Za-z .,'\-]/g, '');
+            });
+        });
+
+        // Nomor WhatsApp: hanya angka; awalan 0 dibuang karena sudah ada +62.
+        const waInput = document.getElementById('no_whatsapp');
+        if (waInput) {
+            waInput.addEventListener('input', function(e) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/^0+/, '');
             });
         }
 

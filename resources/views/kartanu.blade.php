@@ -22,7 +22,7 @@
                     <div class="max-w-3xl space-y-1">
                         <span class="font-label-caps text-label-caps font-bold uppercase tracking-widest text-primary">Layanan anggota</span>
                         <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Unduh & Cetak e-KartaNU</h2>
-                        <p class="font-body-md text-body-md leading-relaxed text-on-surface-variant">Masukkan NIA atau NIK yang telah diverifikasi oleh pengurus ranting. Data identitas ditampilkan seperlunya dan NIK disamarkan.</p>
+                        <p class="font-body-md text-body-md leading-relaxed text-on-surface-variant">Masukkan NIA atau NIK yang telah diverifikasi oleh pengurus ranting. Data identitas ditampilkan sesuai data KartaNU Anda.</p>
                     </div>
                     <div class="inline-flex shrink-0 items-center gap-2 text-sm text-on-surface-variant"><span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>Data dilindungi</div>
                 </div>

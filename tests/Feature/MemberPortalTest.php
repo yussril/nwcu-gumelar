@@ -22,7 +22,7 @@ class MemberPortalTest extends TestCase
             'tempat_lahir' => 'Gumelar',
             'tanggal_lahir' => '1999-06-10',
             'jenis_kelamin' => 'L',
-            'no_whatsapp' => '081233222222211',
+            'no_whatsapp' => '81234567890',
             'alamat_lengkap' => 'Jl. Gumelar RT.12 RW.04',
             'desa_ranting' => 'Desa Gumelar',
             'foto_ktp' => $this->fakePhoto('ktp-depan.png'),
@@ -38,13 +38,32 @@ class MemberPortalTest extends TestCase
         $this->assertFalse($user->is_admin);
         $this->assertTrue(Hash::check('10061999', $user->password));
 
-        $record = KartaNu::where('nik_hash', hash('sha256', '3302142010900001'))->first();
+        $record = KartaNu::whereIn('nik_hash', KartaNu::nikHashCandidates('3302142010900001'))->first();
         $this->assertNotNull($record);
         $this->assertSame($user->id, $record->user_id);
         // Pas foto menjadi foto profil, sedangkan KTP disimpan terpisah per sisi.
         $this->assertSame('kartanu/pas_foto', dirname((string) $record->photo_path));
         $this->assertSame('kartanu/ktp', dirname((string) $record->foto_ktp_path));
         $this->assertSame('kartanu/ktp', dirname((string) $record->foto_ktp_belakang_path));
+        // Input 812... dari formulir +62 disimpan seragam sebagai 0812....
+        $this->assertSame('081234567890', $record->no_whatsapp);
+    }
+
+    public function test_pendaftaran_membatasi_format_nik_nama_tempat_dan_whatsapp(): void
+    {
+        $this->post(route('pendaftaran.kartanu.store'), [
+            'nik' => '3302142010900', // 13 digit, bukan 16
+            'nama_lengkap' => str_repeat('A', 101), // melebihi 100 karakter
+            'tempat_lahir' => 'Gumelar99', // mengandung angka
+            'tanggal_lahir' => '1999-06-10',
+            'jenis_kelamin' => 'L',
+            'no_whatsapp' => 'abc0812', // bukan angka
+            'alamat_lengkap' => 'Jl. Gumelar RT.12 RW.04',
+            'desa_ranting' => 'Desa Gumelar',
+            'foto_ktp' => $this->fakePhoto('ktp-depan.png'),
+            'foto_ktp_belakang' => $this->fakePhoto('ktp-belakang.png'),
+            'pas_foto' => $this->fakePhoto('pas.png'),
+        ])->assertSessionHasErrors(['nik', 'nama_lengkap', 'tempat_lahir', 'no_whatsapp']);
     }
 
     public function test_jamaah_dapat_masuk_dengan_nik_dan_password_default(): void
@@ -278,7 +297,7 @@ class MemberPortalTest extends TestCase
             'name' => $user->name,
             'nia' => 'NIA-GML-'.substr($registrationCode, -4),
             'nik' => $user->nik,
-            'nik_hash' => hash('sha256', (string) $user->nik),
+            'nik_hash' => KartaNu::hashNik((string) $user->nik),
             'branch_name' => 'Ranting Gumelar',
             'birth_place' => 'Gumelar',
             'birth_date' => '1995-01-20',
