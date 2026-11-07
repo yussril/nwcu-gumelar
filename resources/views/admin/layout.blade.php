@@ -116,10 +116,6 @@
                 <p class="font-body-sm text-body-sm text-secondary truncate">{{ $title ?? 'Pusat Informasi MWCNU' }}</p>
             </div>
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                <div class="relative hidden sm:flex items-center">
-                    <span class="material-symbols-outlined absolute left-3 text-secondary text-[16px]">search</span>
-                    <input class="w-48 md:w-56 lg:w-72 h-9 pl-9 pr-3 rounded-lg bg-surface-container-low border border-outline-variant/30 font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:border-primary focus:bg-surface-container-lowest transition-all" placeholder="Cari arsip, sensus, warga..." type="text">
-                </div>
                 <div class="hidden md:flex items-center font-label-sm text-label-sm text-secondary border-l border-outline-variant/30 pl-3 py-1 gap-2">
                     <span class="material-symbols-outlined text-[16px]">calendar_today</span>
                     <span>{{ now()->translatedFormat('d M Y') }}</span>

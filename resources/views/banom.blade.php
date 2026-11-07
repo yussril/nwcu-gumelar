@@ -37,12 +37,6 @@
                             <dd class="font-semibold text-on-surface">10 Desa Se-Gumelar</dd>
                         </div>
                     </dl>
-                    @auth
-                        <a class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline" href="{{ route('admin.banoms.index') }}">
-                            <span class="material-symbols-outlined text-[18px]">edit</span>
-                            Kelola konten
-                        </a>
-                    @endauth
                 </aside>
             </div>
 

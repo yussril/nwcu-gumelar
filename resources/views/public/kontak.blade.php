@@ -92,8 +92,17 @@
                     </article>
 
                     <!-- Kartu Saluran WhatsApp (identik dengan banner di halaman Berita) -->
-                    <article class="relative overflow-hidden rounded-2xl bg-primary-container p-5 text-on-primary sm:p-6">
-                        <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary via-primary-container to-tertiary-container opacity-90"></div>
+                    <article class="relative overflow-hidden rounded-2xl bg-primary-container p-5 text-on-primary sm:p-6 shadow-lg">
+                        <div class="pointer-events-none absolute inset-0 opacity-10">
+                            <svg class="h-full w-full text-on-primary" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <defs>
+                                    <pattern height="40" id="wa-grid-pattern" patternUnits="userSpaceOnUse" width="40">
+                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"></path>
+                                    </pattern>
+                                </defs>
+                                <rect fill="url(#wa-grid-pattern)" height="100%" width="100%"></rect>
+                            </svg>
+                        </div>
                         <div class="relative z-10 flex flex-col items-center gap-5 sm:flex-row">
                             <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25">
                                 <svg aria-hidden="true" class="h-8 w-8 fill-primary-fixed" viewBox="0 0 24 24">
@@ -114,31 +123,19 @@
                         </a>
                     </article>
 
-                    <!-- Placeholder Peta Interaktif -->
+                    <!-- Peta Interaktif -->
                     <article class="space-y-3 overflow-hidden rounded-2xl bg-surface-container-lowest p-3">
-                        <a class="group relative flex h-64 flex-col items-center justify-center overflow-hidden rounded-xl bg-surface-container-high bg-cover bg-center p-6 text-center transition-colors hover:bg-surface-container" data-location="Sekretariat MWCNU Gumelar, Gumelar, Banyumas" href="{{ config('services.maps.sekretariat') }}" rel="noopener noreferrer" target="_blank">
-                            <!-- Peta Grafis Geometris Vektor Pelengkap -->
-                            <div class="pointer-events-none absolute inset-0 opacity-15">
-                                <svg class="h-full w-full text-on-surface" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <pattern height="36" id="grid-pattern" patternUnits="userSpaceOnUse" width="36">
-                                            <path d="M 36 0 L 0 0 0 36" fill="none" stroke="currentColor" stroke-width="1"></path>
-                                        </pattern>
-                                    </defs>
-                                    <rect fill="url(#grid-pattern)" height="100%" width="100%"></rect>
-                                </svg>
-                            </div>
-                            <div class="relative z-10 flex flex-col items-center">
-                                <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-on-primary transition-transform group-hover:scale-105">
-                                    <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">pin_drop</span>
-                                </div>
-                                <span class="mb-1 font-headline-sm text-headline-sm font-bold text-on-surface">Sekretariat MWCNU Gumelar</span>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant">Kec. Gumelar, Kabupaten Banyumas</p>
-                                <div class="mt-2 rounded-full bg-surface-container-lowest px-3 py-1 font-label-caps text-label-caps font-semibold uppercase text-primary">
-                                    Lat: -7.3684, Long: 108.9881
-                                </div>
-                            </div>
-                        </a>
+                        <div class="h-64 w-full overflow-hidden rounded-xl bg-surface-container-high">
+                            <iframe
+                                src="https://www.google.com/maps?q=-7.3684,108.9881&hl=id&z=17&output=embed"
+                                width="100%"
+                                height="100%"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
                         <div class="flex flex-col gap-3 px-1 pb-1 pt-1 sm:flex-row sm:items-center sm:justify-between">
                             <span class="font-label-sm text-label-sm text-on-surface-variant">Titik Penjemputan &amp; Parkir Kendaraan Tersedia</span>
                             <a class="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg bg-surface-container px-3 py-2 font-label-md text-label-md font-medium text-on-surface transition-colors hover:bg-primary-fixed hover:text-primary" href="{{ config('services.maps.sekretariat') }}" rel="noopener noreferrer" target="_blank">
