@@ -21,8 +21,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Jumlah pesan kontak yang belum dibaca, ditampilkan sebagai badge menu sidebar
-        // dan di halaman isi (dashboard / kotak masuk) agar keduanya selalu konsisten.
+        // 1. Paksa buat direktori view compiled di /tmp khusus untuk Vercel
+        $viewPath = env('VIEW_COMPILED_PATH');
+        if ($viewPath && !is_dir($viewPath)) {
+            mkdir($viewPath, 0755, true);
+        }
+
+        // 2. Kode bawaanmu untuk badge pesan admin
         View::composer('admin.*', function ($view) {
             $view->with('unreadMessageCount', ContactMessage::where('is_read', false)->count());
         });
