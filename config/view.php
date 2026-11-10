@@ -1,6 +1,14 @@
 <?php
-$__env = null;
+
 return [
-    "cache" => "storage/framework/views",
-    "compiled" => "storage/framework/views",
+
+    'paths' => [
+        resource_path('views'),
+    ],
+
+    'compiled' => env(
+        'VIEW_COMPILED_PATH',
+        realpath(storage_path('framework/views'))
+    ),
+
 ];
